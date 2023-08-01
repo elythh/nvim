@@ -34,8 +34,9 @@ lazy.setup({
   },
   {
     "folke/which-key.nvim",
-    keys = { "<leader>", ' ', "'", "`" },
+    -- keys = { "<leader>", ' ', "'", "`" },
     lazy = true,
+    enabled = false,
     config = function() require('plugs.util.which-key') end
   },
   {
@@ -257,5 +258,13 @@ lazy.setup({
     "chrisgrieser/nvim-origami",
     event = "BufReadPost", -- later or on keypress would prevent saving folds
     opts = true,           -- needed even when using default config
+  },
+  {
+    "echasnovski/mini.clue",
+    keys = { "<leader>", ' ', "'", "`" },
+    config = function()
+      require("plugs.util.mini")
+    end,
+    version = false,
   },
 })
