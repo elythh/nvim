@@ -30,7 +30,7 @@ map('n', 'zM', '<CMD>lua require("ufo").closeAllFolds<CR>', { noremap = true, si
 -- general mapping
 
 -- Telescope
-nmap_leader('tc', ":lua require('themes.schemer').setup(require('telescope.themes').get_dropdown{})<cr>",
+nmap_leader('fc', ":lua require('themes.schemer').setup(require('telescope.themes').get_dropdown{})<cr>",
   "Change Colorschemes")
 nmap_leader("ff", ":Telescope find_files<cr>", "Find Files")
 nmap_leader("fg", ":Telescope oldfiles<cr>", "Recently Opened")
