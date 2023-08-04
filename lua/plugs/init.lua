@@ -34,10 +34,29 @@ lazy.setup({
   },
   {
     "folke/which-key.nvim",
-    -- keys = { "<leader>", ' ', "'", "`" },
+    keys = { "<leader>", ' ', "'", "`" },
     lazy = true,
-    enabled = false,
+    enabled = true,
     config = function() require('plugs.util.which-key') end
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require("plugs.ui.noice")
+    end,
+    lazy = true,
   },
   {
     'nvim-lua/plenary.nvim',
@@ -265,6 +284,7 @@ lazy.setup({
     config = function()
       require("plugs.util.mini")
     end,
+    enable = false,
     version = false,
   },
   {

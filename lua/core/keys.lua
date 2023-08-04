@@ -26,32 +26,3 @@ map('n', '<C-t>', '<CMD>ToggleTerm<CR>', { noremap = true, silent = true })
 
 map('n', 'zR', '<CMD>lua require("ufo").openAllFolds<CR>', { noremap = true, silent = true })
 map('n', 'zM', '<CMD>lua require("ufo").closeAllFolds<CR>', { noremap = true, silent = true })
-
--- general mapping
-
--- Telescope
-nmap_leader('fc', ":lua require('themes.schemer').setup(require('telescope.themes').get_dropdown{})<cr>",
-  "Change Colorschemes")
-nmap_leader("ff", ":Telescope find_files<cr>", "Find Files")
-nmap_leader("fg", ":Telescope oldfiles<cr>", "Recently Opened")
-nmap_leader("fr", ":Telescope live_grep<cr>", "Find String")
-nmap_leader("fR", ":Telescope resume<cr>", "Resume")
-
--- git
-nmap_leader("gg", ":LazyGit<cr>", "Open LazyGit")
-
--- Grapple
-nmap_leader("Ga", ":GrappleTag<cr>", "Add A Bookmark")
-nmap_leader("Gt", ":GrappleToggle<cr>", "Toggle Bookmark")
-nmap_leader("Gr", ":GrappleUntag<cr>", "Remove Bookmark")
-nmap_leader("Gg", ":GrapplePopup tags<cr>", "Show All Bookmarks")
-
--- terminal
-nmap_leader("tt", ":ToggleTerm<cr>", "Split Below")
-
--- misc
-nmap_leader("ll", ":Lazy<cr>", "Open Lazy")
-nmap_leader("lc", ":lua require('telescope') vim.lsp.buf.code_action()<cr>", "Show Code Actions")
-nmap_leader("lm", ":Mason<cr>", "Open Mason")
-nmap_leader("ls", ":SymbolsOutline<cr>", "Overview of file")
-nmap_leader("lw", ":SessionSave<cr>", "Save this session")
