@@ -40,25 +40,6 @@ lazy.setup({
     config = function() require('plugs.util.which-key') end
   },
   {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    },
-    config = function()
-      require("plugs.ui.noice")
-    end,
-    lazy = true,
-  },
-  {
     'nvim-lua/plenary.nvim',
     lazy = true,
   },
@@ -82,6 +63,13 @@ lazy.setup({
     event = 'CursorHold',
   },
   {
+    "terrortylor/nvim-comment",
+    keys = { "<leader>", 'g' },
+    config = function() require('plugs.util.comments') end,
+    lazy = true,
+  },
+  -- The funs begins
+  {
     "williamboman/mason.nvim",
     cmd = {
       "MasonInstall",
@@ -93,13 +81,11 @@ lazy.setup({
     },
     config = function() require('plugs.lsp.mason') end,
   },
+  -- Mason Lspconfig bridge
   {
-    "terrortylor/nvim-comment",
-    keys = { "<leader>", 'g' },
-    config = function() require('plugs.util.comments') end,
+    'williamboman/mason-lspconfig.nvim',
     lazy = true,
   },
-  -- The funs begins
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile", "CursorHold" },
@@ -109,7 +95,6 @@ lazy.setup({
       require "plugs.lsp.lspconfig"
     end,
   },
-
   -- load luasnips + cmp related in insert mode only
   {
     "hrsh7th/nvim-cmp",
@@ -284,8 +269,9 @@ lazy.setup({
     config = function()
       require("plugs.util.mini")
     end,
-    enable = false,
+    enabled = false,
     version = false,
+    event = "VeryLazy",
   },
   {
     "ziontee113/icon-picker.nvim",
@@ -299,5 +285,30 @@ lazy.setup({
       "IconPickerYank",
       "IconPickerInsert"
     },
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require("plugs.ui.noice")
+    end,
+    lazy = true,
+  },
+  {
+    'nvim-pack/nvim-spectre',
+    config = function()
+      require("plugs.util.spectre")
+    end,
   },
 })
