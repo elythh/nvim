@@ -51,7 +51,13 @@ local mappings = {
     L = { ":HopLineStart<cr>", "Line Start" },
     v = { ":HopVertical<cr>", "Vertically" },
     w = { ":HopWord<cr>", "Word" },
-  }
+  },
+  s = {
+    name = "Spectre",
+    S = { ":lua require('spectre').toggle()<CR>", "Toggle Spectre" },
+    w = { ":lua require('spectre').open_visual({select_word=true})<CR>", "Search current word" },
+    p = { ":lua require('spectre').open_file_search({select_word=true})<CR>", "Search on current file" },
+  },
 }
 
 local opts = { prefix = '<leader>' }
