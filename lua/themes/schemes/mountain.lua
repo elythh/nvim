@@ -1,3 +1,4 @@
+local M = {}
 function M.get_colors()
   return {
     comment = "#4c4c4c",
