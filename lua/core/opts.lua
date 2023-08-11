@@ -45,7 +45,6 @@ opt.autoindent = true
 opt.expandtab = true
 opt.fillchars:append('eob: ')
 opt.listchars:append "space: "
-cmd('set lazyredraw')
 opt.laststatus = 0                  -- Global Status
 diagnostic.config { signs = false } -- Removing diagnostic column
 opt.updatetime = 250

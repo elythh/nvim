@@ -31,3 +31,4 @@ function M.get_colors()
 end
 
 return M
+
