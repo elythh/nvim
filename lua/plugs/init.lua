@@ -236,6 +236,10 @@ lazy.setup({
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    cmd = {
+      "LazyGit"
+    },
+    lazy = true,
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -344,6 +348,7 @@ lazy.setup({
     config = function()
       require("plugs.util.spectre")
     end,
+    lazy = true,
   },
   {
     'olimorris/persisted.nvim',
@@ -353,6 +358,21 @@ lazy.setup({
       "SessionLoad"
     },
     config = true,
+    lazy = true,
+  },
+  {
+    'luckasRanarison/nvim-devdocs',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    cmd = {
+      "DevdocsInstall",
+      "DevdocsOpen",
+      "DevdocsOpenFloat"
+    },
+    opts = {},
     lazy = true,
   }
 })
