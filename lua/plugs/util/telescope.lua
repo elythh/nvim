@@ -58,7 +58,8 @@ require('telescope').setup {
       require("telescope.themes").get_dropdown {
         -- even more opts
       }
-    }
+    },
   }
 }
+require("telescope").load_extension("project")
 require("telescope").load_extension("ui-select")
