@@ -345,4 +345,14 @@ lazy.setup({
       require("plugs.util.spectre")
     end,
   },
+  {
+    'olimorris/persisted.nvim',
+    cmd = {
+      "SessionSave",
+      "SessionLoadLast",
+      "SessionLoad"
+    },
+    config = true,
+    lazy = true,
+  }
 })

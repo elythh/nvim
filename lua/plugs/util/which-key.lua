@@ -18,7 +18,8 @@ local mappings = {
     g = { ":Telescope oldfiles<cr>", "Recently Opened" },
     p = { ":Telescope project<cr>", "Find Project" },
     r = { ":Telescope live_grep<cr>", "Find String" },
-    R = { ":Telescope resume<cr>", "Resume" }
+    R = { ":Telescope resume<cr>", "Resume" },
+    s = { ":Telescope persisted<cr>", "Sessions" }
   },
   g = {
     name = "Git",
