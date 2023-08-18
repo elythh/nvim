@@ -36,7 +36,7 @@ M.capabilities.textDocument.completion.completionItem = {
 
 local servers = { "html", "yamlls", "pyright", "tsserver", "emmet_ls", "clangd", "cssls", "rnix", "hls",
   "rust_analyzer",
-  "terraformls" }
+  "terraformls", "jsonls"}
 for _, k in ipairs(servers) do
   lspconfig[k].setup {
     on_attach = M.on_attach,
@@ -58,5 +58,31 @@ lspconfig.lua_ls.setup {
     },
   }
 }
+
+lspconfig.jsonls.setup {
+  cmd = { "vscode-json-languageserver", "--stdio" },
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
+
+lspconfig.yamlls.setup {
+  settings = {
+    yaml = {
+      schemaStore = {
+        -- You must disable built-in schemaStore support if you want to use
+        -- this plugin and its advanced options like `ignore`.
+        enable = false,
+        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        url = "",
+      },
+      schemas = require('schemastore').yaml.schemas(),
+    },
+  },
+}
+
 require('ufo').setup()
 return M

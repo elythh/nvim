@@ -374,5 +374,26 @@ lazy.setup({
     },
     opts = {},
     lazy = true,
+  },
+  {
+    'chipsenkbeil/distant.nvim',
+    branch = 'v0.3',
+    config = function()
+      require('distant'):setup()
+    end,
+    lazy = true,
+  },
+  {
+    "b0o/schemastore.nvim",
+    lazy = true,
+  },
+  {
+    "someone-stole-my-name/yaml-companion.nvim",
+    requires = {
+      { "neovim/nvim-lspconfig" },
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+    },
+    lazy = true,
   }
 })
