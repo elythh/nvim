@@ -34,9 +34,8 @@ M.capabilities.textDocument.completion.completionItem = {
 }
 
 
-local servers = { "html", "yamlls", "pyright", "tsserver", "emmet_ls", "clangd", "cssls", "rnix", "hls",
-  "rust_analyzer",
-  "terraformls", "jsonls"}
+local servers = { "html", "yamlls", "pyright", "tsserver", "clangd", "cssls", "rnix", "hls", "rust_analyzer",
+  "terraformls", "jsonls" }
 for _, k in ipairs(servers) do
   lspconfig[k].setup {
     on_attach = M.on_attach,
@@ -82,6 +81,10 @@ lspconfig.yamlls.setup {
       schemas = require('schemastore').yaml.schemas(),
     },
   },
+}
+
+lspconfig.cssls.setup {
+  cmd = { "css-languageserver", "--stdio" }
 }
 
 require('ufo').setup()
