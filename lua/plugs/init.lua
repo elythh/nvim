@@ -1,6 +1,7 @@
 require("plugs.strap")
 local lazy = require("lazy")
 lazy.setup({
+  -- Highlight code
   {
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
@@ -13,25 +14,28 @@ lazy.setup({
     event = "InsertEnter",
     lazy = true
   },
+  -- Highlight Hex colors in code
   {
     'NvChad/nvim-colorizer.lua',
     event = 'CursorHold',
     config = function() require('plugs.ui.colorizer') end,
     lazy = true
   },
+  -- Icons for tree
   {
     "nvim-tree/nvim-web-devicons",
     event = 'CursorHold',
     config = function() require('plugs.ui.devicons') end,
     lazy = true,
   },
-
+  -- Tree
   {
     'kyazdani42/nvim-tree.lua',
     lazy = true,
     cmd = "NvimTreeToggle",
     config = function() require('plugs.util.nvim-tree') end
   },
+  -- Quickly define and find binds
   {
     "folke/which-key.nvim",
     keys = { "<leader>", ' ', "'", "`" },
@@ -39,10 +43,12 @@ lazy.setup({
     enabled = true,
     config = function() require('plugs.util.which-key') end
   },
+  -- I dont even know but many plugins require it
   {
     'nvim-lua/plenary.nvim',
     lazy = true,
   },
+  -- Telescope
   {
     'nvim-telescope/telescope.nvim',
     cmd = "Telescope",
@@ -50,18 +56,21 @@ lazy.setup({
     dependencies = { 'plenary.nvim' },
     config = function() require('plugs.util.telescope') end
   },
+  -- Toggle terminal windows
   {
     "akinsho/toggleterm.nvim",
     lazy = true,
     config = function() require('plugs.util.toggleterm') end,
     cmd = "ToggleTerm",
   },
+  -- Adds indentation guides to all lines (including empty lines).
   {
     "lukas-reineke/indent-blankline.nvim",
     lazy = true,
     config = function() require('plugs.ui.indentlines') end,
     event = 'CursorHold',
   },
+  -- Quickly comment codeinit
   {
     "terrortylor/nvim-comment",
     keys = { "<leader>", 'g' },
@@ -150,10 +159,12 @@ lazy.setup({
     "nvim-telescope/telescope-ui-select.nvim",
     lazy = true
   },
+  -- Quickly switch projects with telescope
   {
     'nvim-telescope/telescope-project.nvim',
     lazy = true
   },
+  -- Folds
   {
     'kevinhwang91/nvim-ufo',
     lazy = true,

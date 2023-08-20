@@ -25,6 +25,10 @@ local mappings = {
   },
   g = {
     name = "Git",
+    d = {
+      "<cmd>lua require('plugs.util.diff')()<CR>",
+      "Diff With",
+    },
     g = { ":LazyGit<cr>", "Open LazyGit" }
   },
   G = {
