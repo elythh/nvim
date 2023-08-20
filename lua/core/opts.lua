@@ -27,7 +27,7 @@ opt.ruler = false
 opt.writebackup = false
 opt.updatetime = 300
 opt.timeoutlen = 100
-opt.clipboard = "unnamedplus"
+opt.clipboard = "unnamedplus,unnamed"
 opt.hlsearch = true
 opt.ignorecase = true
 opt.scrolloff = 10
@@ -58,42 +58,42 @@ opt.shortmess:append "sI"
 
 -- Disabling some built in plugins
 local builtins = {
-	"2html_plugin",
-	"getscript",
-	"getscriptPlugin",
-	"gzip",
-	"logipat",
-	"netrw",
-	"netrwPlugin",
-	"netrwSettings",
-	"netrwFileHandlers",
-	"matchit",
-	"matchparen",
-	"tar",
-	"tarPlugin",
-	"rrhelper",
-	"spellfile_plugin",
-	"vimball",
-	"vimballPlugin",
-	"zip",
-	"zipPlugin",
-	"logipat",
-	"matchit",
-	"tutor",
-	"rplugin",
-	"syntax",
-	"synmenu",
-	"optwin",
-	"compiler",
-	"bugreport",
-	"ftplugin",
-	"archlinux",
-	"fzf",
-	"tutor_mode_plugin",
-	"sleuth",
-	"vimgrep"
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "matchit",
+  "matchparen",
+  "tar",
+  "tarPlugin",
+  "rrhelper",
+  "spellfile_plugin",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+  "logipat",
+  "matchit",
+  "tutor",
+  "rplugin",
+  "syntax",
+  "synmenu",
+  "optwin",
+  "compiler",
+  "bugreport",
+  "ftplugin",
+  "archlinux",
+  "fzf",
+  "tutor_mode_plugin",
+  "sleuth",
+  "vimgrep"
 }
 
 for _, plugin in ipairs(builtins) do
-	g["loaded_" .. plugin] = 1
+  g["loaded_" .. plugin] = 1
 end

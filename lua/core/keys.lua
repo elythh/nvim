@@ -26,3 +26,6 @@ map('n', '<C-t>', '<CMD>ToggleTerm<CR>', { noremap = true, silent = true })
 
 map('n', 'zR', '<CMD>lua require("ufo").openAllFolds<CR>', { noremap = true, silent = true })
 map('n', 'zM', '<CMD>lua require("ufo").closeAllFolds<CR>', { noremap = true, silent = true })
+
+-- Yank buffer path
+map("n", "cp", ':let @+ = expand("%")<CR>', { noremap = true, silent = true })
