@@ -395,5 +395,9 @@ lazy.setup({
       { "nvim-telescope/telescope.nvim" },
     },
     lazy = true,
+  },
+  {
+    'ThePrimeagen/git-worktree.nvim',
+    lazy = true,
   }
 })

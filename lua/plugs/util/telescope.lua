@@ -61,6 +61,8 @@ require('telescope').setup {
     },
   }
 }
+
+require("telescope").load_extension("git_worktree")
 require("telescope").load_extension("yaml_schema")
 require("telescope").load_extension("persisted")
 require("telescope").load_extension("project")

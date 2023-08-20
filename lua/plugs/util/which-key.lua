@@ -19,7 +19,9 @@ local mappings = {
     p = { ":Telescope project<cr>", "Find Project" },
     r = { ":Telescope live_grep<cr>", "Find String" },
     R = { ":Telescope resume<cr>", "Resume" },
-    s = { ":Telescope persisted<cr>", "Sessions" }
+    s = { ":Telescope persisted<cr>", "Sessions" },
+    w = { ":lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Change worktrees" },
+    W = { ":lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create worktrees" }
   },
   g = {
     name = "Git",
