@@ -410,5 +410,14 @@ lazy.setup({
   {
     'ThePrimeagen/git-worktree.nvim',
     lazy = true,
+  },
+  {
+    "folke/twilight.nvim",
+    cmd = {
+      "TwilightEnable",
+      "TwilightDisable",
+      "Twilight"
+    },
+    lazy = true,
   }
 })
