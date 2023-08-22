@@ -95,6 +95,7 @@ lazy.setup({
     'williamboman/mason-lspconfig.nvim',
     lazy = true,
   },
+  -- Easily configure lsp
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile", "CursorHold" },
@@ -150,11 +151,13 @@ lazy.setup({
       require("plugs.lsp.cmp")
     end,
   },
+  -- Nix expressions vim
   {
     "LnL7/vim-nix",
     lazy = true,
     ft = 'nix',
   },
+  -- Custom ui select for telescope (used for colorscheme changer and other stuff)
   {
     "nvim-telescope/telescope-ui-select.nvim",
     lazy = true
@@ -171,12 +174,14 @@ lazy.setup({
     event = 'CursorHold',
     dependencies = 'kevinhwang91/promise-async'
   },
+  -- Symbols outline
   {
     'simrat39/symbols-outline.nvim',
     cmd = "SymbolsOutline",
     lazy = true,
     config = function() require("plugs.util.symbols") end
   },
+  -- Show info at the end of closing backets
   {
     'code-biscuits/nvim-biscuits',
     dependencies = {
@@ -186,6 +191,7 @@ lazy.setup({
     config = function() require("plugs.lsp.biscuits") end,
     event = 'CursorHold',
   },
+  -- Tagging important files
   {
     "cbochs/grapple.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -202,6 +208,7 @@ lazy.setup({
       "GrappleUntag"
     }
   },
+  -- Hop anyhwere easily
   {
     'phaazon/hop.nvim',
     branch = 'v2',
@@ -217,6 +224,7 @@ lazy.setup({
     },
     config = function() require("plugs.util.hop") end
   },
+  -- Dashboard
   {
     "goolord/alpha-nvim",
     lazy = true,
@@ -238,10 +246,12 @@ lazy.setup({
       { "nvim-treesitter/nvim-treesitter" }
     }
   },
+  -- Pictograms for lsp
   {
     "onsails/lspkind.nvim",
     event = "InsertEnter",
   },
+  -- Lazygit implementation
   {
     "kdheepak/lazygit.nvim",
     dependencies = {
@@ -252,6 +262,7 @@ lazy.setup({
     },
     lazy = true,
   },
+  -- Git plugin
   {
     "lewis6991/gitsigns.nvim",
     lazy = true,
@@ -300,6 +311,7 @@ lazy.setup({
       }
     end
   },
+  -- Discord rich presence
   {
     "andweeb/presence.nvim",
     event = "VeryLazy",
@@ -307,21 +319,13 @@ lazy.setup({
       require "plugs.util.presence"
     end,
   },
+  -- Fold easily
   {
     "chrisgrieser/nvim-origami",
     event = "BufReadPost", -- later or on keypress would prevent saving folds
     opts = true,           -- needed even when using default config
   },
-  {
-    "echasnovski/mini.clue",
-    keys = { "<leader>", ' ', "'", "`" },
-    config = function()
-      require("plugs.util.mini")
-    end,
-    enabled = false,
-    version = false,
-    event = "VeryLazy",
-  },
+  -- Pick font awesome incons
   {
     "ziontee113/icon-picker.nvim",
     config = function()
@@ -335,6 +339,7 @@ lazy.setup({
       "IconPickerInsert"
     },
   },
+  -- Change the UI
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -342,11 +347,7 @@ lazy.setup({
       -- add any options here
     },
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
     },
     config = function()
@@ -354,6 +355,7 @@ lazy.setup({
     end,
     lazy = true,
   },
+  -- Search and replace text
   {
     'nvim-pack/nvim-spectre',
     config = function()
@@ -361,6 +363,7 @@ lazy.setup({
     end,
     lazy = true,
   },
+  -- Sessions
   {
     'olimorris/persisted.nvim',
     cmd = {
@@ -371,6 +374,7 @@ lazy.setup({
     config = true,
     lazy = true,
   },
+  -- Read devdocs rom nvim
   {
     'luckasRanarison/nvim-devdocs',
     dependencies = {
@@ -386,6 +390,7 @@ lazy.setup({
     opts = {},
     lazy = true,
   },
+  -- Remote coding sessions
   {
     'chipsenkbeil/distant.nvim',
     branch = 'v0.3',
@@ -394,29 +399,39 @@ lazy.setup({
     end,
     lazy = true,
   },
-  {
-    "b0o/schemastore.nvim",
-    lazy = true,
-  },
-  {
-    "someone-stole-my-name/yaml-companion.nvim",
-    requires = {
-      { "neovim/nvim-lspconfig" },
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim" },
-    },
-    lazy = true,
-  },
+  -- {
+  --   "b0o/schemastore.nvim",
+  --   lazy = true,
+  -- },
+  -- {
+  --   "someone-stole-my-name/yaml-companion.nvim",
+  --   requires = {
+  --     { "neovim/nvim-lspconfig" },
+  --     { "nvim-lua/plenary.nvim" },
+  --     { "nvim-telescope/telescope.nvim" },
+  --   },
+  --   lazy = true,
+  -- },
+  -- Worktree manager for git
   {
     'ThePrimeagen/git-worktree.nvim',
     lazy = true,
   },
+  -- Hide the code that is not active
   {
     "folke/twilight.nvim",
     cmd = {
       "TwilightEnable",
       "TwilightDisable",
       "Twilight"
+    },
+    lazy = true,
+  },
+  -- Show recent changes to undo
+  {
+    'mbbill/undotree',
+    cmd = {
+      "UndotreeToggle"
     },
     lazy = true,
   }

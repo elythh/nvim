@@ -36,5 +36,5 @@ M.dashboard = {
   }
 }
 
-M.colorscheme = 'verdant'
+M.colorscheme = 'onedarker'
 return M
