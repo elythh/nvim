@@ -434,5 +434,9 @@ lazy.setup({
       "UndotreeToggle"
     },
     lazy = true,
+  },
+  {
+    "dharmx-lua/track.nvim",
+    lazy = true,
   }
 })

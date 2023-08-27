@@ -20,6 +20,7 @@ local mappings = {
     r = { ":Telescope live_grep<cr>", "Find String" },
     R = { ":Telescope resume<cr>", "Resume" },
     s = { ":Telescope persisted<cr>", "Sessions" },
+    t = { ":Telescope track views<cr>", "Tracked files" },
     w = { ":lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Change worktrees" },
     W = { ":lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create worktrees" }
   },
@@ -37,10 +38,6 @@ local mappings = {
     t = { ":GrappleToggle<cr>", "Toggle Bookmark" },
     r = { ":GrappleUntag<cr>", "Remove Bookmark" },
     g = { ":GrapplePopup tags<cr>", "Show All Bookmarks" }
-  },
-  t = {
-    name = "Terminal",
-    t = { ":ToggleTerm<cr>", "Split Below" },
   },
   l = {
     name = "Misc",
@@ -65,6 +62,13 @@ local mappings = {
     S = { ":lua require('spectre').toggle()<CR>", "Toggle Spectre" },
     w = { ":lua require('spectre').open_visual({select_word=true})<CR>", "Search current word" },
     p = { ":lua require('spectre').open_file_search({select_word=true})<CR>", "Search on current file" },
+  },
+  t = {
+    name = "Track",
+    a = { ":TrackMark<cr>", "Track Mark" },
+    A = { ":TrackMark<cr>", "Track Mark All" },
+    u = { ":TrackUnmark<cr>", "Track Unmark" },
+
   },
 }
 

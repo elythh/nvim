@@ -46,6 +46,7 @@ opt.expandtab = true
 opt.fillchars:append('eob: ')
 opt.listchars:append "space: "
 opt.laststatus = 0                  -- Global Status
+cmd('set nolist')
 diagnostic.config { signs = false } -- Removing diagnostic column
 opt.updatetime = 250
 opt.shadafile = "NONE"
