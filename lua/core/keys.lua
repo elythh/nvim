@@ -29,3 +29,6 @@ map('n', 'zM', '<CMD>lua require("ufo").closeAllFolds<CR>', { noremap = true, si
 
 -- Yank buffer path
 map("n", "cp", ':let @+ = expand("%")<CR>', { noremap = true, silent = true })
+
+-- greatest remap ever
+map("x", "<CMD>p", [["_dP]], { noremap = true, silent = true })
