@@ -438,5 +438,11 @@ lazy.setup({
   {
     "dharmx-lua/track.nvim",
     lazy = true,
-  }
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require "plugs.ui.lualine"
+    end
+  },
 })
