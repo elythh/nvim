@@ -181,16 +181,6 @@ lazy.setup({
     lazy = true,
     config = function() require("plugs.util.symbols") end
   },
-  -- Show info at the end of closing backets
-  {
-    'code-biscuits/nvim-biscuits',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
-    lazy = true,
-    config = function() require("plugs.lsp.biscuits") end,
-    event = 'CursorHold',
-  },
   -- Tagging important files
   {
     "cbochs/grapple.nvim",
@@ -441,6 +431,7 @@ lazy.setup({
   },
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     config = function()
       require "plugs.ui.lualine"
     end

@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 -- Require theme color you're using
-local colors = require('themes.schemes.gruv').get_colors()
+local colors = require('themes.schemes.rose').get_colors()
 
 -- local hide_in_width = function()
 --     return vim.fn.winwidth(0) > 80
@@ -32,7 +32,7 @@ local diagnostics = {
 local branch = {
   "branch",
   icon = "",
-  color = { fg = colors.color8 },
+  color = { fg = colors.color4 },
   padding = { left = 2, right = 2 },
 }
 
@@ -148,6 +148,7 @@ end
 
 lualine.setup({
   options = {
+    disabled_filetypes = { 'alpha', 'NVimTree', "lazy" },
     globalstatus = true,
     icons_enabled = true,
     component_separators = { left = "", right = "" },
