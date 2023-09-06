@@ -18,7 +18,7 @@ return {
   Comment = { fg = colors.comment, italic = true },
   Folded = { fg = colors.color4, bg = colors.background },
   FoldColumn = { fg = colors.color12, bg = colors.background },
-  LineNr = { fg = colors.color8, bg = colors.background },
+  LineNr = { fg = colors.comment, bg = colors.background },
   FloatBorder = { fg = colors.foreground, bg = colors.background },
   Whitespace = { fg = colors.color1 },
   VertSplit = { fg = colors.darker, bg = colors.darker },
