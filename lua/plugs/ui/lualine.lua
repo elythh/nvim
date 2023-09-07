@@ -24,7 +24,7 @@ local diagnostics = {
     color_error = { fg = colors.color1 },
     color_warn = { fg = colors.color3 },
     color_info = { fg = colors.color11 },
-    color_hint = { fg = colors.comment }
+    color_hint = { fg = colors.color4 }
   },
   always_visible = false,
   update_in_insert = true,
@@ -64,7 +64,7 @@ local modes = {
     }
     return animated[os.date("%S") % #animated + 1]
   end,
-  separator = { left = "", right = "" },
+  separator = { left = "█", right = "█" },
 }
 
 local indent = function()
@@ -103,8 +103,8 @@ lualine.setup({
       {
         "filename",
         padding = 1,
-        separator = { left = "", right = "" },
-        color = { bg = colors.cursor, fg = colors.darker, gui = "bold" },
+        separator = { left = "█", right = "█" },
+        color = { bg = colors.foreground, fg = colors.darker, gui = "bold" },
         file_status = true,
         newfile_status = true,
         path = 5,
@@ -123,8 +123,8 @@ lualine.setup({
         function()
           return " "
         end,
-        separator = { left = "", right = "" },
-        color = { bg = colors.comment, fg = colors.background },
+        separator = { left = "█", right = "█" },
+        color = { bg = colors.color4, fg = colors.background },
       }
     },
     lualine_x = {
@@ -132,8 +132,8 @@ lualine.setup({
         function()
           return " "
         end,
-        separator = { left = "", right = "" },
-        color = { bg = colors.comment, fg = colors.background },
+        separator = { left = "█", right = "█" },
+        color = { bg = colors.color4, fg = colors.background },
       },
       diagnostics,
       {
@@ -143,24 +143,24 @@ lualine.setup({
         function()
           return " "
         end,
-        separator = { left = "", right = "" },
-        color = { bg = colors.comment, fg = colors.background },
+        separator = { left = "█", right = "█" },
+        color = { bg = colors.color4, fg = colors.background },
       },
       indent,
       {
         function()
           return ""
         end,
-        separator = { left = "", right = "" },
-        color = { bg = colors.comment, fg = colors.background },
+        separator = { left = "█", right = "█" },
+        color = { bg = colors.color4, fg = colors.background },
       },
       "progress",
       {
         function()
           return " "
         end,
-        separator = { left = "", right = "" },
-        color = { bg = colors.comment, fg = colors.background },
+        separator = { left = "█", right = "█" },
+        color = { bg = colors.color4, fg = colors.background },
       },
       location,
       {
@@ -172,7 +172,7 @@ lualine.setup({
           local index = math.ceil(progress_percent * #chars)
           return chars[index]
         end,
-        color = { fg = colors.comment },
+        color = { fg = colors.color4 },
       }
     },
     lualine_y = {},
