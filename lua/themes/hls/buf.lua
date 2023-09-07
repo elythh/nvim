@@ -13,6 +13,5 @@ return {
   BuffLineButton = { bg = themes.darken(colors.color4, colors.cursorline, 0.12), fg = colors.color4 },
   BuffLineCloseButton = { bg = colors.color9, fg = colors.background },
   -- Statusline
-  StatusLine = { bg = colors.background, fg = colors.background },
-  StatusLineNC = { bg = colors.background, fg = colors.background },
+  StatusLine = { bg = colors.background },
 }

@@ -36,5 +36,5 @@ M.dashboard = {
   }
 }
 
-M.colorscheme = 'gruv'
+M.colorscheme = 'rose'
 return M
