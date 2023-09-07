@@ -14,4 +14,6 @@ return {
   BuffLineCloseButton = { bg = colors.color9, fg = colors.background },
   -- Statusline
   StatusLine = { bg = colors.background },
+  LualineA = { bg = colors.color4, fg = colors.background },
+  LuaLineB = { bg = colors.color12, fg = colors.background }
 }

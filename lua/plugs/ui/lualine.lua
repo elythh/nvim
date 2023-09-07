@@ -33,7 +33,7 @@ local diagnostics = {
 local branch = {
   "branch",
   icon = "",
-  color = { fg = colors.color4 },
+  color = { fg = colors.foreground },
   padding = { left = 2, right = 2 },
 }
 
@@ -124,7 +124,7 @@ lualine.setup({
           return " "
         end,
         separator = { left = "█", right = "█" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = { fg = colors.foreground },
       }
     },
     lualine_x = {
@@ -133,7 +133,7 @@ lualine.setup({
           return " "
         end,
         separator = { left = "█", right = "█" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = 'LualineA',
       },
       diagnostics,
       {
@@ -144,7 +144,7 @@ lualine.setup({
           return " "
         end,
         separator = { left = "█", right = "█" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = 'LualineB',
       },
       indent,
       {
@@ -152,7 +152,7 @@ lualine.setup({
           return ""
         end,
         separator = { left = "█", right = "█" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = 'LualineA',
       },
       "progress",
       {
@@ -160,7 +160,7 @@ lualine.setup({
           return " "
         end,
         separator = { left = "█", right = "█" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = 'LualineB',
       },
       location,
       {
