@@ -1,6 +1,6 @@
 require 'nvim-tree'.setup {
   renderer = {
-    root_folder_label = false,
+    root_folder_label = true,
     indent_markers = {
       enable = true,
     },
@@ -41,7 +41,7 @@ require 'nvim-tree'.setup {
   },
   update_focused_file = {
     enable = true,
-    update_root = true,
+    update_root = false,
   },
 
   hijack_directories = { enable = true },
