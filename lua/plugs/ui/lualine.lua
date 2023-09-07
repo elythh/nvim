@@ -1,10 +1,11 @@
+local themes = require("themes")
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
   return
 end
 
 -- Require theme color you're using
-local colors = require('themes.schemes.rose').get_colors()
+local colors = themes.getCurrentTheme()
 
 -- local hide_in_width = function()
 --     return vim.fn.winwidth(0) > 80
@@ -23,7 +24,7 @@ local diagnostics = {
     color_error = { fg = colors.color1 },
     color_warn = { fg = colors.color3 },
     color_info = { fg = colors.color11 },
-    color_hint = { fg = colors.color4 }
+    color_hint = { fg = colors.comment }
   },
   always_visible = false,
   update_in_insert = true,
@@ -55,7 +56,7 @@ local location = {
 
 local modes = {
   function()
-    vim.cmd "function! ToggleTheme(a,b,c,d) \n lua require('themes.switch').toggleTheme() \n endfunction"
+    vim.cmd "function! ToggleTheme(a,b,c,d) \n lua require('themes.schemer').setup(require('telescope.themes').get_dropdown{}) \n endfunction"
     local animated = {
       "%@ToggleTheme@" .. "  ",
       "%@ToggleTheme@" .. "  ",
@@ -71,79 +72,11 @@ local indent = function()
 end
 
 local lsp_progess = function()
-  msg = msg or "✖"
-  local buf_clients = vim.lsp.get_active_clients()
-  if next(buf_clients) == nil then
-    if type(msg) == "boolean" or #msg == 0 then
-      return "NO LSP"
-    end
-    return msg
-  end
-  local buf_ft = vim.bo.filetype
-  local buf_client_names = {}
-  local copilot_active = true
-  local null_ls = require("null-ls")
-  local alternative_methods = {
-    null_ls.methods.DIAGNOSTICS,
-    null_ls.methods.DIAGNOSTICS_ON_OPEN,
-    null_ls.methods.DIAGNOSTICS_ON_SAVE,
-  }
-
-  -- add client
-  for _, client in pairs(buf_clients) do
-    if client.name ~= "null-ls" and client.name ~= "copilot" then
-      table.insert(buf_client_names, client.name)
-    end
-
-    if client.name == "copilot" then
-      copilot_active = true
+  for _, client in ipairs(vim.lsp.get_active_clients()) do
+    if client.attached_buffers[vim.api.nvim_get_current_buf()] then
+      return " " .. client.name .. " "
     end
   end
-
-  function list_registered_providers_names(filetype)
-    local s = require("null-ls.sources")
-    local available_sources = s.get_available(filetype)
-    local registered = {}
-    for _, source in ipairs(available_sources) do
-      for method in pairs(source.methods) do
-        registered[method] = registered[method] or {}
-        table.insert(registered[method], source.name)
-      end
-    end
-    return registered
-  end
-
-  function list_registered(filetype)
-    local registered_providers = list_registered_providers_names(filetype)
-    local providers_for_methods = vim.tbl_flatten(vim.tbl_map(function(m)
-      return registered_providers[m] or {}
-    end, alternative_methods))
-    return providers_for_methods
-  end
-
-  function formatters_list_registered(filetype)
-    local registered_providers = list_registered_providers_names(filetype)
-    return registered_providers[null_ls.methods.FORMATTING] or {}
-  end
-
-  -- formatters
-  local supported_formatters = formatters_list_registered(buf_ft)
-  vim.list_extend(buf_client_names, supported_formatters)
-
-  -- linters
-  local supported_linters = list_registered(buf_ft)
-  vim.list_extend(buf_client_names, supported_linters)
-  local unique_client_names = vim.fn.uniq(buf_client_names)
-
-  local language_servers = "" .. table.concat(unique_client_names, ", ") .. ""
-
-  if copilot_active then
-    language_servers = language_servers .. "%#SLCopilot#" .. "    "
-  else
-    language_servers = language_servers .. "%#SLCopilotInactive#" .. "    "
-  end
-
-  return language_servers
 end
 
 lualine.setup({
@@ -165,13 +98,13 @@ lualine.setup({
         icon_only = true,
         colored = true,
         padding = { left = 2 },
-        color = { bg = colors.color3 },
+        color = { bg = colors.cursor },
       },
       {
         "filename",
         padding = 1,
         separator = { left = "", right = "" },
-        color = { bg = colors.color3, fg = colors.darker, gui = "bold" },
+        color = { bg = colors.cursor, fg = colors.darker, gui = "bold" },
         file_status = true,
         newfile_status = true,
         path = 5,
@@ -191,7 +124,7 @@ lualine.setup({
           return " "
         end,
         separator = { left = "", right = "" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = { bg = colors.comment, fg = colors.background },
       }
     },
     lualine_x = {
@@ -200,7 +133,7 @@ lualine.setup({
           return " "
         end,
         separator = { left = "", right = "" },
-        color = { bg = colors.color3, fg = colors.background },
+        color = { bg = colors.comment, fg = colors.background },
       },
       diagnostics,
       {
@@ -208,10 +141,10 @@ lualine.setup({
       },
       {
         function()
-          return ""
+          return " "
         end,
         separator = { left = "", right = "" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = { bg = colors.comment, fg = colors.background },
       },
       indent,
       {
@@ -219,15 +152,15 @@ lualine.setup({
           return ""
         end,
         separator = { left = "", right = "" },
-        color = { bg = colors.color3, fg = colors.background },
+        color = { bg = colors.comment, fg = colors.background },
       },
       "progress",
       {
         function()
-          return ""
+          return " "
         end,
         separator = { left = "", right = "" },
-        color = { bg = colors.color4, fg = colors.background },
+        color = { bg = colors.comment, fg = colors.background },
       },
       location,
       {
@@ -239,7 +172,7 @@ lualine.setup({
           local index = math.ceil(progress_percent * #chars)
           return chars[index]
         end,
-        color = { fg = colors.color3 },
+        color = { fg = colors.comment },
       }
     },
     lualine_y = {},
