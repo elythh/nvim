@@ -1,11 +1,11 @@
-local themes = require("themes")
+local utils = require("prism.utils")
+local colors = require("prism.themer"):getColors()
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
   return
 end
 
--- Require theme color you're using
-local colors = themes.getCurrentTheme()
+
 
 -- local hide_in_width = function()
 --     return vim.fn.winwidth(0) > 80
@@ -56,7 +56,7 @@ local location = {
 
 local modes = {
   function()
-    vim.cmd "function! ToggleTheme(a,b,c,d) \n lua require('themes.schemer').setup(require('telescope.themes').get_dropdown{}) \n endfunction"
+    vim.cmd "function! ToggleTheme(a,b,c,d) \n lua require('prism.themer'):random() \n endfunction"
     local animated = {
       "%@ToggleTheme@" .. "  ",
       "%@ToggleTheme@" .. "  ",

@@ -1,4 +1,4 @@
-local colors = require("themes").getCurrentTheme()
+local colors = require("prism.themer"):getColors()
 
 return {
   Normal = { fg = colors.foreground, bg = colors.background },

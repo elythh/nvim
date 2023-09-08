@@ -17,14 +17,14 @@ lazy.setup({
   -- Highlight Hex colors in code
   {
     'NvChad/nvim-colorizer.lua',
-    event = 'CursorHold',
+    event = 'BufRead',
     config = function() require('plugs.ui.colorizer') end,
     lazy = true
   },
   -- Icons for tree
   {
     "nvim-tree/nvim-web-devicons",
-    event = 'CursorHold',
+    event = 'BufRead',
     config = function() require('plugs.ui.devicons') end,
     lazy = true,
   },
@@ -68,7 +68,7 @@ lazy.setup({
     "lukas-reineke/indent-blankline.nvim",
     lazy = true,
     config = function() require('plugs.ui.indentlines') end,
-    event = 'CursorHold',
+    event = 'BufRead',
   },
   -- Quickly comment codeinit
   {
@@ -98,7 +98,7 @@ lazy.setup({
   -- Easily configure lsp
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile", "CursorHold" },
+    event = { "BufReadPost", "BufNewFile", "BufRead" },
     lazy = true,
     cmd = { "LspInfo", "LspInstall", "LspUninstall", "LspStart" },
     config = function()
@@ -115,6 +115,7 @@ lazy.setup({
         -- snippet plugin
         "L3MON4D3/LuaSnip",
         lazy = true,
+        dependencies = "rafamadriz/friendly-snippets",
         config = function()
           require("plugs.lsp.luasnip")
         end,
@@ -171,7 +172,7 @@ lazy.setup({
   {
     'kevinhwang91/nvim-ufo',
     lazy = true,
-    event = 'CursorHold',
+    event = 'BufRead',
     dependencies = 'kevinhwang91/promise-async'
   },
   -- Symbols outline
@@ -256,7 +257,7 @@ lazy.setup({
   {
     "lewis6991/gitsigns.nvim",
     lazy = true,
-    event = 'CursorHold',
+    event = 'BufRead',
     config = function()
       require('gitsigns').setup {
         signs = {
@@ -436,4 +437,8 @@ lazy.setup({
       require "plugs.ui.lualine"
     end
   },
+  {
+    "chadcat7/prism",
+    lazy = true,
+  }
 })

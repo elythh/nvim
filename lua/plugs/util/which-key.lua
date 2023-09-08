@@ -13,7 +13,7 @@ local mappings = {
   },
   f = {
     name = 'Telescope',
-    c = { ":lua require('themes.schemer').setup(require('telescope.themes').get_dropdown{})<cr>", "Change Colorschemes" },
+    c = { ":lua require('prism.picker').open()<cr>", "Kolorschemes" },
     f = { ":Telescope find_files<cr>", "Find Files" },
     g = { ":Telescope oldfiles<cr>", "Recently Opened" },
     p = { ":Telescope project<cr>", "Find Project" },
