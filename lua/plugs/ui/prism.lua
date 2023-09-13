@@ -1,5 +1,6 @@
 require("prism"):setup({
-  currentTheme = "verdant",
+  currentTheme = "groove",
   customFiles = vim.fn.stdpath "config" .. "/lua/hls",
   transparent = false,
+  reload = {},
 })

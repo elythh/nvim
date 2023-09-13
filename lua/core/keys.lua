@@ -32,3 +32,5 @@ map("n", "cp", ':let @+ = expand("%")<CR>', { noremap = true, silent = true })
 
 -- greatest remap ever
 map("x", "<CMD>p", [["_dP]], { noremap = true, silent = true })
+
+map("n", "-", "<CMD>Oil<CR>", { noremap = true, silent = true })

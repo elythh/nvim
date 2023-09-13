@@ -440,5 +440,11 @@ lazy.setup({
   {
     "chadcat7/prism",
     lazy = true,
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   }
 })
