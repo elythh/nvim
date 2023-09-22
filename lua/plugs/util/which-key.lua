@@ -13,7 +13,7 @@ local mappings = {
   },
   f = {
     name = 'Telescope',
-    c = { ":lua require('prism.picker').open()<cr>", "Kolorschemes" },
+    c = { ":PrismTelescope<cr>", "Kolorschemes" },
     f = { ":Telescope find_files<cr>", "Find Files" },
     g = { ":Telescope oldfiles<cr>", "Recently Opened" },
     p = { ":Telescope project<cr>", "Find Project" },
@@ -45,6 +45,8 @@ local mappings = {
     c = { ":lua require('telescope') vim.lsp.buf.code_action()<cr>", "Show Code Actions" },
     m = { ":Mason<cr>", "Open Mason" },
     s = { ":SymbolsOutline<cr>", "Overview of file" },
+    t = { ":Trouble<cr>", "Open Trouble" },
+    n = { ":Neogit<cr>", "Open Neogit" },
     w = { ":SessionSave<cr>", "Save this session" }
   },
   h = {

@@ -95,6 +95,17 @@ lazy.setup({
     'williamboman/mason-lspconfig.nvim',
     lazy = true,
   },
+  {
+    'mfussenegger/nvim-dap',
+  },
+  {
+    'leoluz/nvim-dap-go',
+    ft = "go",
+    dependencies = 'mfussenegger/nvim-dap',
+    config = function()
+      require('dap-go').setup()
+    end
+  },
   -- Easily configure lsp
   {
     "neovim/nvim-lspconfig",
@@ -345,6 +356,33 @@ lazy.setup({
       require("plugs.ui.noice")
     end,
     lazy = true,
+  },
+  -- Syntax highlight todos
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = { "BufReadPost", "InsertEnter" },
+    opts = {
+      signs = false,
+
+    }
+  },
+  -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing.
+  {
+    "folke/trouble.nvim",
+    event = "BufReadPost",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "nvim-telescope/telescope.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
+      "ibhagwan/fzf-lua",              -- optional
+    },
+    event = "BufRead",
+    config = true,
   },
   -- Search and replace text
   {

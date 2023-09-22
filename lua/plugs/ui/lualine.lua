@@ -81,7 +81,7 @@ end
 
 lualine.setup({
   options = {
-    disabled_filetypes = { 'alpha', 'NVimTree', "lazy" },
+    disabled_filetypes = { 'alpha', 'NvimTree', "lazy" },
     globalstatus = true,
     icons_enabled = true,
     component_separators = { left = "", right = "" },

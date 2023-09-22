@@ -35,7 +35,7 @@ M.capabilities.textDocument.completion.completionItem = {
 
 
 local servers = { "html", "yamlls", "pyright", "tsserver", "clangd", "cssls", "rnix", "hls", "rust_analyzer",
-  "terraformls", "jsonls" }
+  "terraformls", "jsonls", "gopls" }
 for _, k in ipairs(servers) do
   lspconfig[k].setup {
     on_attach = M.on_attach,
