@@ -60,13 +60,6 @@ lazy.setup({
     dependencies = { 'plenary.nvim' },
     config = function() require('plugs.util.telescope') end
   },
-  -- Toggle terminal windows
-  {
-    "akinsho/toggleterm.nvim",
-    lazy = true,
-    config = function() require('plugs.util.toggleterm') end,
-    cmd = "ToggleTerm",
-  },
   -- Adds indentation guides to all lines (including empty lines).
   {
     "lukas-reineke/indent-blankline.nvim",

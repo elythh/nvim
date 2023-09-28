@@ -43,7 +43,6 @@ miniclue.setup({
     { mode = 'n', keys = '<leader>g', desc = '+Git' },
     { mode = 'n', keys = '<leader>G', desc = '+Grapple' },
     { mode = 'n', keys = '<leader>l', desc = '+Misc' },
-    { mode = 'n', keys = '<leader>t', desc = '+ToggleTerm' },
   },
   window = {
     delay = 0,

@@ -1,14 +1,5 @@
 local M = {}
 
-M.toggleterm = {
-  "ToggleTerm",
-  "ToggleTermAll",
-  "ToggleTermSendCurrentLine",
-  "ToggleTermSendVisualSelection",
-  "ToggleTermSendVisualLine",
-  "ToggleTermSetName",
-}
-
 M.packer = {
   "PackerSnapshot",
   "PackerSnapshotRollback",
