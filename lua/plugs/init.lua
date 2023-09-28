@@ -10,6 +10,10 @@ lazy.setup({
     config = function() require('plugs.ts.treesitter') end
   },
   {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = true,
+  },
+  {
     'windwp/nvim-ts-autotag',
     event = "InsertEnter",
     lazy = true
@@ -97,9 +101,11 @@ lazy.setup({
   },
   {
     'mfussenegger/nvim-dap',
+    lazy = true,
   },
   {
     'leoluz/nvim-dap-go',
+    lazy = true,
     ft = "go",
     dependencies = 'mfussenegger/nvim-dap',
     config = function()
@@ -177,6 +183,10 @@ lazy.setup({
   -- Quickly switch projects with telescope
   {
     'nvim-telescope/telescope-project.nvim',
+    lazy = true
+  },
+  {
+    "debugloop/telescope-undo.nvim",
     lazy = true
   },
   -- Folds
@@ -477,12 +487,15 @@ lazy.setup({
   },
   {
     "chadcat7/prism",
-    lazy = true,
+    event = "VeryLazy",
   },
   {
     'stevearc/oil.nvim',
     opts = {},
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
-  }
+  },
+  {
+    'Lilja/zellij.nvim',
+  },
 })
