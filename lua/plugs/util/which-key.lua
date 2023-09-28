@@ -21,6 +21,7 @@ local mappings = {
     R = { ":Telescope resume<cr>", "Resume" },
     s = { ":Telescope persisted<cr>", "Sessions" },
     t = { ":Telescope track views<cr>", "Tracked files" },
+    u = { ":Telescope undo<cr>", "Undo fzf"},
     w = { ":lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Change worktrees" },
     W = { ":lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create worktrees" }
   },
