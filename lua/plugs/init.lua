@@ -60,14 +60,6 @@ lazy.setup({
     dependencies = { 'plenary.nvim' },
     config = function() require('plugs.util.telescope') end
   },
-  -- Adds indentation guides to all lines (including empty lines).
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    lazy = true,
-    main = "ibl",
-    config = function() require('plugs.ui.indentlines') end,
-    event = 'BufRead',
-  },
   -- Quickly comment codeinit
   {
     "terrortylor/nvim-comment",
@@ -474,6 +466,7 @@ lazy.setup({
   },
   {
     "nvim-lualine/lualine.nvim",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       require "plugs.ui.lualine"
@@ -491,5 +484,8 @@ lazy.setup({
   },
   {
     'Lilja/zellij.nvim',
+  },
+  {
+    'xiyaowong/transparent.nvim'
   },
 })
