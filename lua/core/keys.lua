@@ -1,12 +1,6 @@
 vim.g.mapleader = ' '
 local map = vim.api.nvim_set_keymap
 
-local nmap_leader = function(suffix, rhs, desc)
-  vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
-end
-local xmap_leader = function(suffix, rhs, desc)
-  vim.keymap.set('x', '<Leader>' .. suffix, rhs, { desc = desc })
-end
 -- Copy whole file content to clipboard with C-c
 map("n", "<C-c>", "<CMD>%y+<CR>", { noremap = true, silent = false })
 -- Save file with C-s
