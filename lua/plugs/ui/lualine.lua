@@ -1,4 +1,3 @@
-local utils = require("prism.utils")
 local colors = require("prism.themer"):getColors()
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
@@ -11,7 +10,7 @@ lualine.setup({
     theme = {
       normal = {
         a = { fg = colors.color4, bg = colors.bg },
-        b = { fg = colors.color15, bg = colors.bg },
+        b = { fg = colors.color6, bg = colors.bg },
         c = { fg = colors.fg, bg = colors.bg },
         x = { fg = colors.fg, bg = colors.bg },
         y = { fg = colors.color14, bg = colors.bg },
@@ -76,7 +75,7 @@ lualine.setup({
       },
       {
         "location",
-        color = { fg = colors.color15, bg = colors.bg },
+        color = { fg = colors.color6, bg = colors.bg },
       },
     },
     lualine_z = {
