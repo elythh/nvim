@@ -51,15 +51,6 @@ lualine.setup({
         "filename",
         symbols = { modified = "  ", readonly = "", unnamed = "" },
       },
-      {
-        function()
-          return require("nvim-navic").get_location()
-        end,
-        cond = function()
-          return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-        end,
-        color = { fg = colors.grey, bg = colors.bg },
-      },
     },
     lualine_x = {
       {
