@@ -466,7 +466,7 @@ lazy.setup({
   },
   {
     "nvim-lualine/lualine.nvim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     config = function()
       require "plugs.ui.lualine"
