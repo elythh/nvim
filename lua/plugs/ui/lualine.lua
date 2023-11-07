@@ -5,177 +5,84 @@ if not status_ok then
   return
 end
 
-
-
--- local hide_in_width = function()
---     return vim.fn.winwidth(0) > 80
--- end
-
-local diagnostics = {
-  "diagnostics",
-  symbols = {
-    error = " ",
-    warn = " ",
-    hint = " ",
-    info = " ",
-  },
-  colored = true,
-  diagnostics_color = {
-    color_error = { fg = colors.color1 },
-    color_warn = { fg = colors.color3 },
-    color_info = { fg = colors.color11 },
-    color_hint = { fg = colors.color4 }
-  },
-  always_visible = false,
-  update_in_insert = true,
-}
-
-local branch = {
-  "branch",
-  icon = "",
-  color = { fg = colors.foreground },
-  padding = { left = 2, right = 2 },
-}
-
-local diff = {
-  "diff",
-  colored = true,
-  color = {
-    added    = 'DiffAdd',
-    modified = 'DiffChange',
-    removed  = 'DiffDelete',
-  },
-  symbols = { added = " ", modified = " ", removed = " " },
-  padding = { left = -1, right = 1 },
-}
-
-local location = {
-  "location",
-  padding = 1,
-}
-
-local modes = {
-  function()
-    vim.cmd "function! ToggleTheme(a,b,c,d) \n lua require('prism.themer'):random() \n endfunction"
-    local animated = {
-      "%@ToggleTheme@" .. "  ",
-      "%@ToggleTheme@" .. "  ",
-      "%@ToggleTheme@" .. " 󱠡 ",
-    }
-    return animated[os.date("%S") % #animated + 1]
-  end,
-  separator = { left = "█", right = "█" },
-}
-
-local indent = function()
-  return "" .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-end
-
-local lsp_progess = function()
-  for _, client in ipairs(vim.lsp.get_active_clients()) do
-    if client.attached_buffers[vim.api.nvim_get_current_buf()] then
-      return " " .. client.name .. " "
-    end
-  end
-end
-
 lualine.setup({
   options = {
-    disabled_filetypes = { 'alpha', 'NvimTree', "lazy" },
+    component_separators = { left = " ", right = " " },
+    theme = {
+      normal = {
+        a = { fg = colors.color4, bg = colors.bg },
+        b = { fg = colors.color15, bg = colors.bg },
+        c = { fg = colors.fg, bg = colors.bg },
+        x = { fg = colors.fg, bg = colors.bg },
+        y = { fg = colors.color14, bg = colors.bg },
+        z = { fg = colors.grey, bg = colors.bg },
+      },
+      insert = {
+        a = { fg = colors.color2, bg = colors.bg },
+        z = { fg = colors.grey, bg = colors.bg },
+      },
+      visual = {
+        a = { fg = colors.color14, bg = colors.bg },
+        z = { fg = colors.grey, bg = colors.bg },
+      },
+      terminal = {
+        a = { fg = colors.color3, bg = colors.bg },
+        z = { fg = colors.grey, bg = colors.bg },
+      },
+    },
+
     globalstatus = true,
-    icons_enabled = true,
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    always_divide_middle = true,
+    disabled_filetypes = { statusline = { "dashboard", "alpha" } },
   },
   sections = {
-    lualine_a = {
-      modes,
-    },
-    lualine_b = {
+    lualine_a = { { "mode", icon = "" } },
+    lualine_b = { { "branch", icon = "" } },
+    lualine_c = {
       {
-        "filetype",
-        icon_only = true,
-        colored = true,
-        padding = { left = 2 },
-        color = { bg = colors.cursor },
-      },
-      {
-        "filename",
-        padding = 1,
-        separator = { left = "█", right = "█" },
-        color = { bg = colors.foreground, fg = colors.darker, gui = "bold" },
-        file_status = true,
-        newfile_status = true,
-        path = 5,
+        "diagnostics",
         symbols = {
-          modified = "●",
-          readonly = "",
-          unnamed = "",
-          newfile = "",
+          error = " ",
+          warn = " ",
+          info = " ",
+          hint = "󰝶 ",
         },
       },
-    },
-    lualine_c = {
-      branch,
-      diff,
+      { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+      {
+        "filename",
+        symbols = { modified = "  ", readonly = "", unnamed = "" },
+      },
       {
         function()
-          return " "
+          return require("nvim-navic").get_location()
         end,
-        separator = { left = "█", right = "█" },
-        color = { fg = colors.foreground },
-      }
+        cond = function()
+          return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+        end,
+        color = { fg = colors.grey, bg = colors.bg },
+      },
     },
     lualine_x = {
       {
-        function()
-          return " "
-        end,
-        separator = { left = "█", right = "█" },
-        color = 'LualineA',
+        require("lazy.status").updates,
+        cond = require("lazy.status").has_updates,
+        color = { fg = colors.color2 },
       },
-      diagnostics,
-      {
-        lsp_progess,
-      },
-      {
-        function()
-          return " "
-        end,
-        separator = { left = "█", right = "█" },
-        color = 'LualineB',
-      },
-      indent,
-      {
-        function()
-          return ""
-        end,
-        separator = { left = "█", right = "█" },
-        color = 'LualineA',
-      },
-      "progress",
-      {
-        function()
-          return " "
-        end,
-        separator = { left = "█", right = "█" },
-        color = 'LualineB',
-      },
-      location,
-      {
-        function()
-          local current_line = vim.fn.line(".")
-          local total_lines = vim.fn.line("$")
-          local chars = { "_", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
-          local progress_percent = current_line / total_lines
-          local index = math.ceil(progress_percent * #chars)
-          return chars[index]
-        end,
-        color = { fg = colors.color4 },
-      }
+      { "diff" },
     },
-    lualine_y = {},
-    lualine_z = {},
+    lualine_y = {
+      {
+        "progress",
+      },
+      {
+        "location",
+        color = { fg = colors.color15, bg = colors.bg },
+      },
+    },
+    lualine_z = {
+      function()
+        return "  " .. os.date("%X") .. " 📎"
+      end,
+    },
   },
 })
