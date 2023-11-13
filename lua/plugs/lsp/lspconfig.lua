@@ -62,7 +62,6 @@ lspconfig.jsonls.setup {
   cmd = { "vscode-json-languageserver", "--stdio" },
   settings = {
     json = {
-      schemas = require('schemastore').json.schemas(),
       validate = { enable = true },
     },
   },
@@ -71,14 +70,6 @@ lspconfig.jsonls.setup {
 lspconfig.yamlls.setup {
   settings = {
     yaml = {
-      schemaStore = {
-        -- You must disable built-in schemaStore support if you want to use
-        -- this plugin and its advanced options like `ignore`.
-        enable = false,
-        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-        url = "",
-      },
-      schemas = require('schemastore').yaml.schemas(),
     },
   },
 }
@@ -87,5 +78,4 @@ lspconfig.cssls.setup {
   cmd = { "css-languageserver", "--stdio" }
 }
 
-require('ufo').setup()
 return M

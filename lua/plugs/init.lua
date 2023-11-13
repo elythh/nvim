@@ -13,11 +13,6 @@ lazy.setup({
     "nvim-treesitter/nvim-treesitter-textobjects",
     lazy = true,
   },
-  {
-    'windwp/nvim-ts-autotag',
-    event = "InsertEnter",
-    lazy = true
-  },
   -- Highlight Hex colors in code
   {
     'NvChad/nvim-colorizer.lua',
@@ -166,21 +161,9 @@ lazy.setup({
     "nvim-telescope/telescope-ui-select.nvim",
     lazy = true
   },
-  -- Quickly switch projects with telescope
-  {
-    'nvim-telescope/telescope-project.nvim',
-    lazy = true
-  },
   {
     "debugloop/telescope-undo.nvim",
     lazy = true
-  },
-  -- Folds
-  {
-    'kevinhwang91/nvim-ufo',
-    lazy = true,
-    event = 'BufRead',
-    dependencies = 'kevinhwang91/promise-async'
   },
   -- Symbols outline
   {
@@ -317,12 +300,6 @@ lazy.setup({
       require "plugs.util.presence"
     end,
   },
-  -- Fold easily
-  {
-    "chrisgrieser/nvim-origami",
-    event = "BufReadPost", -- later or on keypress would prevent saving folds
-    opts = true,           -- needed even when using default config
-  },
   -- Pick font awesome incons
   {
     "ziontee113/icon-picker.nvim",
@@ -369,17 +346,6 @@ lazy.setup({
     event = "BufReadPost",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim",        -- optional
-      "ibhagwan/fzf-lua",              -- optional
-    },
-    event = "BufRead",
-    config = true,
-  },
   -- Search and replace text
   {
     'nvim-pack/nvim-spectre',
@@ -397,35 +363,6 @@ lazy.setup({
       "SessionLoad"
     },
     config = true,
-    lazy = true,
-  },
-  -- Read devdocs rom nvim
-  {
-    'luckasRanarison/nvim-devdocs',
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    cmd = {
-      "DevdocsInstall",
-      "DevdocsOpen",
-      "DevdocsOpenFloat"
-    },
-    opts = {},
-    lazy = true,
-  },
-  -- Remote coding sessions
-  {
-    'chipsenkbeil/distant.nvim',
-    branch = 'v0.3',
-    config = function()
-      require('distant'):setup()
-    end,
-    lazy = true,
-  },
-  {
-    "b0o/schemastore.nvim",
     lazy = true,
   },
   {

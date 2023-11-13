@@ -16,12 +16,11 @@ local mappings = {
     c = { ":PrismTelescope<cr>", "Kolorschemes" },
     f = { ":Telescope find_files<cr>", "Find Files" },
     g = { ":Telescope oldfiles<cr>", "Recently Opened" },
-    p = { ":Telescope project<cr>", "Find Project" },
     r = { ":Telescope live_grep<cr>", "Find String" },
     R = { ":Telescope resume<cr>", "Resume" },
     s = { ":Telescope persisted<cr>", "Sessions" },
     t = { ":Telescope track views<cr>", "Tracked files" },
-    u = { ":Telescope undo<cr>", "Undo fzf"},
+    u = { ":Telescope undo<cr>", "Undo fzf" },
     w = { ":lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Change worktrees" },
     W = { ":lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create worktrees" }
   },
