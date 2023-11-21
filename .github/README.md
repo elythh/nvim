@@ -12,4 +12,6 @@
 
 </div>
 
+## I WILL BE WRITING THIS LATER, FOR NOW ENJOY THIS USELESS SREENSHOT
+
 ![Screenshot1](./assets/example_nix.png)
