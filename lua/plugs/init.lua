@@ -292,14 +292,6 @@ lazy.setup({
       }
     end
   },
-  -- Discord rich presence
-  {
-    "andweeb/presence.nvim",
-    event = "VeryLazy",
-    config = function()
-      require "plugs.util.presence"
-    end,
-  },
   -- Pick font awesome incons
   {
     "ziontee113/icon-picker.nvim",
