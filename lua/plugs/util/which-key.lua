@@ -18,7 +18,6 @@ local mappings = {
     g = { ":Telescope oldfiles<cr>", "Recently Opened" },
     r = { ":Telescope live_grep<cr>", "Find String" },
     R = { ":Telescope resume<cr>", "Resume" },
-    s = { ":Telescope persisted<cr>", "Sessions" },
     t = { ":Telescope track views<cr>", "Tracked files" },
     u = { ":Telescope undo<cr>", "Undo fzf" },
     w = { ":lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Change worktrees" },
@@ -47,7 +46,6 @@ local mappings = {
     s = { ":SymbolsOutline<cr>", "Overview of file" },
     t = { ":Trouble<cr>", "Open Trouble" },
     n = { ":Neogit<cr>", "Open Neogit" },
-    w = { ":SessionSave<cr>", "Save this session" }
   },
   h = {
     name = "Hop",

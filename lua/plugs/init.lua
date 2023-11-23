@@ -346,17 +346,6 @@ lazy.setup({
     end,
     lazy = true,
   },
-  -- Sessions
-  {
-    'olimorris/persisted.nvim',
-    cmd = {
-      "SessionSave",
-      "SessionLoadLast",
-      "SessionLoad"
-    },
-    config = true,
-    lazy = true,
-  },
   {
     "someone-stole-my-name/yaml-companion.nvim",
     requires = {
