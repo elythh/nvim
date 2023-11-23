@@ -227,11 +227,6 @@ lazy.setup({
       { "nvim-treesitter/nvim-treesitter" }
     }
   },
-  -- Pictograms for lsp
-  {
-    "onsails/lspkind.nvim",
-    event = "InsertEnter",
-  },
   -- Lazygit implementation
   {
     "kdheepak/lazygit.nvim",
