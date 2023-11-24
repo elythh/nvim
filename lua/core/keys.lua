@@ -18,13 +18,10 @@ map('n', '<C-b>', '<CMD>NvimTreeToggle<CR>', { noremap = true, silent = true })
 map('n', '<C-f>', '<CMD>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
 map('n', '<C-t>', '<CMD>ToggleTerm<CR>', { noremap = true, silent = true })
 
-map('n', 'zR', '<CMD>lua require("ufo").openAllFolds<CR>', { noremap = true, silent = true })
-map('n', 'zM', '<CMD>lua require("ufo").closeAllFolds<CR>', { noremap = true, silent = true })
-
 -- Yank buffer path
 map("n", "cp", ':let @+ = expand("%")<CR>', { noremap = true, silent = true })
 
 -- greatest remap ever
-map("x", "<CMD>p", [["_dP]], { noremap = true, silent = true })
+map("v", "p", [["_dP]], { noremap = true, silent = true })
 
 map("n", "-", "<CMD>Oil<CR>", { noremap = true, silent = true })
