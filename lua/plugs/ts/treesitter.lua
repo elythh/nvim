@@ -1,6 +1,6 @@
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "html", "python", "javascript", "lua", "json", "terraform", "yaml" },
+  ensure_installed = { "html", "markdown", "python", "javascript", "lua", "json", "terraform", "yaml" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
@@ -10,7 +10,7 @@ require 'nvim-treesitter.configs'.setup {
 
 
   highlight = {
-    enable = { "terraform" },
+    enable = { "terraform", "markdown" },
     -- `false` will disable the whole extension
     disable = { "lua", "yaml" },
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
