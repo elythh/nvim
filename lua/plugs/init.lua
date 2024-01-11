@@ -55,6 +55,11 @@ lazy.setup({
     dependencies = { 'plenary.nvim' },
     config = function() require('plugs.util.telescope') end
   },
+  {
+    'olacin/telescope-gitmoji.nvim',
+    lazy = true,
+    dependencies = { 'telescope.nvim' }
+  },
   -- Quickly comment codeinit
   {
     "terrortylor/nvim-comment",
@@ -411,5 +416,18 @@ lazy.setup({
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {}
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+
+      -- see below for full list of optional dependencies 👇
+    },
+    config = function() require('plugs.util.obsidian') end,
   },
 })
