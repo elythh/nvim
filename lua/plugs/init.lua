@@ -20,20 +20,6 @@ lazy.setup({
     config = function() require('plugs.ui.colorizer') end,
     lazy = true
   },
-  -- Icons for tree
-  {
-    "nvim-tree/nvim-web-devicons",
-    event = 'BufRead',
-    config = function() require('plugs.ui.devicons') end,
-    lazy = true,
-  },
-  -- Tree
-  {
-    'kyazdani42/nvim-tree.lua',
-    lazy = true,
-    cmd = "NvimTreeToggle",
-    config = function() require('plugs.util.nvim-tree') end
-  },
   -- Quickly define and find binds
   {
     "folke/which-key.nvim",
@@ -84,19 +70,6 @@ lazy.setup({
   {
     'williamboman/mason-lspconfig.nvim',
     lazy = true,
-  },
-  {
-    'mfussenegger/nvim-dap',
-    lazy = true,
-  },
-  {
-    'leoluz/nvim-dap-go',
-    lazy = true,
-    ft = "go",
-    dependencies = 'mfussenegger/nvim-dap',
-    config = function()
-      require('dap-go').setup()
-    end
   },
   -- Easily configure lsp
   {
@@ -165,50 +138,6 @@ lazy.setup({
   {
     "nvim-telescope/telescope-ui-select.nvim",
     lazy = true
-  },
-  {
-    "debugloop/telescope-undo.nvim",
-    lazy = true
-  },
-  -- Symbols outline
-  {
-    'simrat39/symbols-outline.nvim',
-    cmd = "SymbolsOutline",
-    lazy = true,
-    config = function() require("plugs.util.symbols") end
-  },
-  -- Tagging important files
-  {
-    "cbochs/grapple.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    lazy = true,
-    config = function() require("plugs.util.grapple") end,
-    cmd = {
-      "GrappleCycle",
-      "GrapplePopup",
-      "GrappleReset",
-      "GrappleSelect",
-      "GrappleTag",
-      "GrappleTags",
-      "GrappleToggle",
-      "GrappleUntag"
-    }
-  },
-  -- Hop anyhwere easily
-  {
-    'phaazon/hop.nvim',
-    branch = 'v2',
-    lazy = true,
-    cmd = {
-      "HopAnywhere",
-      "HopChar1",
-      "HopChar2",
-      "HopLine",
-      "HopLineStart",
-      "HopVertical",
-      "HopWord"
-    },
-    config = function() require("plugs.util.hop") end
   },
   -- Dashboard
   {
@@ -292,20 +221,6 @@ lazy.setup({
       }
     end
   },
-  -- Pick font awesome incons
-  {
-    "ziontee113/icon-picker.nvim",
-    config = function()
-      require("icon-picker").setup({
-        disable_legacy_commands = true
-      })
-    end,
-    cmd = {
-      "IconPickerNormal",
-      "IconPickerYank",
-      "IconPickerInsert"
-    },
-  },
   -- Change the UI
   {
     "folke/noice.nvim",
@@ -338,23 +253,6 @@ lazy.setup({
     event = "BufReadPost",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
-  -- Search and replace text
-  {
-    'nvim-pack/nvim-spectre',
-    config = function()
-      require("plugs.util.spectre")
-    end,
-    lazy = true,
-  },
-  {
-    "someone-stole-my-name/yaml-companion.nvim",
-    requires = {
-      { "neovim/nvim-lspconfig" },
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim" },
-    },
-    lazy = true,
-  },
   -- Worktree manager for git
   {
     'ThePrimeagen/git-worktree.nvim',
@@ -370,18 +268,6 @@ lazy.setup({
     },
     lazy = true,
   },
-  -- Show recent changes to undo
-  {
-    'mbbill/undotree',
-    cmd = {
-      "UndotreeToggle"
-    },
-    lazy = true,
-  },
-  {
-    "dharmx-lua/track.nvim",
-    lazy = true,
-  },
   {
     "nvim-lualine/lualine.nvim",
     enabled = true,
@@ -393,6 +279,9 @@ lazy.setup({
   {
     "chadcat7/prism",
     event = "VeryLazy",
+    config = function()
+      require("plugs.ui.prism")
+    end
   },
   {
     'stevearc/oil.nvim',
@@ -416,18 +305,5 @@ lazy.setup({
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {}
-  },
-  {
-    "epwalsh/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-
-      -- see below for full list of optional dependencies 👇
-    },
-    config = function() require('plugs.util.obsidian') end,
   },
 })
