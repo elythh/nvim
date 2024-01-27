@@ -9,10 +9,6 @@ lazy.setup({
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     config = function() require('plugs.ts.treesitter') end
   },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    lazy = true,
-  },
   -- Highlight Hex colors in code
   {
     'NvChad/nvim-colorizer.lua',
@@ -41,17 +37,11 @@ lazy.setup({
     dependencies = { 'plenary.nvim' },
     config = function() require('plugs.util.telescope') end
   },
+  -- Because it's fun
   {
     'olacin/telescope-gitmoji.nvim',
     lazy = true,
     dependencies = { 'telescope.nvim' }
-  },
-  -- Quickly comment codeinit
-  {
-    "terrortylor/nvim-comment",
-    keys = { "<leader>", 'g' },
-    config = function() require('plugs.util.comments') end,
-    lazy = true,
   },
   -- The funs begins
   {
@@ -247,25 +237,9 @@ lazy.setup({
 
     }
   },
-  -- A pretty list for showing diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing.
-  {
-    "folke/trouble.nvim",
-    event = "BufReadPost",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
   -- Worktree manager for git
   {
     'ThePrimeagen/git-worktree.nvim',
-    lazy = true,
-  },
-  -- Hide the code that is not active
-  {
-    "folke/twilight.nvim",
-    cmd = {
-      "TwilightEnable",
-      "TwilightDisable",
-      "Twilight"
-    },
     lazy = true,
   },
   {
