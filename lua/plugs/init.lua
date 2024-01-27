@@ -234,13 +234,7 @@ lazy.setup({
     event = { "BufReadPost", "InsertEnter" },
     opts = {
       signs = false,
-
     }
-  },
-  -- Worktree manager for git
-  {
-    'ThePrimeagen/git-worktree.nvim',
-    lazy = true,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -279,5 +273,5 @@ lazy.setup({
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {}
-  },
+  }
 })
