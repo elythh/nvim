@@ -6,7 +6,6 @@ lazy.setup({
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
     lazy = true,
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     config = function() require('plugs.ts.treesitter') end
   },
   -- Highlight Hex colors in code
@@ -42,24 +41,6 @@ lazy.setup({
     'olacin/telescope-gitmoji.nvim',
     lazy = true,
     dependencies = { 'telescope.nvim' }
-  },
-  -- The funs begins
-  {
-    "williamboman/mason.nvim",
-    cmd = {
-      "MasonInstall",
-      "MasonUninstall",
-      "Mason",
-      lazy = true,
-      "MasonUninstallAll",
-      "MasonLog",
-    },
-    config = function() require('plugs.lsp.mason') end,
-  },
-  -- Mason Lspconfig bridge
-  {
-    'williamboman/mason-lspconfig.nvim',
-    lazy = true,
   },
   -- Easily configure lsp
   {
