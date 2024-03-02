@@ -254,5 +254,11 @@ lazy.setup({
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {}
+  },
+  {
+    "elythh/conform.nvim",
+    config = function()
+      require("plugs.lsp.conform")
+    end
   }
 })
