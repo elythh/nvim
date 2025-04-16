@@ -31,9 +31,13 @@ return {
 		"echasnovski/mini.files",
 		lazy = false,
 		config = function()
-			local mini_starter = require("mini.starter")
+			local mini_files = require("mini.files")
 
-			mini_starter.setup({})
+			mini_files.setup({
+      mappings = {
+            synchronize = "s",
+          },
+      })
 		end,
 		version = false,
 	},

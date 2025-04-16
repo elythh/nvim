@@ -25,3 +25,7 @@ m("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 m("n", "J", "mzJ`z")
 m("v", "<", "<gv")
 m("v", ">", ">gv")
+
+-- Mini
+m("n", "-", ":lua  MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>")
+
