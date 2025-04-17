@@ -1,62 +1,135 @@
 return {
-    {
-        "saghen/blink.cmp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        version = "1.*",
-        event = { "InsertEnter", "CmdlineEnter" },
-        lazy = true,
-        ---@module 'blink.cmp'
-        ---@type blink.cmp.Config
-        opts = {
-            keymap = {
-                preset = "default",
-                ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-                ["<C-e>"] = { "hide", "fallback" },
-                ["<CR>"] = { "accept", "fallback" },
+	{
+		"saghen/blink.cmp",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
 
-                ["<Tab>"] = { "snippet_forward", "fallback" },
-                ["<S-Tab>"] = { "snippet_backward", "fallback" },
+			"rafamadriz/friendly-snippets",
+			"mikavilpas/blink-ripgrep.nvim",
+			"moyiz/blink-emoji.nvim",
+			"fang2hou/blink-copilot",
+			"ribru17/blink-cmp-spell",
+			"Kaiser-Yang/blink-cmp-dictionary",
+			"Kaiser-Yang/blink-cmp-git",
+		},
+		version = "1.*",
+		event = { "InsertEnter", "CmdlineEnter" },
+		lazy = true,
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			keymap = {
+				preset = "default",
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-e>"] = { "hide", "fallback" },
+				["<CR>"] = { "accept", "fallback" },
 
-                ["<Up>"] = { "select_prev", "fallback" },
-                ["<Down>"] = { "select_next", "fallback" },
-                ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-                ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-                ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-                ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-n>"] = { "select_next", "fallback_to_mappings" },
 
-                ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-            },
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
-            appearance = {
-                nerd_font_variant = "normal",
-            },
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+			},
 
-            completion = {
-                documentation = {
-                    auto_show = false,
-                    window = {
-                        scrollbar = false,
-                    },
-                },
-                menu = {
-                    scrollbar = false,
-                    draw = {
-                        treesitter = { "lsp" },
-                        padding = { 0, 1 }, -- padding only on right side
-                        columns = {
-                            { "kind_icon", "kind" },
-                            { "label", "label_description", gap = 1 },
-                        },
-                    },
-                },
-            },
+			appearance = {
+				nerd_font_variant = "normal",
+			},
 
-            sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
-            },
-            fuzzy = { implementation = "prefer_rust_with_warning" },
-        },
-        opts_extend = { "sources.default" },
-    },
+			completion = {
+				documentation = {
+					auto_show = false,
+					window = {
+						scrollbar = false,
+					},
+				},
+				menu = {
+					border = "none",
+					scrollbar = false,
+					draw = {
+						gap = 1,
+						treesitter = { "lsp" },
+						padding = { 0, 1 }, -- padding only on right side
+						columns = {
+							{ "label", "label_description", gap = 1 },
+							{ "kind_icon", "kind" },
+							{ "source_name" },
+						},
+					},
+				},
+			},
+
+			sources = {
+				default = {
+					"buffer",
+					"lsp",
+					"path",
+					"snippets",
+					"copilot",
+					"dictionary",
+					"emoji",
+					"git",
+					"spell",
+					"ripgrep",
+				},
+				providers = {
+					ripgrep = {
+						name = "Ripgrep",
+						module = "blink-ripgrep",
+						score_offset = 1,
+					},
+					dictionary = {
+						name = "Dict",
+						module = "blink-cmp-dictionary",
+						min_keyword_length = 3,
+					},
+					emoji = {
+						name = "Emoji",
+						module = "blink-emoji",
+						score_offset = 1,
+					},
+					copilot = {
+						name = "copilot",
+						module = "blink-copilot",
+						async = true,
+						score_offset = 100,
+					},
+					lsp = { score_offset = 4 },
+					spell = {
+						name = "Spell",
+						module = "blink-cmp-spell",
+						score_offset = 1,
+					},
+					git = {
+						name = "Git",
+						module = "blink-cmp-git",
+						enabled = true,
+						score_offset = 100,
+						should_show_items = function()
+							return vim.o.filetype == "gitcommit" or vim.o.filetype == "markdown"
+						end,
+						opts = {
+							git_centers = {
+								github = {
+									issue = {
+										on_error = function(_, _)
+											return true
+										end,
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			fuzzy = { implementation = "prefer_rust_with_warning" },
+		},
+		opts_extend = { "sources.default" },
+	},
 }
