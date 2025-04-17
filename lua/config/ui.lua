@@ -50,6 +50,17 @@ hi("BlinkCmpMenuBorder", { fg = colors.base05, bg = colors.base00 })
 hi("BlinkCmpMenuSelection", { fg = colors.base05, bg = colors.base01 })
 hi("BlinkCmpKind", { bg = colors.base00 })
 
+--- Snacks Picker
+hi("SnacksPickerListBorder", { bg = colors.base00, fg = colors.base00 })
+hi("SnacksPickerListTitle", { bg = colors.base0D, fg = colors.base01 })
+hi("SnacksPickerPreview", { bg = colors.base00 })
+hi("SnacksPickerPreviewBorder", { bg = colors.base00, fg = colors.base00 })
+hi("SnacksPickerPreviewTitle", { bg = colors.base0E, fg = colors.base00 })
+hi("SnacksPickerInput", { bg = colors.base01, fg = colors.base05 })
+hi("SnacksPickerInputBorder", { bg = colors.base01, fg = colors.base01 })
+hi("SnacksPickerInputTitle", { bg = colors.base08, fg = colors.base01 })
+hi("SnacksPickerSearch", { bg = colors.base01, fg = colors.base08 })
+
 hi_link("BlinkCmpKindClass", "Type")
 hi_link("BlinkCmpKindColor", "Special")
 hi_link("BlinkCmpKindConstant", "Constant")
