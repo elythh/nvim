@@ -39,17 +39,6 @@ return {
 					},
 				},
 			},
-
-			win = {
-				input = {
-					{
-						["<c-t>"] = {
-							"trouble_open",
-							mode = { "n", "i" },
-						},
-					},
-				},
-			},
 		},
 		lazygit = {
 			enabled = true,
