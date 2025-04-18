@@ -51,8 +51,32 @@ return {
 				},
 			},
 		},
+		lazygit = {
+			enabled = true,
+		},
+		indent = {
+			indent = {
+				enabled = false,
+			},
+			chunk = {
+				enabled = true,
+				only_current = true,
+				char = {
+					arrow = "─",
+					corner_top = "╭",
+					corner_bottom = "╰",
+				},
+				hl = "SnacksIndentScope",
+			},
+			notifier = {
+				enabled = true,
+				style = "minimal",
+				timeout = 3000,
+			},
+		},
 	},
 	keys = {
+		-- Picker
 		{
 			"<leader>f'",
 			function()
@@ -255,6 +279,14 @@ return {
 				Snacks.picker.grep_buffers()
 			end,
 			desc = "Fuzzy find in open buffers",
+		},
+		-- Lazygit
+		{
+			"<leader>gg",
+			function()
+				Snacks.lazygit.open()
+			end,
+			desc = "Open Lazygit",
 		},
 	},
 }
