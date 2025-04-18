@@ -29,3 +29,6 @@ m("v", ">", ">gv")
 -- Mini
 m("n", "-", ":lua  MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>")
 
+-- Quickfix
+m("n", "[c", ":cnext<CR>")
+m("n", "]c", ":cprev<CR>")
