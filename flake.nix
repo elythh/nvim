@@ -36,9 +36,13 @@
             prettierd
 
             lua-language-server
-            stylua
 
+            # Conform
+            stylua
             markdown-oxide
+            yamllint
+            yamlfmt
+            terraform
           ];
           /*
             nixpkgs.wrapNeovimUnstable is a function which takes two arguments:
