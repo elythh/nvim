@@ -4,6 +4,9 @@ return {
 		build = ":TSUpdate",
 		lazy = true,
 		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-refactor",
+		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
@@ -26,5 +29,9 @@ return {
 				modules = {},
 			})
 		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		lazy = false,
 	},
 }
