@@ -37,6 +37,10 @@ return {
 				mappings = {
 					synchronize = "s",
 				},
+				windows = {
+					preview = true,
+					width_preview = 60,
+				},
 			})
 		end,
 		version = false,
