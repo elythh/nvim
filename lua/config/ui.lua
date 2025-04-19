@@ -37,7 +37,7 @@ hi("DiagnosticSignInfo", { fg = colors.base0C, bg = colors.base00 })
 hi("DiagnosticSignOk", { fg = colors.base0B, bg = colors.base00 })
 hi("DiagnosticSignWarn", { fg = colors.base0E, bg = colors.base00 })
 
-hi("MiniFilesBorder", { fg = colors.base05 })
+hi("MiniFilesBorder", { fg = colors.base01 })
 hi("MiniFilesCursorLine", { bg = colors.base01 })
 hi("MiniFilesTitle", { bg = colors.base00 })
 hi("MiniFilesTitleFocused", { bg = colors.base00 })
