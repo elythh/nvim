@@ -102,13 +102,6 @@ return {
 			desc = "Find files",
 		},
 		{
-			"<leader>fm",
-			function()
-				Snacks.picker.man()
-			end,
-			desc = "Find man pages",
-		},
-		{
 			"<leader>fo",
 			function()
 				Snacks.picker.recent()
