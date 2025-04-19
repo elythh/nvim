@@ -34,10 +34,32 @@ return {
 			local mini_files = require("mini.files")
 
 			mini_files.setup({
-      mappings = {
-            synchronize = "s",
-          },
-      })
+				mappings = {
+					synchronize = "s",
+				},
+			})
+		end,
+		version = false,
+	},
+	{
+		"echasnovski/mini.ai",
+		events = { "UIEnter" },
+		lazy = true,
+		config = function()
+			local mini_ai = require("mini.ai")
+
+			mini_ai.setup({})
+		end,
+		version = false,
+	},
+	{
+		"echasnovski/mini.pairs",
+		events = { "UIEnter" },
+		lazy = true,
+		config = function()
+			local mini_pairs = require("mini.pairs")
+
+			mini_pairs.setup({})
 		end,
 		version = false,
 	},
