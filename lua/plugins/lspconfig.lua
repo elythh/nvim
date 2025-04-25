@@ -21,6 +21,9 @@ return {
             local servers = {
                 "lua_ls",
                 "markdown_oxide",
+                "nixd",
+                "yamlls",
+                "terraformls",
             }
 
             for _, server in pairs(servers) do
@@ -29,7 +32,7 @@ return {
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/init.lua
-                group = vim.api.nvim_create_augroup("KevinLsp", {}),
+                group = vim.api.nvim_create_augroup("ElythLsp", {}),
                 callback = function(_)
                     local lsp = vim.lsp.buf
                     vim.keymap.set("n", "gd", lsp.definition, { desc = "Goto Definition" })

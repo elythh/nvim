@@ -36,6 +36,8 @@
             prettierd
 
             lua-language-server
+            terraform-ls
+            nixd
 
             # Conform
             stylua
