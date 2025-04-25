@@ -47,18 +47,17 @@ return {
 	},
 	{
 		"echasnovski/mini.ai",
-		events = { "UIEnter" },
-		lazy = true,
+		lazy = false,
 		config = function()
 			local mini_ai = require("mini.ai")
 
-			mini_ai.setup({})
+			mini_ai.setup({ n_lines = 500 })
 		end,
 		version = false,
 	},
 	{
 		"echasnovski/mini.pairs",
-		events = { "UIEnter" },
+		events = { "BufEnter" },
 		lazy = true,
 		config = function()
 			local mini_pairs = require("mini.pairs")
