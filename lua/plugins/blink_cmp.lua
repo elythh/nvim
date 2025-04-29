@@ -11,7 +11,6 @@ return {
 			"ribru17/blink-cmp-spell",
 			"Kaiser-Yang/blink-cmp-dictionary",
 			"Kaiser-Yang/blink-cmp-git",
-			"huijiro/blink-cmp-supermaven",
 		},
 		version = "1.*",
 		event = { "InsertEnter", "CmdlineEnter" },
@@ -45,7 +44,7 @@ return {
 
 			completion = {
 				documentation = {
-					auto_show = false,
+					auto_show = true,
 					window = {
 						scrollbar = false,
 					},
@@ -68,10 +67,9 @@ return {
 
 			sources = {
 				default = {
-					"buffer",
-					"lsp",
+          "lsp",
+          -- "buffer",
 					"path",
-          "supermaven",
 					"snippets",
 					"copilot",
 					"dictionary",
@@ -107,12 +105,6 @@ return {
 						name = "Spell",
 						module = "blink-cmp-spell",
 						score_offset = 1,
-					},
-					supermaven = {
-						name = "supermaven",
-						module = "blink-cmp-supermaven",
-						score_offset = 100,
-						async = true,
 					},
 					git = {
 						name = "Git",

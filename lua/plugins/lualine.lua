@@ -139,9 +139,23 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "filename" },
-					lualine_c = { "branch", "diff" },
+					lualine_c = {
+						"branch",
+						"diff",
+						{
+							function()
+								return ("%s"):format(require("schema-companion.context").get_buffer_schema().name)
+							end,
+							cond = function()
+								return package.loaded["schema-companion"]
+							end,
+						},
+					},
 					lualine_x = { "diagnostics" },
-					lualine_y = { "progress", "location" },
+					lualine_y = {
+						"progress",
+						"location",
+					},
 					lualine_z = { "filetype" },
 				},
 			})
