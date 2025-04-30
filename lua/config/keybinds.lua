@@ -32,3 +32,9 @@ m("n", "-", ":lua  MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>")
 -- Quickfix
 m("n", "[c", ":cnext<CR>")
 m("n", "]c", ":cprev<CR>")
+
+-- Toggle diagnostic text
+m("n", "gK", function()
+	local new_config = not vim.diagnostic.config().virtual_text
+	vim.diagnostic.config({ virtual_text = new_config })
+end)

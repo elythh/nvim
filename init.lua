@@ -18,6 +18,13 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd("User", {
+    pattern = "DiagnosticChanged",
+    callback = function()
+        vim.diagnostic.setloclist({open = true})
+    end,
+})
+
 -- Center cursor when entering insert mode
 vim.api.nvim_create_autocmd("InsertEnter", {
 	pattern = "*",

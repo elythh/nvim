@@ -21,30 +21,28 @@ return {
 			require("lspconfig").yamlls.setup({
 				settings = {
 					yaml = {
-						format = {
-							enable = true,
-						},
+						format = { enable = true },
 						validate = { enable = true },
 						schemaStore = {
 							enable = false,
-							-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
 							url = "",
 						},
-						schemas = {
-							kubernetes = "*.yaml",
-							["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-							["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-							["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-							["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-							["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-							["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
-							["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-							["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-							["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
-							["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
-							["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
-							["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
-						},
+						schemas = require("schemastore").yaml.schemas({
+							extra = {
+								{
+									name = "Kubernetes v1.32.4 Strict",
+									description = "Kubernetes JSON Schema - v1.32.4 strict",
+									url = "kubernetes",
+									fileMatch = {
+										"*.k8s.yaml",
+										"*.k8s.yml",
+										"*.kubernetes.yaml",
+										"gitops/apps/**/*.yaml",
+										"gitops/apps/**/*.yml",
+									},
+								},
+							},
+						}),
 					},
 				},
 			})
@@ -75,6 +73,7 @@ return {
 					vim.keymap.set("n", "<leader>cw", lsp.workspace_symbol, { desc = "Workspace Symbol" })
 					vim.keymap.set("n", "<leader>ra", lsp.rename, { desc = "Rename" })
 					vim.keymap.set("n", "<leader>ca", lsp.code_action, { desc = "Code Action" })
+					vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 					local diag = vim.diagnostic
 					vim.keymap.set("n", "[d", function()
