@@ -114,3 +114,12 @@ hi("BufferLinePickVisible", {})
 hi("BufferLineSeparator", { bg = colors.base01, fg = colors.base01 })
 hi("BufferLineSeparatorSelected", { bg = colors.base0C })
 hi("BufferLineSeparatorVisible", {})
+
+-- GitSigns
+hi("GitSignsAdd", {bg = colors.base00, fg = colors.base0D })
+hi("GitSignsChange", {bg = colors.base00,fg = colors.base09 })
+hi("GitSignsDelete", {bg = colors.base00,fg = colors.base08 })
+hi("GitSignsUntracked", {bg = colors.base00,fg = colors.base06 })
+hi("GitSignsStagedAdd", {bg = colors.base00, fg = colors.base0B})
+hi("GitSignsStagedChange", {bg = colors.base00, fg = colors.base0B})
+hi("GitSignsStagedDelete", {bg = colors.base00, fg = colors.base0B})
