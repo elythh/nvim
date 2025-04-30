@@ -44,6 +44,11 @@
             markdown-oxide
             yamllint
             yamlfmt
+
+            # Kustomize
+            kubent
+            kubeconform
+            kustomize
           ];
           /*
             nixpkgs.wrapNeovimUnstable is a function which takes two arguments:
