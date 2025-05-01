@@ -123,3 +123,10 @@ hi("GitSignsUntracked", {bg = colors.base00,fg = colors.base06 })
 hi("GitSignsStagedAdd", {bg = colors.base00, fg = colors.base0B})
 hi("GitSignsStagedChange", {bg = colors.base00, fg = colors.base0B})
 hi("GitSignsStagedDelete", {bg = colors.base00, fg = colors.base0B})
+
+-- Noice
+hi("NoiceCmdlinePopup", {fg = colors.base04, bg = colors.base01})
+hi("NoiceCmdlinePopupBorder", {fg = colors.base01, bg = colors.base01})
+hi("NoiceCmdlinePopupBorderSearch", {fg = colors.base01, bg = colors.base01})
+hi("NoiceCmdlineIcon", {fg = colors.base0A, bg = colors.base01})
+hi("NoiceCmdlineIconSearch", {fg = colors.base0E, bg = colors.base01})
