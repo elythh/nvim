@@ -4,6 +4,11 @@ return {
 		event = "VeryLazy",
 		lazy = true,
 		version = false,
+	},
+	{
+		"echasnovski/mini.hipatterns",
+		lazy = false,
+		version = false,
 		config = function()
 			local mini_hipatterns = require("mini.hipatterns")
 
@@ -20,11 +25,6 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"echasnovski/mini.hipatterns",
-		lazy = false,
-		version = false,
 	},
 	{
 		"echasnovski/mini.starter",
@@ -87,4 +87,55 @@ return {
 		end,
 		version = false,
 	},
+  {
+		"echasnovski/mini.clue",
+		events = { "BufEnter" },
+		lazy = true,
+    event = "VeryLazy",
+		config = function()
+			local mini_clue = require("mini.clue")
+
+			mini_clue.setup({
+				window = {
+					delay = 500,
+					config = {
+						border = "none",
+						width = math.floor(0.318 * vim.o.columns),
+						row = "auto",
+						col = "auto",
+						anchor = "NE",
+					},
+				},
+				triggers = {
+					{ mode = "n", keys = "<leader>" },
+					{ mode = "x", keys = "<leader>" },
+					{ mode = "i", keys = "<C-x>" },
+					{ mode = "n", keys = "g" },
+					{ mode = "x", keys = "g" },
+					{ mode = "n", keys = "'" },
+					{ mode = "n", keys = "`" },
+					{ mode = "n", keys = "]" },
+					{ mode = "n", keys = "[" },
+					{ mode = "x", keys = "'" },
+					{ mode = "x", keys = "`" },
+					{ mode = "n", keys = "\"" },
+					{ mode = "x", keys = "\"" },
+					{ mode = "i", keys = "<C-r>" },
+					{ mode = "c", keys = "<C-r>" },
+					{ mode = "n", keys = "<C-w>" },
+					{ mode = "n", keys = "z" },
+					{ mode = "x", keys = "z" },
+				},
+				clues = {
+					require('mini.clue').gen_clues.builtin_completion(),
+					require('mini.clue').gen_clues.g(),
+					require('mini.clue').gen_clues.marks(),
+					require('mini.clue').gen_clues.registers(),
+					require('mini.clue').gen_clues.windows(),
+					require('mini.clue').gen_clues.z(),
+				},
+			})
+		end,
+		version = false,
+  },
 }
