@@ -38,3 +38,31 @@ m("n", "gK", function()
 	local new_config = not vim.diagnostic.config().virtual_text
 	vim.diagnostic.config({ virtual_text = new_config })
 end)
+
+-- Theme switcher
+local function switch_theme()
+	vim.ui.input({ prompt = "Enter theme name: " }, function(theme_name)
+		if not theme_name or theme_name == "" then
+			return
+		end
+
+		-- Check if the theme file exists
+		local theme_path = "themes." .. theme_name
+		local success, _ = pcall(require, theme_path)
+
+		if not success then
+			vim.notify("Theme '" .. theme_name .. "' not found", vim.log.levels.ERROR)
+			return
+		end
+
+		-- Set the global theme variable
+		_G.theme = theme_name
+
+		-- Reload the UI configuration to apply the new theme
+		package.loaded["config.ui"] = nil
+		require("config.ui")
+
+		vim.notify("Switched to theme: " .. theme_name, vim.log.levels.INFO)
+	end)
+end
+m("n", "<leader>tc", switch_theme, { desc = "Change theme" })
