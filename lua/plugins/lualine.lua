@@ -153,10 +153,11 @@ return {
 					},
 					lualine_x = { "diagnostics" },
 					lualine_y = {
+						"filetype",
 						"progress",
 						"location",
 					},
-					lualine_z = { "filetype" },
+					lualine_z = {},
 				},
 			})
 		end,
