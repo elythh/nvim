@@ -48,9 +48,11 @@ hi("MiniStarterItemPrefix", { fg = colors.base0D })
 hi("MiniFilesNormal", { fg = colors.base05, bg = colors.base00 })
 
 hi("BlinkCmpMenu", { fg = colors.base05, bg = colors.base00 })
-hi("BlinkCmpMenuBorder", { fg = colors.base05, bg = colors.base00 })
+hi("BlinkCmpMenuBorder", { fg = colors.base02, bg = colors.base00 })
 hi("BlinkCmpMenuSelection", { fg = colors.base05, bg = colors.base01 })
 hi("BlinkCmpKind", { bg = colors.base00 })
+hi("BlinkCmpDocBorder", { fg = colors.base02 })
+hi("BlinkCmpDoc", { bg = colors.base00 })
 
 --- Snacks Picker
 hi("SnacksPickerListBorder", { bg = colors.base00, fg = colors.base00 })

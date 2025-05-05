@@ -34,7 +34,6 @@ return {
 
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
-
 				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
 			},
 
@@ -47,10 +46,11 @@ return {
 					auto_show = true,
 					window = {
 						scrollbar = false,
+						border = "single",
 					},
 				},
 				menu = {
-					border = "none",
+					border = "rounded",
 					scrollbar = false,
 					draw = {
 						gap = 1,
@@ -59,7 +59,6 @@ return {
 						columns = {
 							{ "label", "label_description", gap = 1 },
 							{ "kind_icon", "kind" },
-							{ "source_name" },
 						},
 					},
 				},
@@ -67,8 +66,8 @@ return {
 
 			sources = {
 				default = {
-          "lsp",
-          -- "buffer",
+					"lsp",
+					-- "buffer",
 					"path",
 					"snippets",
 					"copilot",
