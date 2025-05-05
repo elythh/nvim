@@ -1,3 +1,17 @@
+local function lsp_status()
+	local attached_clients = vim.lsp.get_clients({ bufnr = 0 })
+	if #attached_clients == 0 then
+		return ""
+	end
+	local names = {}
+	for _, client in ipairs(attached_clients) do
+		local name = client.name:gsub("language.server", "ls")
+		table.insert(names, name)
+	end
+	-- Directly embed color using highlight group 'LspIcon'
+	return "%#LspIcon# %#lualine_y_normal# " .. table.concat(names, ", ")
+end
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
@@ -6,6 +20,9 @@ return {
 		event = "VeryLazy",
 		config = function()
 			local colors = require("themes." .. _G.theme)
+
+			-- Define a highlight group for the LSP icon
+			vim.api.nvim_set_hl(0, "LspIcon", { fg = colors.base0C, bg = colors.base00 }) -- Change colors.base0C to your desired color
 
 			require("lualine").setup({
 				options = {
@@ -25,114 +42,39 @@ return {
 					},
 					theme = {
 						normal = {
-							a = {
-								bg = colors.base00,
-								fg = colors.base0D,
-							},
-							b = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							c = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							z = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							y = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
+							a = { bg = colors.base00, fg = colors.base0D },
+							b = { bg = colors.base00, fg = colors.base04 },
+							c = { bg = colors.base00, fg = colors.base04 },
+							z = { bg = colors.base00, fg = colors.base04 },
+							y = { bg = colors.base00, fg = colors.base04 },
 						},
 						insert = {
-							a = {
-								bg = colors.base00,
-								fg = colors.base0E,
-							},
-							b = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							c = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							z = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							y = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
+							a = { bg = colors.base00, fg = colors.base0E },
+							b = { bg = colors.base00, fg = colors.base04 },
+							c = { bg = colors.base00, fg = colors.base04 },
+							z = { bg = colors.base00, fg = colors.base04 },
+							y = { bg = colors.base00, fg = colors.base04 },
 						},
 						command = {
-							a = {
-								bg = colors.base00,
-								fg = colors.base08,
-							},
-							b = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							c = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							z = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							y = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
+							a = { bg = colors.base00, fg = colors.base08 },
+							b = { bg = colors.base00, fg = colors.base04 },
+							c = { bg = colors.base00, fg = colors.base04 },
+							z = { bg = colors.base00, fg = colors.base04 },
+							y = { bg = colors.base00, fg = colors.base04 },
 						},
 						visual = {
-							a = {
-								bg = colors.base00,
-								fg = colors.base0B,
-							},
-							b = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							c = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							z = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							y = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
+							a = { bg = colors.base00, fg = colors.base0B },
+							b = { bg = colors.base00, fg = colors.base05 },
+							c = { bg = colors.base00, fg = colors.base05 },
+							z = { bg = colors.base00, fg = colors.base05 },
+							y = { bg = colors.base00, fg = colors.base05 },
 						},
 						replace = {
-							a = {
-								bg = colors.base00,
-								fg = colors.base0A,
-							},
-							b = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							c = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							z = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
-							y = {
-								bg = colors.base00,
-								fg = colors.base05,
-							},
+							a = { bg = colors.base00, fg = colors.base0A },
+							b = { bg = colors.base00, fg = colors.base05 },
+							c = { bg = colors.base00, fg = colors.base05 },
+							z = { bg = colors.base00, fg = colors.base05 },
+							y = { bg = colors.base00, fg = colors.base05 },
 						},
 					},
 				},
@@ -142,17 +84,10 @@ return {
 					lualine_c = {
 						"branch",
 						"diff",
-						{
-							function()
-								return ("%s"):format(require("schema-companion.context").get_buffer_schema().name)
-							end,
-							cond = function()
-								return package.loaded["schema-companion"]
-							end,
-						},
 					},
-					lualine_x = { "diagnostics" },
+					lualine_x = { "diagnostics"},
 					lualine_y = {
+            lsp_status,
 						"filetype",
 						"progress",
 						"location",
