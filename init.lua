@@ -19,10 +19,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 vim.api.nvim_create_autocmd("User", {
-    pattern = "DiagnosticChanged",
-    callback = function()
-        vim.diagnostic.setloclist({open = true})
-    end,
+	pattern = "DiagnosticChanged",
+	callback = function()
+		vim.diagnostic.setloclist({ open = true })
+	end,
 })
 
 -- Center cursor when entering insert mode
@@ -73,3 +73,14 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd("startinsert | 1")
 	end,
 })
+
+-- q to quit on help
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "help" },
+	callback = function()
+		vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = 0 })
+	end,
+})
+
+-- disable new line autocomment
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
