@@ -164,20 +164,13 @@ return {
 			end,
 			desc = "Find git branches",
 		},
-		{
-			"<leader>gs",
-			function()
-				Snacks.picker.git_status()
-			end,
-			desc = "Find git status",
-		},
-		{
-			"<leader>gS",
-			function()
-				Snacks.picker.git_stash()
-			end,
-			desc = "Find git stashes",
-		},
+		-- {
+		-- 	"<leader>gs",
+		-- 	function()
+		-- 		Snacks.picker.git_status()
+		-- 	end,
+		-- 	desc = "Find git status",
+		-- },
 		{
 			"<leader><space>",
 			function()
