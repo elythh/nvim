@@ -76,4 +76,13 @@ return {
 			})
 		end,
 	},
+	{
+		"chrisgrieser/nvim-various-textobjs",
+		event = "VeryLazy",
+		opts = {
+			keymaps = {
+				useDefaults = true,
+			},
+		},
+	},
 }
