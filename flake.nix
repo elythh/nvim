@@ -49,6 +49,15 @@
             kubent
             kubeconform
             kustomize
+
+            # Lint
+            tflint
+            tfsec
+            markdownlint-cli2
+            yamllint
+            deadnix
+            nix
+            lua54Packages.luacheck
           ];
           /*
             nixpkgs.wrapNeovimUnstable is a function which takes two arguments:
