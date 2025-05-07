@@ -263,5 +263,12 @@ return {
 			end,
 			desc = "Open Lazygit",
 		},
+		{
+			"<leader>kt",
+			function()
+				Snacks.picker.loclist()
+			end,
+			desc = "Open Loclist",
+		},
 	},
 }
