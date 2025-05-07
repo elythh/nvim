@@ -58,6 +58,7 @@ return {
 			for _, server in pairs(servers) do
 				vim.lsp.enable(server)
 			end
+			vim.lsp.inlay_hint.enable(true)
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				-- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/init.lua
