@@ -146,7 +146,7 @@ return {
 		{
 			"<leader>fS",
 			function()
-				Snacks.picker.spell_suggest()
+				Snacks.picker.spelling()
 			end,
 			desc = "Find spelling suggestions",
 		},
