@@ -38,12 +38,14 @@
             lua-language-server
             terraform-ls
             nixd
+            python313Packages.python-lsp-server
 
             # Conform
             stylua
             markdown-oxide
             yamllint
             yamlfmt
+            ruff
 
             # Kustomize
             kubent

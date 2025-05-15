@@ -26,6 +26,7 @@ return {
 			sh = { "shfmt" },
 			terraform = { "terraform_fmt" },
 			yaml = { "yamlfmt", "yamllint" },
+			python = { "ruff" },
 		},
 		-- Set default options
 		default_format_opts = {

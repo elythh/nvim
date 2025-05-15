@@ -53,6 +53,7 @@ return {
 				"nixd",
 				"yamlls",
 				"terraformls",
+				"pylsp",
 			}
 
 			for _, server in pairs(servers) do
