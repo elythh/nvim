@@ -70,3 +70,14 @@ local function switch_theme()
 	end)
 end
 m("n", "<leader>tc", switch_theme, { desc = "Change theme" })
+
+vim.keymap.set("n", "<leader>q", function()
+  require("quicker").toggle()
+end, {
+  desc = "Toggle quickfix",
+})
+vim.keymap.set("n", "<leader>l", function()
+  require("quicker").toggle({ loclist = true })
+end, {
+  desc = "Toggle loclist",
+})
