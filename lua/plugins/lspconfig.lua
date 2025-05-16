@@ -23,26 +23,6 @@ return {
 					yaml = {
 						format = { enable = true },
 						validate = { enable = true },
-						schemaStore = {
-							enable = false,
-							url = "",
-						},
-						schemas = require("schemastore").yaml.schemas({
-							extra = {
-								{
-									name = "Kubernetes v1.32.4 Strict",
-									description = "Kubernetes JSON Schema - v1.32.4 strict",
-									url = "kubernetes",
-									fileMatch = {
-										"*.k8s.yaml",
-										"*.k8s.yml",
-										"*.kubernetes.yaml",
-										"gitops/apps/**/*.yaml",
-										"gitops/apps/**/*.yml",
-									},
-								},
-							},
-						}),
 					},
 				},
 			})
