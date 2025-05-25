@@ -8,9 +8,13 @@ return {
 		"nvim-tree/nvim-web-devicons", -- Recommended but not required. Icons in discussion tree.
 	},
 	build = function()
-		require("gitlab.server").build(true)
+		if vim.fn.executable("glab") == 1 then
+			require("gitlab.server").build(true)
+		end
 	end, -- Builds the Go binary
 	config = function()
-		require("gitlab").setup()
+		if vim.fn.executable("glab") == 1 then
+			require("gitlab").setup()
+		end
 	end,
 }
