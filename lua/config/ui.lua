@@ -1,8 +1,9 @@
 local colors = require("themes." .. _G.theme)
 
-require("mini.base16").setup({
-	palette = colors,
+require("gruvbox").setup({
+  transparent_mode = true,
 })
+vim.cmd("colorscheme gruvbox")
 
 local function hi(group, args)
 	local cmd = string.format(
@@ -23,21 +24,18 @@ end
 hi("WinSeparator", { fg = colors.base02 })
 hi("NormalFloat", { fg = colors.base05, bg = colors.base00 })
 hi("FloatBorder", { fg = colors.base05, bg = colors.base00 })
-hi("LineNr", { fg = colors.base03 })
-hi("SignColumn", { fg = colors.base05 })
-hi("LineNrAbove", { bg = colors.base00, fg = colors.base03 })
-hi("LineNrBelow", { bg = colors.base00, fg = colors.base03 })
+hi("SignColumn", { fg = colors.base05, bg = "none"})
 
-hi("DiagnosticFloatingError", { fg = colors.base08, bg = colors.base00 })
-hi("DiagnosticFloatingHint", { fg = colors.base0A, bg = colors.base00 })
-hi("DiagnosticFloatingInfo", { fg = colors.base0C, bg = colors.base00 })
-hi("DiagnosticFloatingOk", { fg = colors.base0B, bg = colors.base00 })
-hi("DiagnosticFloatingWarn", { fg = colors.base0E, bg = colors.base00 })
-hi("DiagnosticSignError", { fg = colors.base08, bg = colors.base00 })
-hi("DiagnosticSignHint", { fg = colors.base0A, bg = colors.base00 })
-hi("DiagnosticSignInfo", { fg = colors.base0C, bg = colors.base00 })
-hi("DiagnosticSignOk", { fg = colors.base0B, bg = colors.base00 })
-hi("DiagnosticSignWarn", { fg = colors.base0E, bg = colors.base00 })
+hi("DiagnosticFloatingError", { fg = colors.base08, bg = "none" })
+hi("DiagnosticFloatingHint", { fg = colors.base0A, bg = "none" })
+hi("DiagnosticFloatingInfo", { fg = colors.base0C, bg = "none" })
+hi("DiagnosticFloatingOk", { fg = colors.base0B, bg = "none" })
+hi("DiagnosticFloatingWarn", { fg = colors.base0E, bg = "none" })
+hi("DiagnosticSignError", { fg = colors.base08, bg = "none" })
+hi("DiagnosticSignHint", { fg = colors.base0A, bg = "none" })
+hi("DiagnosticSignInfo", { fg = colors.base0C, bg = "none" })
+hi("DiagnosticSignOk", { fg = colors.base0B, bg = "none" })
+hi("DiagnosticSignWarn", { fg = colors.base0E, bg = "none" })
 
 hi("MiniFilesBorder", { fg = colors.base01 })
 hi("MiniFilesCursorLine", { bg = colors.base01 })
@@ -57,6 +55,7 @@ hi("BlinkCmpDoc", { bg = colors.base00 })
 --- Snacks Picker
 hi("SnacksPickerListBorder", { bg = colors.base00, fg = colors.base00 })
 hi("SnacksPickerListTitle", { bg = colors.base0D, fg = colors.base01 })
+hi("SnacksPickerList", { bg = colors.base00})
 hi("SnacksPickerPreview", { bg = colors.base00 })
 hi("SnacksPickerPreviewBorder", { bg = colors.base00, fg = colors.base00 })
 hi("SnacksPickerPreviewTitle", { bg = colors.base0E, fg = colors.base00 })
@@ -102,7 +101,7 @@ hi("BufferLineCloseButtonVisible", { bg = colors.base01 })
 hi("BufferLineDuplicate", { bg = colors.base01 })
 hi("BufferLineDuplicateSelected", { bg = colors.base0C, fg = colors.base00 })
 hi("BufferLineDuplicateVisible", { bg = colors.base01 })
-hi("BufferLineFill", { bg = colors.base00 })
+hi("BufferLineFill", { bg = nil })
 hi("BufferLineIndicatorSelected", { bg = colors.base0C })
 hi("BufferLineIndicator", { bg = colors.base01 })
 hi("BufferLineIndicatorVisible", { bg = colors.base01 })
@@ -118,13 +117,13 @@ hi("BufferLineSeparatorSelected", { bg = colors.base0C })
 hi("BufferLineSeparatorVisible", {})
 
 -- GitSigns
-hi("GitSignsAdd", {bg = colors.base00, fg = colors.base0D })
-hi("GitSignsChange", {bg = colors.base00,fg = colors.base09 })
-hi("GitSignsDelete", {bg = colors.base00,fg = colors.base08 })
-hi("GitSignsUntracked", {bg = colors.base00,fg = colors.base06 })
-hi("GitSignsStagedAdd", {bg = colors.base00, fg = colors.base0B})
-hi("GitSignsStagedChange", {bg = colors.base00, fg = colors.base0B})
-hi("GitSignsStagedDelete", {bg = colors.base00, fg = colors.base0B})
+hi("GitSignsAdd", {bg = "none", fg = colors.base0D })
+hi("GitSignsChange", {bg = "none",fg = colors.base09 })
+hi("GitSignsDelete", {bg = "none",fg = colors.base08 })
+hi("GitSignsUntracked", {bg = "none",fg = colors.base06 })
+hi("GitSignsStagedAdd", {bg = "none", fg = colors.base0B})
+hi("GitSignsStagedChange", {bg = "none", fg = colors.base0B})
+hi("GitSignsStagedDelete", {bg = "none", fg = colors.base0B})
 
 -- Noice
 hi("NoiceCmdlinePopup", {fg = colors.base04, bg = colors.base01})

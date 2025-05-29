@@ -22,7 +22,7 @@ return {
 			local colors = require("themes." .. _G.theme)
 
 			-- Define a highlight group for the LSP icon
-			vim.api.nvim_set_hl(0, "LspIcon", { fg = colors.base0C, bg = colors.base00 }) -- Change colors.base0C to your desired color
+			vim.api.nvim_set_hl(0, "LspIcon", { fg = colors.base0C, bg = nil }) -- Change colors.base0C to your desired color
 
 			require("lualine").setup({
 				options = {
@@ -42,39 +42,44 @@ return {
 					},
 					theme = {
 						normal = {
-							a = { bg = colors.base00, fg = colors.base0D },
-							b = { bg = colors.base00, fg = colors.base04 },
-							c = { bg = colors.base00, fg = colors.base04 },
-							z = { bg = colors.base00, fg = colors.base04 },
-							y = { bg = colors.base00, fg = colors.base04 },
+							a = { bg = nil, fg = colors.base0D },
+							b = { bg = nil, fg = colors.base04 },
+							c = { bg = nil, fg = colors.base04 },
+							x = { bg = nil, fg = colors.base05 },
+							z = { bg = nil, fg = colors.base04 },
+							y = { bg = nil, fg = colors.base04 },
 						},
 						insert = {
-							a = { bg = colors.base00, fg = colors.base0E },
-							b = { bg = colors.base00, fg = colors.base04 },
-							c = { bg = colors.base00, fg = colors.base04 },
-							z = { bg = colors.base00, fg = colors.base04 },
-							y = { bg = colors.base00, fg = colors.base04 },
+							a = { bg = nil, fg = colors.base0E },
+							b = { bg = nil, fg = colors.base04 },
+							c = { bg = nil, fg = colors.base04 },
+							x = { bg = nil, fg = colors.base05 },
+							z = { bg = nil, fg = colors.base04 },
+							y = { bg = nil, fg = colors.base04 },
 						},
 						command = {
-							a = { bg = colors.base00, fg = colors.base08 },
-							b = { bg = colors.base00, fg = colors.base04 },
-							c = { bg = colors.base00, fg = colors.base04 },
-							z = { bg = colors.base00, fg = colors.base04 },
-							y = { bg = colors.base00, fg = colors.base04 },
+							a = { bg = nil, fg = colors.base08 },
+							b = { bg = nil, fg = colors.base04 },
+							c = { bg = nil, fg = colors.base04 },
+							x = { bg = nil, fg = colors.base05 },
+							z = { bg = nil, fg = colors.base04 },
+							y = { bg = nil, fg = colors.base04 },
 						},
 						visual = {
-							a = { bg = colors.base00, fg = colors.base0B },
-							b = { bg = colors.base00, fg = colors.base05 },
-							c = { bg = colors.base00, fg = colors.base05 },
-							z = { bg = colors.base00, fg = colors.base05 },
-							y = { bg = colors.base00, fg = colors.base05 },
+							a = { bg = nil, fg = colors.base0B },
+							b = { bg = nil, fg = colors.base05 },
+							c = { bg = nil, fg = colors.base05 },
+							x = { bg = nil, fg = colors.base05 },
+							z = { bg = nil, fg = colors.base05 },
+							y = { bg = nil, fg = colors.base05 },
 						},
 						replace = {
-							a = { bg = colors.base00, fg = colors.base0A },
-							b = { bg = colors.base00, fg = colors.base05 },
-							c = { bg = colors.base00, fg = colors.base05 },
-							z = { bg = colors.base00, fg = colors.base05 },
-							y = { bg = colors.base00, fg = colors.base05 },
+							a = { bg = nil, fg = colors.base0A },
+							b = { bg = nil, fg = colors.base05 },
+							c = { bg = nil, fg = colors.base05 },
+							x = { bg = nil, fg = colors.base05 },
+							z = { bg = nil, fg = colors.base05 },
+							y = { bg = nil, fg = colors.base05 },
 						},
 					},
 				},

@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-_G.theme = "everblush"
+_G.theme = "gruvbox"
 
 require("config.opts")
 require("config.keybinds")
