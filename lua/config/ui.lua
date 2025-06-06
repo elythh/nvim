@@ -1,9 +1,9 @@
 local colors = require("themes." .. _G.theme)
 
-require("gruvbox").setup({
-  transparent_mode = true,
-})
-vim.cmd("colorscheme gruvbox")
+-- require("gruvbox").setup({
+--   transparent_mode = true,
+-- })
+-- vim.cmd("colorscheme gruvbox")
 
 local function hi(group, args)
 	local cmd = string.format(
