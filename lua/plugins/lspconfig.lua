@@ -34,6 +34,7 @@ return {
 				"yamlls",
 				"terraformls",
 				"pylsp",
+        "qmlls",
 			}
 
 			for _, server in pairs(servers) do
