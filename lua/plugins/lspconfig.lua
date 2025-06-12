@@ -35,6 +35,7 @@ return {
 				"terraformls",
 				"pylsp",
         "qmlls",
+        "tinymist",
 			}
 
 			for _, server in pairs(servers) do

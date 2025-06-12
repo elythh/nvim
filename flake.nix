@@ -39,7 +39,7 @@
             terraform-ls
             nixd
             python313Packages.python-lsp-server
-            kdePackages.full
+            tinymist
 
             # Conform
             stylua
