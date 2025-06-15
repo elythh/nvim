@@ -22,7 +22,7 @@ return {
 			local colors = require("themes." .. _G.theme)
 
 			-- Define a highlight group for the LSP icon
-			vim.api.nvim_set_hl(0, "LspIcon", { fg = colors.base0C, bg = nil }) -- Change colors.base0C to your desired color
+			vim.api.nvim_set_hl(0, "LspIcon", { fg = colors.base0C, bg = colors.base00 }) -- Change colors.base0C to your desired color
 
 			require("lualine").setup({
 				options = {
