@@ -1,9 +1,8 @@
 local colors = require("themes." .. _G.theme)
 
-require("gruvbox").setup({
-  transparent_mode = true,
+require("mini.base16").setup({
+  palette = colors,
 })
-vim.cmd("colorscheme gruvbox")
 
 local function hi(group, args)
 	local cmd = string.format(
@@ -25,6 +24,10 @@ hi("WinSeparator", { fg = colors.base02 })
 hi("NormalFloat", { fg = colors.base05, bg = colors.base00 })
 hi("FloatBorder", { fg = colors.base05, bg = colors.base00 })
 hi("SignColumn", { fg = colors.base05, bg = "none"})
+hi("LineNr", { fg = colors.base03 })
+hi("SignColumn", { fg = colors.base05 })
+hi("LineNrAbove", { bg = colors.base00, fg = colors.base03 })
+hi("LineNrBelow", { bg = colors.base00, fg = colors.base03 })
 
 hi("DiagnosticFloatingError", { fg = colors.base08, bg = "none" })
 hi("DiagnosticFloatingHint", { fg = colors.base0A, bg = "none" })
