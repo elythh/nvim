@@ -5,7 +5,7 @@ return {
 		lazy = true,
 		version = false,
 	},
-	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
+  -- { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
 	{
 		"echasnovski/mini.hipatterns",
 		lazy = false,
