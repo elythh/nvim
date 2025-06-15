@@ -19,22 +19,18 @@ return {
 		---@type blink.cmp.Config
 		opts = {
 			keymap = {
-				preset = "default",
-				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-				["<C-e>"] = { "hide", "fallback" },
-				["<CR>"] = { "accept", "fallback" },
-
-				["<Tab>"] = { "snippet_forward", "fallback" },
-				["<S-Tab>"] = { "snippet_backward", "fallback" },
-
-				["<Up>"] = { "select_prev", "fallback" },
-				["<Down>"] = { "select_next", "fallback" },
-				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-				["<C-n>"] = { "select_next", "fallback_to_mappings" },
-
-				["<C-b>"] = { "scroll_documentation_up", "fallback" },
-				["<C-f>"] = { "scroll_documentation_down", "fallback" },
-				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+				preset = "none",
+				["<C-j>"] = { "select_next", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
+				["<CS-j>"] = { "scroll_documentation_down", "fallback" },
+				["<CS-k>"] = { "scroll_documentation_up", "fallback" },
+				["<C-space>"] = {
+					"show",
+					"show_documentation",
+					"hide_documentation",
+				},
+				["<C-e>"] = { "hide" },
+				["<C-y>"] = { "select_and_accept" },
 			},
 
 			appearance = {
@@ -49,29 +45,15 @@ return {
 						border = "single",
 					},
 				},
+				ghost_text = { enabled = true },
 				menu = {
-					border = "rounded",
-					scrollbar = false,
-					draw = {
-						gap = 1,
-						treesitter = { "lsp" },
-						padding = { 0, 1 }, -- padding only on right side
-						columns = {
-							{ "label", "label_description", gap = 1 },
-							{ "kind_icon", "kind" },
-						},
-					},
-				},
-			},
-
-			sources = {
-				default = {
+          scrollbar = false,
+					border = "none",
 					"lsp",
-					-- "buffer",
+					"buffer",
 					"path",
-					"snippets",
-					"copilot",
 					"dictionary",
+          "copulot",
 					"emoji",
 					"git",
 					"spell",
