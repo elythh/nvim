@@ -36,6 +36,7 @@ return {
 				"pylsp",
         "qmlls",
         "tinymist",
+        "rust_analyzer"
 			}
 
 			for _, server in pairs(servers) do

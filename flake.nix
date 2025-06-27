@@ -40,6 +40,7 @@
             nixd
             python313Packages.python-lsp-server
             tinymist
+            rust-analyzer
 
             # Conform
             stylua
