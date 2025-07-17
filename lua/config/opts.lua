@@ -9,24 +9,42 @@ o.splitright = true
 o.splitbelow = true
 o.swapfile = false
 o.undofile = true
+o.backup = false
+o.writebackup = false
 o.clipboard = "unnamedplus"
-o.scrolloff = 20
+o.scrolloff = 10
+
+o.cursorline = true
+o.cursorlineopt = "screenline"
+o.cursorcolumn = true
 
 -- Indents settings
 o.tabstop = 2
 o.shiftwidth = 2
 o.expandtab = true
 o.smartindent = true
+o.autoindent = true
+o.copyindent = true
+o.breakindent = true
 
 -- UI
 o.showcmd = false
+-- Relative line number insert mode
 o.number = true
-o.relativenumber = true
+vim.api.nvim_create_autocmd(
+	{ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" },
+	{ pattern = "*", command = "if &nu && mode() != 'i' | set rnu | endif" }
+)
+vim.api.nvim_create_autocmd(
+	{ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" },
+	{ pattern = "*", command = "if &nu | set nornu | endif" }
+)
+-- o.relativenumber = true
 o.showtabline = 1
 o.signcolumn = "yes"
 o.breakindent = true
 vim.g.termguicolors = true
-o.updatetime = 250
+o.updatetime = 500
 o.showmode = false
 o.laststatus = 3
 o.fillchars = { eob = " " }
@@ -34,6 +52,7 @@ vim.go.guicursor = "n-v-sm:block,i-t-ci-ve-c:ver25,r-cr-o:hor20"
 -- Search
 o.ignorecase = true
 o.smartcase = true
+o.inccommand = "split"
 
 vim.diagnostic.config({
 	virtual_text = true,

@@ -94,3 +94,14 @@ vim.keymap.set("n", "<leader>l", function()
 end, {
 	desc = "Toggle loclist",
 })
+
+m("i", "<>", "<><left>", { desc = "Enter into angled brackets" })
+m("i", "()", "()<left>", { desc = "Enter into round brackets" })
+m("i", "{}", "{}<left>", { desc = "Enter into curly brackets" })
+m("i", "[]", "[]<left>", { desc = "Enter into square brackets" })
+m("i", '""', '""<left>', { desc = "Enter into double quotes" })
+m("i", "''", "''<left>", { desc = "Enter into single quotes" })
+m("i", "``", "``<left>", { desc = "Enter into backticks" })
+
+m({"n", "v"}, "x", '"_x')
+m({"n", "v"}, "X", '"_X')
