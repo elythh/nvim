@@ -37,28 +37,8 @@ return {
 				nerd_font_variant = "normal",
 			},
 
-			completion = {
-				documentation = {
-					auto_show = true,
-					window = {
-						scrollbar = false,
-						border = "single",
-					},
-				},
-				ghost_text = { enabled = true },
-				menu = {
-          scrollbar = false,
-					border = "none",
-					"lsp",
-					"buffer",
-					"path",
-					"dictionary",
-          "copulot",
-					"emoji",
-					"git",
-					"spell",
-					"ripgrep",
-				},
+			sources = {
+				default = { "lsp", "buffer", "path", "dictionary", "emoji", "git", "spell", "ripgrep" },
 				providers = {
 					ripgrep = {
 						name = "Ripgrep",
@@ -108,6 +88,16 @@ return {
 						},
 					},
 				},
+			},
+			completion = {
+				documentation = {
+					auto_show = true,
+					window = {
+						scrollbar = false,
+						border = "single",
+					},
+				},
+				ghost_text = { enabled = true },
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},

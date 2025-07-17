@@ -41,6 +41,7 @@
             python313Packages.python-lsp-server
             tinymist
             rust-analyzer
+            kdePackages.qtdeclarative # qmlls
 
             # Conform
             stylua
