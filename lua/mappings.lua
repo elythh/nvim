@@ -57,22 +57,11 @@ M.lsp = function()
   map("n", "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
   map("n", "gd", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
   map("n", "gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+  map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame Symbol")
 
   map("n", "<leader>fm", function()
     require("conform").format { lsp_fallback = true }
   end, "[F]or[m]at File")
-end
-
-M.telescope = function()
-  local builtin = require "telescope.builtin"
-  map("n", "<leader>fh", builtin.help_tags, "[F]ind [H]elp")
-  map("n", "<leader>fk", builtin.keymaps, "[F]ind [K]eymaps")
-  map("n", "<leader>ff", builtin.find_files, "[F]ind [F]iles")
-  map("n", "<leader>ft", builtin.builtin, "[F]ind [S]elect Telescope")
-  map("n", "<leader>fw", builtin.live_grep, "[F]ind [W]ords")
-  map("n", "<leader>fd", builtin.diagnostics, "[F]ind [D]iagnostics")
-  map("n", "<leader>fr", builtin.resume, "[F]ind [R]esume")
-  map("n", "<leader>f.", builtin.oldfiles, '[F]ind Recent Files ("." for repeat)')
 end
 
 return M

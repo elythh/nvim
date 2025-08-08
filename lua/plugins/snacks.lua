@@ -25,6 +25,7 @@ return {
           height = math.floor(vim.o.lines * 0.8),
         },
       },
+
       dashboard = {
         enabled = true,
         preset = {

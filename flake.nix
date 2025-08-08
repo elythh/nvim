@@ -85,13 +85,11 @@
               nvim-ts-autotag
               nvim-ts-context-commentstring
               vim-sleuth
+              refactoring-nvim
               which-key-nvim
               bufferline-nvim
               lualine-nvim
               gitsigns-nvim
-              telescope-nvim
-              telescope-ui-select-nvim
-              telescope-fzf-native-nvim
               noice-nvim
               nui-nvim
               nvim-notify

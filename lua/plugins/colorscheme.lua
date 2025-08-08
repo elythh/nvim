@@ -52,9 +52,6 @@ return {
   --           enabled = true,
   --           indent_scope_color = "blue",
   --         },
-  --         telescope = {
-  --           enabled = true,
-  --         },
   --       },
   --     }
   --
