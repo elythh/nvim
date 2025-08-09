@@ -1,5 +1,5 @@
 {
-  description = "IcyVim";
+  description = "IceNvim";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -93,6 +93,8 @@
               noice-nvim
               nui-nvim
               nvim-notify
+              render-markdown-nvim
+              markdown-preview-nvim
               {
                 name = "catppuccin";
                 plugin = catppuccin-nvim;
