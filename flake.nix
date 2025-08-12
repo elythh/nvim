@@ -54,7 +54,8 @@
               tailwindcss-language-server
               stylua
               ripgrep
-              rust-analyzer
+              # broken nixpkg
+              # rust-analyzer
               vscode-langservers-extracted
               cmake-language-server
               emmet-language-server
