@@ -1,10 +1,11 @@
+vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "#1e2030" })
+
 return {
   {
     "saghen/blink.cmp",
     event = "InsertEnter",
     dependencies = { "rafamadriz/friendly-snippets" },
     opts = {
-
       keymap = {
         preset = "none",
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
@@ -64,12 +65,12 @@ return {
         menu = {
           scrolloff = 0,
           scrollbar = false,
-          border = "rounded",
+          border = { " ", " ", " ", " ", " ", " ", " ", " " },
           draw = {
             columns = {
-              { "label", gap = 10 },
-              { "kind_icon", gap = 1 },
-              { "kind", gap = 1 },
+              { "kind_icon" },
+              { "label" },
+              { "kind" },
             },
 
             gap = 1,
@@ -78,10 +79,9 @@ return {
         },
         documentation = {
           auto_show = true,
+          border = { " ", " ", " ", " ", " ", " ", " ", " " },
           auto_show_delay_ms = 200,
-          window = {
-            border = "solid",
-          },
+          window = {},
         },
       },
       snippets = { preset = "luasnip" },
