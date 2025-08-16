@@ -79,9 +79,10 @@ return {
         },
         documentation = {
           auto_show = true,
-          border = { " ", " ", " ", " ", " ", " ", " ", " " },
           auto_show_delay_ms = 200,
-          window = {},
+          window = {
+            border = { " ", " ", " ", " ", " ", " ", " ", " " },
+          },
         },
       },
       snippets = { preset = "luasnip" },
