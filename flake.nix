@@ -60,6 +60,10 @@
               prettierd
               terraform
               shfmt
+
+              kustomize
+              kubeconform
+              kubent
             ];
           };
 
