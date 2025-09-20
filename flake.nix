@@ -23,7 +23,7 @@
       luaPath = "${./.}";
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
       extra_pkg_config = {
-        # allowUnfree = true;
+        allowUnfree = true;
       };
       dependencyOverlays = # (import ./overlays inputs) ++
         [
@@ -44,15 +44,22 @@
           lspsAndRuntimeDeps = {
             general = with pkgs; [
               nixd
-              nix-doc
               stdenv.cc.cc
               lua-language-server
-              stylua
               ripgrep
               vscode-langservers-extracted
               cmake-language-server
               gopls
               yaml-language-server
+
+              nix-doc
+
+              stylua
+              yamlfmt
+              yamllint
+              prettierd
+              terraform
+              shfmt
             ];
           };
 
@@ -76,10 +83,6 @@
               lazydev-nvim
               conform-nvim
               friendly-snippets
-              {
-                name = "LuaSnip";
-                plugin = luasnip;
-              }
               nvim-autopairs
               bufferline-nvim
               lualine-nvim
