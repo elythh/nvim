@@ -32,7 +32,15 @@ opts.initial = function()
   opt.timeoutlen = 400
   opt.undofile = true
   opt.cursorline = true
-  opt.scrolloff = 4
+  opt.scrolloff = 10
+
+  vim.o.foldenable = true
+  vim.o.foldlevel = 99
+  vim.o.foldmethod = "expr"
+  vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  vim.o.foldtext = ""
+  opt.foldcolumn = "0"
+  opt.fillchars:append { fold = " " }
 
   g.loaded_netrw = 1
   g.loaded_netrwPlugin = 1
