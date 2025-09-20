@@ -34,7 +34,6 @@ return {
         persist_buffer_sort = true,
         separator_style = "none",
         always_show_bufferline = true,
-        -- enforce_regular_tabs = true,
       },
     },
     keys = {
@@ -126,42 +125,47 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    init = function()
-      require("notify").setup {
-        background_colour = "#000000",
-      }
-    end,
     opts = {
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        lsp_doc_border = true, -- add a border to hover docs and signature help
+      },
+      notify = {
+        enabled = true,
+        view = "notify",
+      },
+      messages = {
+        enabled = true,
+        view = "mini",
+      },
       lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
+        message = {
+          enabled = false,
         },
+        progress = {
+          enabled = true,
+          view = "mini",
+        },
+      },
+      popupmenu = {
+        enabled = true,
+        backend = "nui",
       },
       routes = {
         {
           filter = {
             event = "msg_show",
-            any = {
-              { find = "%d+L, %d+B" },
-              { find = "; after #%d+" },
-              { find = "; before #%d+" },
-            },
+            kind = "",
+            find = "written",
           },
-          view = "mini",
+          opts = { skip = true },
         },
       },
-      presets = {
-        bottom_search = false,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = true,
-      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
     },
   },
 }
