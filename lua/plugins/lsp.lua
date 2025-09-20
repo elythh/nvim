@@ -1,18 +1,5 @@
 return {
   {
-    "L3MON4D3/LuaSnip",
-    event = "BufReadPre",
-    config = require("luasnip.loaders.from_vscode").lazy_load(),
-  },
-
-  {
-    "williamboman/mason.nvim",
-    build = ":MasonUpdate",
-    cmd = { "Mason", "MasonInstall" },
-    opts = {},
-  },
-
-  {
     "neovim/nvim-lspconfig",
     event = "VimEnter",
     dependencies = {
@@ -37,10 +24,10 @@ return {
       local servers = {
         pyright = {},
         cmake = {},
-        cssls = {},
         gopls = {},
         html = {},
         jsonls = {},
+        yamlls = {},
       }
 
       if require("nixCatsUtils").isNixCats then

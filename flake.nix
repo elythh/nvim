@@ -52,6 +52,7 @@
               vscode-langservers-extracted
               cmake-language-server
               gopls
+              yaml-language-server
             ];
           };
 
@@ -70,7 +71,6 @@
               mini-files
               mini-clue
               nvim-tree-lua
-              mason-nvim
               blink-cmp
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
               lazydev-nvim
@@ -81,11 +81,6 @@
                 plugin = luasnip;
               }
               nvim-autopairs
-              nvim-ts-autotag
-              nvim-ts-context-commentstring
-              vim-sleuth
-              refactoring-nvim
-              which-key-nvim
               bufferline-nvim
               lualine-nvim
               gitsigns-nvim
@@ -94,10 +89,6 @@
               nvim-notify
               render-markdown-nvim
               markdown-preview-nvim
-              {
-                name = "catppuccin";
-                plugin = catppuccin-nvim;
-              }
               tokyonight-nvim
             ];
           };

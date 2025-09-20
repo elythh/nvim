@@ -34,29 +34,6 @@ return {
   },
 
   {
-    "tpope/vim-sleuth",
-    event = "BufReadPre",
-  },
-
-  {
-    "windwp/nvim-autopairs",
-    event = "BufReadPre",
-    opts = {},
-  },
-
-  {
-    "windwp/nvim-ts-autotag",
-    event = "BufReadPre",
-    opts = {
-      opts = {
-        enable_close = true,
-        enable_rename = true,
-        enable_close_on_slash = true,
-      },
-    },
-  },
-
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {},
   },
