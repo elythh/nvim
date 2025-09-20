@@ -1,5 +1,5 @@
 {
-  description = "IceNvim";
+  description = "ElythVim";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -46,19 +46,11 @@
               nixd
               nix-doc
               stdenv.cc.cc
-              typescript-language-server
-              vtsls
               lua-language-server
-              svelte-language-server
-              astro-language-server
-              tailwindcss-language-server
               stylua
               ripgrep
-              # broken nixpkg
-              # rust-analyzer
               vscode-langservers-extracted
               cmake-language-server
-              emmet-language-server
               gopls
             ];
           };
@@ -71,6 +63,12 @@
               nvim-lspconfig
               plenary-nvim
               mini-icons
+              mini-base16
+              mini-hipatterns
+              mini-ai
+              mini-starter
+              mini-files
+              mini-clue
               nvim-tree-lua
               mason-nvim
               blink-cmp
@@ -112,7 +110,6 @@
           sharedLibraries = {
             general = with pkgs; [
               lazygit
-
             ];
           };
 

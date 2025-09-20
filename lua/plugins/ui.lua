@@ -1,74 +1,55 @@
 return {
   {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = {
-      disable_netrw = true,
-      hijack_netrw = false,
-      hijack_cursor = true,
-      view = {
-        centralize_selection = true,
-        adaptive_size = false,
-        side = "left",
-        preserve_window_proportions = true,
-        float = {
-          enable = true,
-          open_win_config = function()
-            return {
-              row = 0,
-              width = 42,
-              border = "rounded",
-              relative = "editor",
-              col = vim.o.columns,
-              height = vim.o.lines,
-            }
-          end,
-        },
-      },
-      actions = {
-        open_file = {
-          resize_window = false,
-        },
-      },
-    },
-  },
-
-  {
     "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
-    keys = function()
-      require("mappings").bufferline()
-    end,
     opts = {
       options = {
-        close_command = function(n)
-          Snacks.bufdelete(n)
-        end,
-        right_mouse_command = function(n)
-          Snacks.bufdelete(n)
-        end,
-        diagnostics = "nvim_lsp",
-        always_show_bufferline = false,
-        show_tab_indicators = false,
-        separator_style = { " ", " " },
         indicator = {
-          style = "icon",
-          icon = " ",
+          style = "none",
         },
-        buffer_close_icon = "",
-        modified_icon = "•",
-        left_trunc_marker = "<-",
-        right_trunc_marker = "->",
-        color_icons = true,
-        offsets = {
-          {
-            filetype = "NvimTree",
-            text = " Files",
-            highlight = "Directory",
-            text_align = "left",
-          },
-        },
+        style = "none",
+        mode = "buffers",
+        numbers = "none",
+        close_command = "bdelete! %d",
+        right_mouse_command = "bdelete! %d",
+        left_mouse_command = "buffer %d",
+        middle_mouse_command = "bdelete! %d",
+        buffer_close_icon = "x",
+        modified_icon = "",
+        close_icon = "X",
+        left_trunc_marker = "",
+        right_trunc_marker = "",
+        max_name_length = 14,
+        max_prefix_length = 15,
+        truncate_names = false,
+        tab_size = 15,
+        diagnostics = false,
+        show_buffer_icons = false,
+        show_buffer_close_icons = true,
+        show_close_icon = true,
+        show_tab_indicators = false,
+        show_duplicate_prefix = true,
+        persist_buffer_sort = true,
+        separator_style = "none",
+        always_show_bufferline = true,
+        -- enforce_regular_tabs = true,
       },
+    },
+    keys = {
+      { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Cycle to next buffer" },
+      { "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Cycle to previous buffer" },
+      { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Cycle to next buffer" },
+      { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Cycle to previous buffer" },
+      { "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete buffer" },
+      { "<leader>bb", "<cmd>e #<cr>", desc = "Switch to Other Buffer" },
+      { "<leader>`", "<cmd>e #<cr>", desc = "Switch to Other Buffer" },
+      { "<leader>br", "<cmd>BufferLineCloseRight<cr>", desc = "Delete buffers to the right" },
+      { "<leader>bl", "<cmd>BufferLineCloseLeft<cr>", desc = "Delete buffers to the left" },
+      { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Delete other buffers" },
+      { "<leader>bp", "<cmd>BufferLineTogglePin<cr>", desc = "Toggle pin" },
+      { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
     },
   },
 
@@ -166,24 +147,6 @@ return {
       },
     },
   },
-
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      preset = "modern",
-      icons = {
-        mappings = false,
-      },
-      spec = {
-        { "<leader>f", group = "[F]ind" },
-        { "<leader>c", group = "[C]ode" },
-        { "<leader>l", group = "[L]azy" },
-        { "<leader>r", group = "[R]e..." },
-      },
-    },
-  },
-
   {
     "folke/noice.nvim",
     event = "VeryLazy",

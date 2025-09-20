@@ -35,13 +35,10 @@ return {
       }
 
       local servers = {
-        astro = {},
-        svelte = {},
         pyright = {},
         cmake = {},
         cssls = {},
         gopls = {},
-        tailwindcss = {},
         html = {},
         jsonls = {},
       }
@@ -87,58 +84,6 @@ return {
             },
             telemetry = { enabled = false },
           },
-        },
-      }
-
-      servers.vtsls = {
-        filetypes = {
-          "javascript",
-          "javascriptreact",
-          "javascript.jsx",
-          "typescript",
-          "typescriptreact",
-          "typescript.tsx",
-        },
-        settings = {
-          complete_function_calls = true,
-          vtsls = {
-            enableMoveToFileCodeAction = true,
-            autoUseWorkspaceTsdk = true,
-            experimental = {
-              maxInlayHintLength = 30,
-              completion = {
-                enableServerSideFuzzyMatch = true,
-              },
-            },
-          },
-          typescript = {
-            updateImportsOnFileMove = { enabled = "always" },
-            suggest = {
-              completeFunctionCalls = true,
-            },
-            inlayHints = {
-              enumMemberValues = { enabled = true },
-              functionLikeReturnTypes = { enabled = true },
-              parameterNames = { enabled = "literals" },
-              parameterTypes = { enabled = true },
-              propertyDeclarationTypes = { enabled = true },
-              variableTypes = { enabled = false },
-            },
-          },
-        },
-      }
-
-      servers.emmet_language_server = {
-        filetypes = {
-          "css",
-          "html",
-          "javascript",
-          "javascriptreact",
-          "less",
-          "sass",
-          "scss",
-          "typescriptreact",
-          "svelte",
         },
       }
 
@@ -220,24 +165,5 @@ return {
         rust = { "rustfmt" },
       },
     },
-  },
-
-  {
-    "ThePrimeagen/refactoring.nvim",
-    keys = {
-      {
-        "<leader>rf",
-        function()
-          require("refactoring").select_refactor {
-            show_success_message = true,
-          }
-        end,
-        mode = "v",
-        noremap = true,
-        silent = true,
-        expr = false,
-      },
-    },
-    opts = {},
   },
 }

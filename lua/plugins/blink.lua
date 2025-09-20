@@ -1,101 +1,100 @@
-vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "#1e2030" })
-
 return {
   {
     "saghen/blink.cmp",
-    event = "InsertEnter",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+
+      "rafamadriz/friendly-snippets",
+      "mikavilpas/blink-ripgrep.nvim",
+      "moyiz/blink-emoji.nvim",
+      "fang2hou/blink-copilot",
+      "ribru17/blink-cmp-spell",
+      "Kaiser-Yang/blink-cmp-dictionary",
+      "Kaiser-Yang/blink-cmp-git",
+    },
+    version = "1.*",
+    event = { "InsertEnter", "CmdlineEnter" },
+    lazy = true,
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       keymap = {
         preset = "none",
-        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-        ["<C-e>"] = { "hide", "fallback" },
-        ["<CR>"] = { "accept", "fallback" },
-
-        ["<Tab>"] = { "snippet_forward", "fallback" },
-        ["<S-Tab>"] = { "snippet_backward", "fallback" },
-
-        ["<Up>"] = { "select_prev", "fallback" },
-        ["<Down>"] = { "select_next", "fallback" },
-        ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-        ["<C-n>"] = { "select_next", "fallback_to_mappings" },
-
-        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<CS-j>"] = { "scroll_documentation_down", "fallback" },
+        ["<CS-k>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-space>"] = {
+          "show",
+          "show_documentation",
+          "hide_documentation",
+        },
+        ["<C-e>"] = { "hide" },
+        ["<C-y>"] = { "select_and_accept" },
       },
+
       appearance = {
-        kind_icons = {
-          Text = "",
-          Method = "",
-          Function = "󰡱",
-          Constructor = "",
-          Field = "",
-          Variable = "",
-          Property = "",
-          Class = "",
-          Interface = "",
-          Struct = "",
-          Module = "",
-          Unit = "",
-          Value = "",
-          Enum = "",
-          EnumMember = "",
-          Keyword = "",
-          Constant = "󰏿",
-          Snippet = "",
-          Color = "",
-          File = "",
-          Reference = "",
-          Folder = "",
-          Event = "⚡",
-          Operator = "󰪚",
-          TypeParameter = "󰬛",
-          Error = "",
-          Warning = "",
-          Information = "",
-          Hint = "",
+        nerd_font_variant = "normal",
+      },
+
+      sources = {
+        default = { "lsp", "buffer", "path", "dictionary", "emoji", "git", "spell", "ripgrep" },
+        providers = {
+          ripgrep = {
+            name = "Ripgrep",
+            module = "blink-ripgrep",
+            score_offset = 1,
+          },
+          dictionary = {
+            name = "Dict",
+            module = "blink-cmp-dictionary",
+            min_keyword_length = 3,
+          },
+          emoji = {
+            name = "Emoji",
+            module = "blink-emoji",
+            score_offset = 1,
+          },
+          lsp = { score_offset = 4 },
+          spell = {
+            name = "Spell",
+            module = "blink-cmp-spell",
+            score_offset = 1,
+          },
+          git = {
+            name = "Git",
+            module = "blink-cmp-git",
+            enabled = true,
+            score_offset = 100,
+            should_show_items = function()
+              return vim.o.filetype == "gitcommit" or vim.o.filetype == "markdown"
+            end,
+            opts = {
+              git_centers = {
+                github = {
+                  issue = {
+                    on_error = function(_, _)
+                      return true
+                    end,
+                  },
+                },
+              },
+            },
+          },
         },
       },
       completion = {
-        accept = {
-          auto_brackets = {
-            enabled = true,
-          },
-        },
-        menu = {
-          scrolloff = 0,
-          scrollbar = false,
-          border = { " ", " ", " ", " ", " ", " ", " ", " " },
-          draw = {
-            columns = {
-              { "kind_icon" },
-              { "label" },
-              { "kind" },
-            },
-
-            gap = 1,
-            treesitter = { "lsp" },
-          },
-        },
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 200,
           window = {
-            border = { " ", " ", " ", " ", " ", " ", " ", " " },
+            scrollbar = false,
+            border = "single",
           },
         },
+        ghost_text = { enabled = true },
       },
-      snippets = { preset = "luasnip" },
-      signature = { enabled = true, window = { border = "rounded" } },
-      cmdline = { enabled = false },
-      sources = {
-        default = {
-          "snippets",
-          "lsp",
-          "path",
-          "buffer",
-        },
-      },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
+    opts_extend = { "sources.default" },
   },
 }

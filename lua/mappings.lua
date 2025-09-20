@@ -35,21 +35,15 @@ M.misc = function()
   map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", "NvimTree Toggle")
   map("n", "<leader>re", "<cmd>NvimTreeResize 36<CR>", "NvimTree Resize")
 
-  map("n", "<leader>lg", function()
+  map("n", "<leader>gg", function()
     Snacks.lazygit.open()
   end, "[L]azy[G]it")
   map({ "n", "t" }, "<C-t>", function()
     Snacks.terminal.toggle()
   end, "Terminal")
-end
-
-M.bufferline = function()
-  map("n", "<leader>b", "<cmd>enew<CR>", "New buffer")
-  map("n", "<tab>", "<cmd>BufferLineCycleNext<cr>", "Go to next buffer")
-  map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<cr>", "Go to prev buffer")
-  map("n", "q", function()
-    Snacks.bufdelete()
-  end, "Close buffer")
+  map({ "n" }, "-", function()
+    MiniFiles.open(vim.api.nvim_buf_get_name(0))
+  end, "Open Files")
 end
 
 M.lsp = function()
