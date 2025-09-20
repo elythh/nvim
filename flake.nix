@@ -33,11 +33,6 @@
       categoryDefinitions =
         {
           pkgs,
-          # settings,
-          # categories,
-          # extra,
-          # name,
-          # mkNvimPlugin,
           ...
         }:
         {
@@ -108,6 +103,7 @@
           sharedLibraries = {
             general = with pkgs; [
               lazygit
+              kubernetes-helm
             ];
           };
 
