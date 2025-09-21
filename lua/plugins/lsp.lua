@@ -28,6 +28,7 @@ return {
         html = {},
         jsonls = {},
         yamlls = {},
+        nixd = {},
       }
 
       if require("nixCatsUtils").isNixCats then
@@ -109,6 +110,7 @@ return {
     end,
   },
 
+  { "diogo464/kubernetes.nvim" },
   {
     "stevearc/conform.nvim",
     event = "BufReadPre",
