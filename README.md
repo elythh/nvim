@@ -1,8 +1,6 @@
-# IceNvim 
-- Extremly simple but functional neovim configuration
-
-![screenshot](https://files.catbox.moe/3ug4xp.png)
-![screenshot](https://files.catbox.moe/az3i2n.png)
+# ElythVim 
+> [!WARNING]
+> Forked from Lalit64
 
 ### 💤 Lazy plugin management
 This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manage plugins.
@@ -20,7 +18,7 @@ This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manag
 ```nix
 {
   inputs = {
-    neovim.url = "git+ssh://git@github.com/lalit64/nvim.git";
+    neovim.url = "git+ssh://git@github.com/elythh/nvim.git";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
   }
 }
