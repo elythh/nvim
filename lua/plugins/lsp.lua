@@ -44,6 +44,9 @@ return {
               ["home-manager"] = {
                 expr = nixCats.extra "nixdExtras.home_manager_options",
               },
+              ["darwin"] = {
+                expr = nixCats.extra "nixdExtras.darwin_options",
+              }
             },
             formatting = {
               command = { "nixfmt" },
