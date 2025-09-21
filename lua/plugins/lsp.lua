@@ -31,12 +31,31 @@ return {
         nixd = {},
       }
 
-      if require("nixCatsUtils").isNixCats then
-        servers.nixd = {}
-      else
-        servers.rnix = {}
-        servers.nil_ls = {}
-      end
+      servers.nixd = {
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = nixCats.extra "nixdExtras.nixpkgs" or [[import <nixpkgs> {}]],
+            },
+            options = {
+              nixos = {
+                expr = nixCats.extra "nixdExtras.nixos_options",
+              },
+              ["home-manager"] = {
+                expr = nixCats.extra "nixdExtras.home_manager_options",
+              },
+            },
+            formatting = {
+              command = { "nixfmt" },
+            },
+            diagnostic = {
+              suppress = {
+                "sema-escaping-with",
+              },
+            },
+          },
+        },
+      }
 
       servers.yamlls = {
         settings = {
