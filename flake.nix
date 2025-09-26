@@ -82,6 +82,7 @@
               lazydev-nvim
               conform-nvim
               friendly-snippets
+              gitlinker-nvim
               nvim-autopairs
               bufferline-nvim
               lualine-nvim
