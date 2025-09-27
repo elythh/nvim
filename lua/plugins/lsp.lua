@@ -46,7 +46,7 @@ return {
               },
               ["darwin"] = {
                 expr = nixCats.extra "nixdExtras.darwin_options",
-              }
+              },
             },
             formatting = {
               command = { "nixfmt" },
@@ -145,7 +145,7 @@ return {
         markdown = { "prettierd" },
         sh = { "shfmt" },
         terraform = { "terraform_fmt" },
-        yaml = { "yamlfmt", "yamllint" },
+        yaml = {},
         python = { "ruff" },
       },
     },
