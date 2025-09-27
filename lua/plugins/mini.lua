@@ -1,10 +1,6 @@
 return {
   {
-    "echasnovski/mini.base16",
-    version = false,
-  },
-  {
-    "echasnovski/mini.hipatterns",
+    "nvim-mini/mini.hipatterns",
     version = false,
     config = function()
       local mini_hipatterns = require "mini.hipatterns"
@@ -24,7 +20,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.starter",
+    "nvim-mini/mini.starter",
     config = function()
       local mini_starter = require "mini.starter"
 
@@ -44,7 +40,7 @@ return {
     version = false,
   },
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     config = function()
       local mini_files = require "mini.files"
 
@@ -124,7 +120,7 @@ return {
     version = false,
   },
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     config = function()
       local mini_ai = require "mini.ai"
 
@@ -133,7 +129,7 @@ return {
     version = false,
   },
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     events = { "BufEnter" },
     config = function()
       local mini_pairs = require "mini.pairs"
@@ -143,7 +139,7 @@ return {
     version = false,
   },
   {
-    "echasnovski/mini.clue",
+    "nvim-mini/mini.clue",
     events = { "BufEnter" },
     event = "VeryLazy",
     config = function()
@@ -191,5 +187,11 @@ return {
       }
     end,
     version = false,
+  },
+  {
+    "nvim-mini/mini.pick",
+    config = function()
+      require("mini.pick").setup()
+    end,
   },
 }

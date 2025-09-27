@@ -58,4 +58,11 @@ M.lsp = function()
   end, "[F]or[m]at File")
 end
 
+M.pick = function()
+  map("n", "<leader>ff", "<cmd>Pick files<CR>", "Find file")
+  map("n", "<leader>fr", "<cmd>Pick resume<CR>", "Resume find")
+  map("n", "<leader>fw", "<cmd>Pick grep_live<CR>", "Find word")
+  map("n", "<leader>fb", "<cmd>Pick buffers<CR>", "Find buffer")
+end
+
 return M

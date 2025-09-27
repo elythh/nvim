@@ -63,6 +63,7 @@ return {
       require("opts").final()
       require("mappings").general()
       require("mappings").misc()
+      require("mappings").pick()
     end,
   },
   {

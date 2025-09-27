@@ -76,6 +76,7 @@
               mini-starter
               mini-files
               mini-clue
+              mini-pick
               nvim-tree-lua
               blink-cmp
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
@@ -83,7 +84,6 @@
               conform-nvim
               friendly-snippets
               gitlinker-nvim
-              nvim-autopairs
               bufferline-nvim
               lualine-nvim
               gitsigns-nvim
