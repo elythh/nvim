@@ -28,6 +28,6 @@ This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manag
 ```nix
 imports = [
   inputs.neovim.homeModules.default
-  { neovim.enable = true }
+  { nvim.enable = true }
 ];
 ```
