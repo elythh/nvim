@@ -112,6 +112,18 @@ return {
     branch = "stable",
     opts = {
       confirm_simple = true,
+      mappings = {
+        ["q"] = "CloseView",
+        ["l"] = "Select",
+        ["<C-t>"] = "SelectTab",
+        ["|"] = "SelectVSplit",
+        ["-"] = "SelectSplit",
+        ["h"] = "GotoParent",
+        ["="] = "GotoCwd",
+        ["."] = "GotoNode",
+        ["#"] = "CollapseAll",
+        ["<BS>"] = "CollapseNode",
+      },
     },
   },
 }
