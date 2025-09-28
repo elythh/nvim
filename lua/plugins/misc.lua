@@ -106,4 +106,12 @@ return {
       },
     },
   },
+  {
+    "A7Lavinraj/fyler.nvim",
+    dependencies = { "nvim-mini/mini.icons" },
+    branch = "stable",
+    opts = {
+      confirm_simple = true,
+    },
+  },
 }

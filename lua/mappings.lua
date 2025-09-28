@@ -32,9 +32,6 @@ M.general = function()
 end
 
 M.misc = function()
-  map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", "NvimTree Toggle")
-  map("n", "<leader>re", "<cmd>NvimTreeResize 36<CR>", "NvimTree Resize")
-
   map("n", "<leader>gg", function()
     Snacks.lazygit.open()
   end, "[L]azy[G]it")
@@ -44,6 +41,7 @@ M.misc = function()
   map({ "n" }, "-", function()
     MiniFiles.open(vim.api.nvim_buf_get_name(0))
   end, "Open Files")
+  map("n", "-", "<cmd>Fyler<CR>")
 end
 
 M.lsp = function()
