@@ -1,4 +1,5 @@
 {
+
   description = "ElythVim";
 
   inputs = {
@@ -78,6 +79,7 @@
               nvim-tree-lua
               blink-cmp
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
+              lspsaga-nvim
               conform-nvim
               gitlinker-nvim
               bufferline-nvim
