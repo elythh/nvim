@@ -53,7 +53,6 @@
               yamlfmt
               yamllint
               prettierd
-              terraform
               shfmt
 
               kustomize
@@ -70,7 +69,6 @@
               nvim-lspconfig
               plenary-nvim
               mini-icons
-              mini-base16
               mini-hipatterns
               mini-ai
               mini-starter
@@ -80,9 +78,7 @@
               nvim-tree-lua
               blink-cmp
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
-              lazydev-nvim
               conform-nvim
-              friendly-snippets
               gitlinker-nvim
               bufferline-nvim
               lualine-nvim
