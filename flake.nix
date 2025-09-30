@@ -76,6 +76,8 @@
               mini-files
               mini-clue
               mini-pick
+              mini-visits
+              mini-extra
               nvim-tree-lua
               blink-cmp
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))

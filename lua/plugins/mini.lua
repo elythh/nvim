@@ -194,4 +194,16 @@ return {
       require("mini.pick").setup()
     end,
   },
+  {
+    "nvim-mini/mini.visits",
+    config = function()
+      require("mini.visits").setup()
+    end,
+  },
+  {
+    "nvim-mini/mini.extra",
+    config = function()
+      require("mini.extra").setup()
+    end,
+  },
 }
