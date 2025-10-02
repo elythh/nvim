@@ -43,10 +43,9 @@
               stdenv.cc.cc
               lua-language-server
               ripgrep
-              vscode-langservers-extracted
-              cmake-language-server
               gopls
               yaml-language-server
+              terraform-ls
 
               nix-doc
 

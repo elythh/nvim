@@ -3,6 +3,7 @@ if vim.loader then
 end
 
 require("opts").initial()
+require("lsp")
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
