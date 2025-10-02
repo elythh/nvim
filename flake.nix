@@ -58,6 +58,8 @@
               kustomize
               kubeconform
               kubent
+
+              claude-code
             ];
           };
 
