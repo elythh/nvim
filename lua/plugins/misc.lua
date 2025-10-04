@@ -62,6 +62,7 @@ return {
       require("plugins.scrollEOF").setup {}
       require("opts").final()
       require("mappings").general()
+      require("mappings").lsp()
       require("mappings").misc()
       require("mappings").pick()
     end,
