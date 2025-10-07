@@ -189,12 +189,6 @@ return {
     version = false,
   },
   {
-    "nvim-mini/mini.pick",
-    config = function()
-      require("mini.pick").setup()
-    end,
-  },
-  {
     "nvim-mini/mini.visits",
     config = function()
       require("mini.visits").setup()
