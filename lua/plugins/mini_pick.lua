@@ -262,44 +262,6 @@ return {
         choose        = nil,
         choose_marked = nil,
       },
-
-      -- Window related options
-      window = {
-        config = function()
-          local height, width, starts, ends
-          local win_width = vim.o.columns
-          local win_height = vim.o.lines
-
-          if win_height <= 25 then
-            height = math.min(win_height, 18)
-            width = win_width
-            starts = 1
-            ends = win_height
-          else
-            width = math.floor(win_width * 0.5) -- 50%
-            height = math.floor(win_height * 0.3) -- 30%
-            starts = math.floor((win_width - width) / 2)
-            -- center prompt: height * (50% + 30%)
-            -- center window: height * [50% + (30% / 2)]
-            ends = math.floor(win_height * 0.65)
-          end
-
-          return {
-            col = starts,
-            row = ends,
-            height = height,
-            width = width,
-            style = 'minimal',
-            -- border = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-          }
-        end,
-
-        -- String to use as cursor in prompt
-        prompt_caret = '|',
-
-        -- String to use as prefix in prompt
-        prompt_prefix = '',
-      },
     }
   end,
 }
