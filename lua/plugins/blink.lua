@@ -11,7 +11,8 @@ return {
       "Kaiser-Yang/blink-cmp-dictionary",
       "Kaiser-Yang/blink-cmp-git",
     },
-    version = "1.*",
+    -- build = 'cargo build --release',
+    version = "v1.7.0",
     event = { "InsertEnter", "CmdlineEnter" },
     lazy = true,
     ---@module 'blink.cmp'
