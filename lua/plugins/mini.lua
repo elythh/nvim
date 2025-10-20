@@ -183,6 +183,14 @@ return {
           require("mini.clue").gen_clues.registers(),
           require("mini.clue").gen_clues.windows(),
           require("mini.clue").gen_clues.z(),
+          { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
+          { mode = "n", keys = "<Leader>f", desc = "+Find" },
+          { mode = "n", keys = "<Leader>g", desc = "+Git" },
+          { mode = "n", keys = "<Leader>l", desc = "+Language" },
+          { mode = "n", keys = "<Leader>m", desc = "+Map" },
+
+          { mode = "x", keys = "<Leader>g", desc = "+Gt" },
+          { mode = "x", keys = "<Leader>l", desc = "+Language" },
         },
       }
     end,

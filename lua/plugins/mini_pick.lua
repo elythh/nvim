@@ -3,169 +3,173 @@
 -- Fuzzy selection for files and more, see plugin settings for keymaps.
 local map = vim.keymap.set
 
-local set_keymap = function(lhs, rhs, mode)
-  map(mode or 'n', lhs, rhs, { noremap = true })
+local set_keymap = function(lhs, rhs, mode, desc)
+  map(mode or "n", lhs, rhs, { desc = desc })
 end
 
 local short_path = function(path)
-  return vim.startswith(path, cwd) and path:sub(cwd:len() + 1) or vim.fn.fnamemodify(path, ':~')
+  return vim.startswith(path, cwd) and path:sub(cwd:len() + 1) or vim.fn.fnamemodify(path, ":~")
 end
 
-local pickers =  {
+local pickers = {
   registry = function()
-    local picker = require('mini.pick')
-    local selected = picker.start({
-      source = { items = vim.tbl_keys(picker.registry), name = 'Registry' }
-    })
+    local picker = require "mini.pick"
+    local selected = picker.start {
+      source = { items = vim.tbl_keys(picker.registry), name = "Registry" },
+    }
 
-    if selected == nil then return end
+    if selected == nil then
+      return
+    end
 
     return picker.registry[selected]()
   end,
   git_status = function()
-    local selection = require('mini.pick').builtin.cli({
+    local selection = require("mini.pick").builtin.cli({
       command = {
-        'git', 'status', '-s'
-      }
+        "git",
+        "status",
+        "-s",
+      },
     }, {
       source = {
-        name = 'Git Status',
+        name = "Git Status",
         preview = function(bufnr, item)
-          local file = vim.trim(item):match('%s+(.+)')
+          local file = vim.trim(item):match "%s+(.+)"
           -- get diff and show
           local append_data = function(_, data)
             if data then
               vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, data)
-              vim.api.nvim_buf_set_option(bufnr, 'filetype', 'diff')
+              vim.api.nvim_buf_set_option(bufnr, "filetype", "diff")
             end
           end
 
-          vim.fn.jobstart({'git','diff', 'HEAD', file}, {
+          vim.fn.jobstart({ "git", "diff", "HEAD", file }, {
             stdout_buffered = true,
             on_stdout = append_data,
             on_stderr = append_data,
-            vim.api.nvim_buf_set_option(bufnr, 'modifiable', false)
+            vim.api.nvim_buf_set_option(bufnr, "modifiable", false),
           })
-        end
-      }
+        end,
+      },
     })
 
     if selection then
-      vim.cmd.edit(vim.trim(selection):match('%s+(.+)'))
+      vim.cmd.edit(vim.trim(selection):match "%s+(.+)")
     end
   end,
   find = function()
-    local register = vim.fn.getreg('"')
+    local register = vim.fn.getreg '"'
     local cursor = vim.api.nvim_win_get_cursor(0)
     local view = vim.fn.winsaveview()
 
-    vim.cmd([[normal! "xy]])
+    vim.cmd [[normal! "xy]]
 
-    local selection = vim.fn.getreg('"')
+    local selection = vim.fn.getreg '"'
 
     vim.fn.setreg('"', register)
     vim.fn.winrestview(view)
     vim.api.nvim_win_set_cursor(0, cursor)
 
-    require('mini.pick').builtin.grep(
+    require("mini.pick").builtin.grep(
       { pattern = selection },
       { source = { name = string.format('Grep "%s"', selection) } }
     )
   end,
   all_files = function()
-    require('mini.pick').builtin.cli({
+    require("mini.pick").builtin.cli({
       command = {
-        'fd',
-        '--type',
-        'f',
-        '--no-ignore',
-        '--hidden',
-        '--follow',
-        '--exclude',
-        '.git',
-        '--exclude',
-        'node_modules',
-        '--exclude',
-        'build',
-        '--exclude',
-        'tmp',
-      }
+        "fd",
+        "--type",
+        "f",
+        "--no-ignore",
+        "--hidden",
+        "--follow",
+        "--exclude",
+        ".git",
+        "--exclude",
+        "node_modules",
+        "--exclude",
+        "build",
+        "--exclude",
+        "tmp",
+      },
     }, {
       source = {
-        name = 'All Files',
-      }
+        name = "All Files",
+      },
     })
   end,
   quickfix = function()
-    require('mini.pick').start({
+    require("mini.pick").start {
       source = {
         items = vim.fn.getqflist(),
-        name = 'Quickfix List'
-      }
-    })
+        name = "Quickfix List",
+      },
+    }
   end,
   loclist = function()
-    require('mini.pick').start({
+    require("mini.pick").start {
       source = {
         items = vim.fn.getloclist(0),
-        name = 'Location List'
-      }
-    })
+        name = "Location List",
+      },
+    }
   end,
   oldfiles = function()
     local items = {}
     local cwd = vim.fn.getcwd()
     -- Ensure cwd has a trailing slash
-    cwd = cwd:sub(-1) == '/' and cwd or (cwd .. '/')
+    cwd = cwd:sub(-1) == "/" and cwd or (cwd .. "/")
 
     for _, path in ipairs(vim.v.oldfiles) do
       local normal_path = nil
       if vim.startswith(path, cwd) then
         -- Use ./ as cwd prefix
-        normal_path = '.'.. path:sub(cwd:len())
+        normal_path = "." .. path:sub(cwd:len())
       else
         -- Use ~ as home directory prefix
-        normal_path = vim.fn.fnamemodify(path, ':~')
+        normal_path = vim.fn.fnamemodify(path, ":~")
       end
 
       table.insert(items, normal_path)
     end
 
-    local selection = require('mini.pick').start({
+    local selection = require("mini.pick").start {
       source = {
         items = items,
-        name = 'Recent Files'
-      }
-    })
+        name = "Recent Files",
+      },
+    }
 
     if selection then
-      vim.cmd.edit(vim.trim(selection):match('%s+(.+)'))
+      vim.cmd.edit(vim.trim(selection):match "%s+(.+)")
     end
   end,
 }
 
 return {
-  'echasnovski/mini.pick',
+  "echasnovski/mini.pick",
   version = false,
   opts = function()
-    local picker = require('mini.pick')
+    local picker = require "mini.pick"
 
     -- Add custom pickers to registry
-    pickers = vim.tbl_extend('force', pickers, picker.builtin)
+    pickers = vim.tbl_extend("force", pickers, picker.builtin)
     picker.registry = pickers
 
     -- Bind keys enabling quick access to pickers
-    set_keymap(',o', pickers.oldfiles)
-    set_keymap('<leader>fr', pickers.resume)
-    set_keymap('<leader>ff', pickers.files)
-    set_keymap('<leader><leader>', pickers.files)
-    set_keymap('<leader>fb', pickers.buffers)
-    set_keymap('<leader>fw', pickers.grep_live)
-    set_keymap('<leader>fW', pickers.find, 'v')
-    set_keymap('<leader>gs', pickers.git_status)
-    set_keymap('<leader>p', pickers.registry)
-    set_keymap('<leader>q', pickers.quickfix)
-    set_keymap('<leader>l', pickers.loclist)
+    set_keymap("<leader>fo", pickers.oldfiles, "n", "Pick Oldfiles")
+    set_keymap("<leader>fr", pickers.resume, "n", "Pick Resume")
+    set_keymap("<leader>ff", pickers.files, "n", "Pick Files")
+    set_keymap("<leader><leader>", pickers.files, "n", "Pick Files")
+    set_keymap("<leader>fb", pickers.buffers, "n", "Pick Buffers")
+    set_keymap("<leader>fw", pickers.grep_live, "n", "Find grep")
+    set_keymap("<leader>fW", pickers.find, "v", "Find visual")
+    set_keymap("<leader>gs", pickers.git_status, "n", "Git Status")
+    set_keymap("<leader>p", pickers.registry, "n", "Pick Registry")
+    set_keymap("<leader>q", pickers.quickfix, "n", "Pick Quickfix")
+    set_keymap("<leader>l", pickers.loclist, "n", "Pick Loclist")
 
     return {
       delay = {
@@ -174,55 +178,55 @@ return {
       },
 
       mappings = {
-        caret_left        = '<Left>',
-        caret_right       = '<Right>',
+        caret_left = "<Left>",
+        caret_right = "<Right>",
 
-        choose            = '<CR>',
-        choose_in_split   = '<C-s>',
-        choose_in_tabpage = '<C-t>',
-        choose_in_vsplit  = '<C-v>',
-        choose_marked     = '<C-CR>',
+        choose = "<CR>",
+        choose_in_split = "<C-s>",
+        choose_in_tabpage = "<C-t>",
+        choose_in_vsplit = "<C-v>",
+        choose_marked = "<C-CR>",
 
-        delete_char       = '<BS>',
-        delete_char_right = '<S-BS>',
-        delete_left       = '<A-BS>',
-        delete_word       = '<C-w>',
+        delete_char = "<BS>",
+        delete_char_right = "<S-BS>",
+        delete_left = "<A-BS>",
+        delete_word = "<C-w>",
 
-        mark              = '<C-x>',
-        mark_all          = '<C-a>',
+        mark = "<C-x>",
+        mark_all = "<C-a>",
 
-        move_start        = '<C-g>',
-        move_down         = '<C-n>',
-        move_up           = '<C-p>',
+        move_start = "<C-g>",
+        move_down = "<C-n>",
+        move_up = "<C-p>",
 
-        paste             = '<A-p>',
+        paste = "<A-p>",
 
-        refine            = '<C-Space>',
-        refine_marked     = '<M-Space>',
+        refine = "<C-Space>",
+        refine_marked = "<M-Space>",
 
-        scroll_up         = '<C-u>',
-        scroll_down       = '<C-d>',
-        scroll_left       = '<C-h>',
-        scroll_right      = '<C-l>',
+        scroll_up = "<C-u>",
+        scroll_down = "<C-d>",
+        scroll_left = "<C-h>",
+        scroll_right = "<C-l>",
 
-        stop              = '<Esc>',
+        stop = "<Esc>",
 
-        toggle_info       = '<S-Tab>',
-        toggle_preview    = '<Tab>',
+        toggle_info = "<S-Tab>",
+        toggle_preview = "<Tab>",
 
-        send_to_qflist    = {
-          char = '<C-q>',
+        send_to_qflist = {
+          char = "<C-q>",
           func = function()
             local list = {}
             local matches = picker.get_picker_matches().all
 
             for _, match in ipairs(matches) do
-              if type(match) == 'table' then
+              if type(match) == "table" then
                 table.insert(list, match)
               else
-               local path, lnum, col, search = string.match(match, '(.-)%z(%d+)%z(%d+)%z%s*(.+)')
-                local text = path and string.format('%s [%s:%s]  %s', path, lnum, col, search)
-                local filename =  path or vim.trim(match):match('%s+(.+)')
+                local path, lnum, col, search = string.match(match, "(.-)%z(%d+)%z(%d+)%z%s*(.+)")
+                local text = path and string.format("%s [%s:%s]  %s", path, lnum, col, search)
+                local filename = path or vim.trim(match):match "%s+(.+)"
 
                 table.insert(list, {
                   filename = filename or match,
@@ -233,7 +237,7 @@ return {
               end
             end
 
-            vim.fn.setqflist(list, 'r')
+            vim.fn.setqflist(list, "r")
           end,
         },
       },
@@ -245,21 +249,21 @@ return {
 
       source = {
         items = nil,
-        name  = nil,
-        cwd   = nil,
+        name = nil,
+        cwd = nil,
 
-        match   = nil,
+        match = nil,
         preview = nil,
-        show    = function(buf_id, items, query, opts)
+        show = function(buf_id, items, query, opts)
           picker.default_show(
             buf_id,
             items,
             query,
-            vim.tbl_deep_extend('force', { show_icons = false, icons = {} }, opts or {})
+            vim.tbl_deep_extend("force", { show_icons = false, icons = {} }, opts or {})
           )
         end,
 
-        choose        = nil,
+        choose = nil,
         choose_marked = nil,
       },
     }
