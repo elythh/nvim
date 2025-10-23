@@ -254,14 +254,7 @@ return {
 
         match = nil,
         preview = nil,
-        show = function(buf_id, items, query, opts)
-          picker.default_show(
-            buf_id,
-            items,
-            query,
-            vim.tbl_deep_extend("force", { show_icons = false, icons = {} }, opts or {})
-          )
-        end,
+        show = nil,
 
         choose = nil,
         choose_marked = nil,

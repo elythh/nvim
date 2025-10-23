@@ -20,6 +20,9 @@ return {
     end,
   },
   {
+    "nvim-mini/mini.icons",
+  },
+  {
     "nvim-mini/mini.starter",
     config = function()
       local mini_starter = require "mini.starter"
