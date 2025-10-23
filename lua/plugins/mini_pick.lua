@@ -196,8 +196,8 @@ return {
         mark_all = "<C-a>",
 
         move_start = "<C-g>",
-        move_down = "<C-n>",
-        move_up = "<C-p>",
+        move_down = "<C-j>",
+        move_up = "<C-k>",
 
         paste = "<A-p>",
 
