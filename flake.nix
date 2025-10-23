@@ -66,34 +66,7 @@
           startupPlugins = {
             # gitPlugins = with pkgs.neovimPlugins; [ ];
             general = with pkgs.vimPlugins; [
-              lazy-nvim
-              snacks-nvim
-              nvim-lspconfig
-              plenary-nvim
-              mini-icons
-              mini-hipatterns
-              mini-ai
-              mini-starter
-              mini-files
-              mini-clue
-              mini-pick
-              mini-visits
-              mini-extra
-              nvim-tree-lua
-              blink-cmp
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
-              lspsaga-nvim
-              conform-nvim
-              gitlinker-nvim
-              bufferline-nvim
-              lualine-nvim
-              gitsigns-nvim
-              noice-nvim
-              nui-nvim
-              nvim-notify
-              render-markdown-nvim
-              markdown-preview-nvim
-              tokyonight-nvim
             ];
           };
 
