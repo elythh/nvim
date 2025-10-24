@@ -29,6 +29,9 @@ M.general = function()
 
   map("n", "<leader>/", "gcc", "Toggle Comment", true)
   map("v", "<leader>/", "gc", "Toggle Comment", true)
+
+  map("n", "[p", '<Cmd>exe "put! " . v:register<CR>', "Paste Above")
+  map("n", "]p", '<Cmd>exe "put "  . v:register<CR>', "Paste Below")
 end
 
 M.misc = function()
