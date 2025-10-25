@@ -110,18 +110,6 @@ return {
       }
     end,
   },
-
-  {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      current_line_blame = true,
-      current_line_blame_opts = {
-        virt_text = true,
-        delay = 0,
-      },
-    },
-  },
   {
     "folke/noice.nvim",
     event = "VeryLazy",

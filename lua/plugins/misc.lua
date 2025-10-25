@@ -79,6 +79,24 @@ return {
     end,
   },
   {
+    "f-person/git-blame.nvim",
+    event = "VeryLazy",
+    opts = function()
+      local hl_cursor_line = vim.api.nvim_get_hl(0, { name = "CursorLine" })
+      local hl_comment = vim.api.nvim_get_hl(0, { name = "Comment" })
+      local hl_combined = vim.tbl_extend("force", hl_comment, { bg = hl_cursor_line.bg })
+      vim.api.nvim_set_hl(0, "CursorLineBlame", hl_combined)
+      return {
+        message_template = " <author> • <date> • <summary>",
+        date_format = "%r",
+        virtual_text_column = 1,
+        enabled = true,
+        highlight_group = "CursorLineBlame",
+        -- etc.
+      }
+    end,
+  },
+  {
     "dmtrKovalenko/fff.nvim",
     build = function()
       -- this will download prebuild binary or try to use existing rustup toolchain to build from source
