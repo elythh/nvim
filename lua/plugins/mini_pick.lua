@@ -159,17 +159,16 @@ return {
     picker.registry = pickers
 
     -- Bind keys enabling quick access to pickers
-    set_keymap("<leader>fo", pickers.oldfiles, "n", "Pick Oldfiles")
-    set_keymap("<leader>fr", pickers.resume, "n", "Pick Resume")
-    set_keymap("<leader>ff", pickers.files, "n", "Pick Files")
-    set_keymap("<leader><leader>", pickers.files, "n", "Pick Files")
-    set_keymap("<leader>fb", pickers.buffers, "n", "Pick Buffers")
-    set_keymap("<leader>fw", pickers.grep_live, "n", "Find grep")
-    set_keymap("<leader>fW", pickers.find, "v", "Find visual")
-    set_keymap("<leader>gs", pickers.git_status, "n", "Git Status")
-    set_keymap("<leader>p", pickers.registry, "n", "Pick Registry")
-    set_keymap("<leader>q", pickers.quickfix, "n", "Pick Quickfix")
-    set_keymap("<leader>l", pickers.loclist, "n", "Pick Loclist")
+    map("n", "<leader>fo", pickers.oldfiles, { desc = "Pick Oldfiles" })
+    map("n", "<leader>fr", pickers.resume, { desc = "Pick Resume" })
+    map("n", "<leader><leader>", pickers.files, { desc = "Pick Files" })
+    map("n", "<leader>fb", pickers.buffers, { desc = "Pick Buffers" })
+    map("n", "<leader>fw", pickers.grep_live, { desc = "Find grep" })
+    map("v", "<leader>fW", pickers.find, { desc = "Find visual" })
+    map("n", "<leader>gs", pickers.git_status, { desc = "Git Status" })
+    map("n", "<leader>p", pickers.registry, { desc = "Pick Registry" })
+    map("n", "<leader>q", pickers.quickfix, { desc = "Pick Quickfix" })
+    map("n", "<leader>l", pickers.loclist, { desc = "Pick Loclist" })
 
     return {
       delay = {

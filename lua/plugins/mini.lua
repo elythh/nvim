@@ -21,6 +21,20 @@ return {
   },
   { "nvim-mini/mini.icons" },
   {
+    "nvim-mini/mini.sessions",
+    config = function()
+      local mini_sessions = require "mini.sessions"
+      mini_sessions.setup()
+    end,
+  },
+  {
+    "nvim-mini/mini.diff",
+    config = function()
+      local mini_diff = require "mini.diff"
+      mini_diff.setup()
+    end,
+  },
+  {
     "nvim-mini/mini.starter",
     config = function()
       local mini_starter = require "mini.starter"
@@ -112,6 +126,7 @@ return {
           { mode = "n", keys = "<Leader>a", desc = "+Sidekick" },
           { mode = "n", keys = "<Leader>c", desc = "+CodeAction" },
           { mode = "n", keys = "<Leader>l", desc = "+Language" },
+          { mode = "n", keys = "<Leader>s", desc = "+Sessions" },
         },
       }
     end,

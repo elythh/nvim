@@ -37,26 +37,38 @@ end
 M.misc = function()
   map("n", "<leader>gg", function()
     Snacks.lazygit.open()
-  end, "[L]azy[G]it")
+  end, "LazyGit")
   map({ "n", "t" }, "<C-t>", function()
     Snacks.terminal.toggle()
   end, "Terminal")
-  map({ "n" }, "-", function()
+  map("n", "-", function()
     MiniFiles.open(vim.api.nvim_buf_get_name(0))
   end, "Open Files")
-  map("n", "-", "<cmd>Fyler<CR>")
+  map("n", "-", "<cmd>Fyler<CR>", "Fyler")
 end
 
 M.lsp = function()
-  map("n", "<leader>ct", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", "[C]ode [T]rouble diagnostics")
-  map("n", "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-  map("n", "gd", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
-  map("n", "gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-  map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame Symbol")
+  map("n", "<leader>ct", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Code Trouble diagnostics")
+  map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+  map("n", "gd", vim.lsp.buf.declaration, "Goto declaration")
+  map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
+  map("n", "<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
 
   map("n", "<leader>fm", function()
     require("conform").format { lsp_fallback = true }
-  end, "[F]or[m]at File")
+  end, "Format File")
+end
+
+local session_new = 'MiniSessions.write(vim.fn.input("Session name: "))'
+M.mini = function()
+  -- Diff
+  map("n", "<leader>go", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle Diff overlay")
+
+  -- Session
+  map("n", "<leader>sd", '<Cmd>lua MiniSessions.select("delete")<CR>', "Delete Session")
+  map("n", "<leader>sn", "<Cmd>lua " .. session_new .. "<CR>", "New Session")
+  map("n", "<leader>sr", '<Cmd>lua MiniSessions.select("read")<CR>', "Read Session")
+  map("n", "<leader>sw", "<Cmd>lua MiniSessions.write()<CR>", "Write current Session")
 end
 
 return M
