@@ -35,26 +35,6 @@ return {
     end,
   },
   {
-    "nvim-mini/mini.starter",
-    config = function()
-      local mini_starter = require "mini.starter"
-
-      mini_starter.setup {
-        evaluate_single = true,
-        header = "hello",
-        footer = "",
-        content_hooks = {
-          mini_starter.gen_hook.aligning("center", "center"),
-        },
-        items = {
-          mini_starter.sections.builtin_actions(),
-          mini_starter.sections.recent_files(5, true, false),
-        },
-      }
-    end,
-    version = false,
-  },
-  {
     "nvim-mini/mini.ai",
     config = function()
       local mini_ai = require "mini.ai"
