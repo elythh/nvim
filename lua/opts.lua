@@ -8,6 +8,8 @@ opts.initial = function()
   opt.laststatus = 3 -- global statusline
   opt.showmode = false
 
+  opt.swapfile = false
+
   opt.clipboard = "unnamedplus"
 
   opt.expandtab = true
