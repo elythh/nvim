@@ -7,6 +7,9 @@ return {
     lazygit = {
       enabled = true,
     },
+    statuscolumn = {
+      enabled = true,
+    },
     indent = {
       indent = {
         enabled = false,
