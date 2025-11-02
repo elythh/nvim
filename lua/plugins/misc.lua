@@ -3,6 +3,45 @@ local conf_path = vim.fn.stdpath "config" --[[@as string]]
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
 
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  {
+    "kiyoon/treesitter-indent-object.nvim",
+    keys = {
+      {
+        "ai",
+        function()
+          require("treesitter_indent_object.textobj").select_indent_outer()
+        end,
+        mode = { "x", "o" },
+        desc = "Select context-aware indent (outer)",
+      },
+      {
+        "aI",
+        function()
+          require("treesitter_indent_object.textobj").select_indent_outer(true, "V")
+          require("treesitter_indent_object.refiner").include_surrounding_empty_lines()
+        end,
+        mode = { "x", "o" },
+        desc = "Select context-aware indent (outer, line-wise)",
+      },
+      {
+        "ii",
+        function()
+          require("treesitter_indent_object.textobj").select_indent_inner()
+        end,
+        mode = { "x", "o" },
+        desc = "Select context-aware indent (inner, partial range)",
+      },
+      {
+        "iI",
+        function()
+          require("treesitter_indent_object.textobj").select_indent_inner(true, "V")
+        end,
+        mode = { "x", "o" },
+        desc = "Select context-aware indent (inner, entire range) in line-wise visual mode",
+      },
+    },
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VimEnter",
