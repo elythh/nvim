@@ -139,7 +139,6 @@ return {
       },
       popupmenu = {
         enabled = true,
-        backend = "nui",
       },
       routes = {
         {
@@ -151,9 +150,6 @@ return {
           opts = { skip = true },
         },
       },
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
     },
   },
 }
