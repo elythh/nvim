@@ -73,11 +73,6 @@ return {
   },
 
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {},
-  },
-
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
