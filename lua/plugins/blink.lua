@@ -7,8 +7,6 @@ return {
       "mikavilpas/blink-ripgrep.nvim",
       "moyiz/blink-emoji.nvim",
       "fang2hou/blink-copilot",
-      "ribru17/blink-cmp-spell",
-      "Kaiser-Yang/blink-cmp-dictionary",
       "Kaiser-Yang/blink-cmp-git",
     },
     -- build = 'cargo build --release',
@@ -38,17 +36,12 @@ return {
       },
 
       sources = {
-        default = { "lsp", "buffer", "path", "dictionary", "emoji", "git", "spell", "ripgrep" },
+        default = { "lsp", "buffer", "path", "emoji", "git", "ripgrep" },
         providers = {
           ripgrep = {
             name = "Ripgrep",
             module = "blink-ripgrep",
             score_offset = 1,
-          },
-          dictionary = {
-            name = "Dict",
-            module = "blink-cmp-dictionary",
-            min_keyword_length = 3,
           },
           emoji = {
             name = "Emoji",
@@ -56,11 +49,6 @@ return {
             score_offset = 1,
           },
           lsp = { score_offset = 4 },
-          spell = {
-            name = "Spell",
-            module = "blink-cmp-spell",
-            score_offset = 1,
-          },
           git = {
             name = "Git",
             module = "blink-cmp-git",
