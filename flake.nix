@@ -54,12 +54,15 @@
               yamllint
               prettierd
               shfmt
+              commitlint
 
               kustomize
               kubeconform
               kubent
 
               claude-code
+
+              glab
             ];
           };
 

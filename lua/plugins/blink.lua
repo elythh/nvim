@@ -4,6 +4,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
 
+      "disrupted/blink-cmp-conventional-commits",
       "mikavilpas/blink-ripgrep.nvim",
       "moyiz/blink-emoji.nvim",
       "fang2hou/blink-copilot",
@@ -36,7 +37,7 @@ return {
       },
 
       sources = {
-        default = { "lsp", "buffer", "path", "emoji", "git", "ripgrep" },
+        default = { "conventional_commits", "lsp", "buffer", "path", "emoji", "git", "ripgrep" },
         providers = {
           ripgrep = {
             name = "Ripgrep",
@@ -47,6 +48,16 @@ return {
             name = "Emoji",
             module = "blink-emoji",
             score_offset = 1,
+          },
+          conventional_commits = {
+            name = "Conventional Commits",
+            module = "blink-cmp-conventional-commits",
+            enabled = function()
+              return vim.bo.filetype == "gitcommit"
+            end,
+            ---@module 'blink-cmp-conventional-commits'
+            ---@type blink-cmp-conventional-commits.Options
+            opts = {}, -- none so far
           },
           lsp = { score_offset = 4 },
           git = {

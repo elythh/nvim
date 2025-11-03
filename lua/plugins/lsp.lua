@@ -2,7 +2,7 @@ return {
   {
     "nvimdev/lspsaga.nvim",
     config = function()
-      require("lspsaga").setup({
+      require("lspsaga").setup {
         beacon = {
           enable = true,
         },
@@ -70,7 +70,7 @@ return {
           scrollDown = "<C-f>",
           scrollUp = "<C-b>",
         },
-      })
+      }
     end,
   }, -- <--- ADDED MISSING COMMA HERE to separate lspsaga from the next plugin
 
@@ -91,5 +91,21 @@ return {
         python = { "ruff" },
       },
     },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    config = function()
+      local lint = require "lint"
+
+      lint.linters_by_ft = {
+        gitcommit = { "commitlint" },
+        yaml = { "yamllint" },
+      }
+      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        callback = function()
+          require("lint").try_lint()
+        end,
+      })
+    end,
   },
 }
