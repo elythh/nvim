@@ -68,9 +68,6 @@
 
           startupPlugins = {
             # gitPlugins = with pkgs.neovimPlugins; [ ];
-            general = with pkgs.vimPlugins; [
-              (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
-            ];
           };
 
           # optionalPlugins = {
