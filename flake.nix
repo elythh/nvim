@@ -5,10 +5,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-    };
   };
 
   # see :help nixCats.flake.outputs
@@ -104,7 +100,7 @@
 
       packageDefinitions = {
         nvim =
-          { pkgs, ... }:
+          { ... }:
           {
             settings = {
               wrapRc = true;
@@ -112,7 +108,6 @@
                 "vim"
                 "nv"
               ];
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             categories = {
               general = true;
