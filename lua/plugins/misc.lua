@@ -45,6 +45,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VimEnter",
+    branch = "master",
     build = require("nixCatsUtils").lazyAdd ":TSUpdate",
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     config = function()
