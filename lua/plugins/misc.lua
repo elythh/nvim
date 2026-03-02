@@ -242,4 +242,9 @@ return {
       require("kubectl").setup()
     end,
   },
+  {
+    "allaman/tf.nvim",
+    opts = {},
+    ft = "terraform",
+  },
 }
