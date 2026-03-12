@@ -133,34 +133,6 @@ return {
     end,
   },
   {
-    "dmtrKovalenko/fff.nvim",
-    build = function()
-      -- this will download prebuild binary or try to use existing rustup toolchain to build from source
-      -- (if you are using lazy you can use gb for rebuilding a plugin if needed)
-      require("fff.download").download_or_build_binary()
-    end,
-    -- if you are using nixos
-    -- build = "nix run .#release",
-    opts = { -- (optional)
-      debug = {
-        enabled = true, -- we expect your collaboration at least during the beta
-        show_scores = true, -- to help us optimize the scoring system, feel free to share your scores!
-      },
-    },
-    -- No need to lazy-load with lazy.nvim.
-    -- This plugin initializes itself lazily.
-    lazy = false,
-    keys = {
-      {
-        "ff", -- try it if you didn't it is a banger keybinding for a picker
-        function()
-          require("fff").find_files()
-        end,
-        desc = "FFFind files",
-      },
-    },
-  },
-  {
     "A7Lavinraj/fyler.nvim",
     dependencies = { "nvim-mini/mini.icons" },
     branch = "stable",
@@ -269,6 +241,41 @@ return {
       { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-mini/mini.icons", version = false, opts = {} },
+    lazy = true,
+    cmd = { "FzfLua" },
+    keys = {
+      { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Find files" },
+      { "<leader>fw", "<cmd>FzfLua live_grep<CR>", desc = "Grep live" },
+      { "<leader>fb", "<cmd>FzfLua buffers<CR>", desc = "Find buffers" },
+      { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Find oldfiles" },
+      { "<leader>bi", "<cmd>FzfLua<CR>", desc = "FzfLua" },
+      { "<leader>sr", "<cmd>FzfLua lsp_references<CR>", desc = "Find lsp references" },
+    },
+    opts = {
+      keymap = {
+        fzf = {
+          ["ctrl-q"] = "select-all+accept",
+        },
+      },
+      defaults = {
+        file_icons = "mini",
+      },
+      winopts = {
+        border = "single",
+        preview = {
+          border = "single",
+          scrollbar = false,
+        },
+      },
+      hls = {
+        backdrop = "FloatBorder",
+      },
     },
   },
 }
