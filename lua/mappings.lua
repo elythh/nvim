@@ -20,10 +20,10 @@ M.general = function()
   map("i", "<C-j>", "<Down>", "move down")
   map("i", "<C-k>", "<Up>", "move up")
 
-  map("n", "<C-h>", "<C-w>h", "switch window left")
-  map("n", "<C-l>", "<C-w>l", "switch window right")
-  map("n", "<C-j>", "<C-w>j", "switch window down")
-  map("n", "<C-k>", "<C-w>k", "switch window up")
+  -- map("n", "<C-h>", "<C-w>h", "switch window left")
+  -- map("n", "<C-l>", "<C-w>l", "switch window right")
+  -- map("n", "<C-j>", "<C-w>j", "switch window down")
+  -- map("n", "<C-k>", "<C-w>k", "switch window up")
 
   map("n", "<Esc>", "<cmd>noh<CR>", "general clear highlights")
 
