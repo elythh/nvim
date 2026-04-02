@@ -57,6 +57,7 @@
               kubent
 
               claude-code
+              github-copilot-cli
 
               glab
             ];
