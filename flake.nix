@@ -56,7 +56,7 @@
               kubeconform
               kubent
 
-              claude-code
+              # claude-code
               github-copilot-cli
 
               glab
