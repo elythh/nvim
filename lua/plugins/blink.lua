@@ -3,7 +3,6 @@ return {
     "saghen/blink.cmp",
     dependencies = {
       "nvim-lua/plenary.nvim",
-
       "disrupted/blink-cmp-conventional-commits",
       "mikavilpas/blink-ripgrep.nvim",
       "moyiz/blink-emoji.nvim",
@@ -12,10 +11,9 @@ return {
     },
     -- build = 'cargo build --release',
     version = "v1.7.0",
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "BufReadPre", "InsertEnter", "CmdlineEnter" },
     lazy = true,
     ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
     opts = {
       keymap = {
         preset = "none",
@@ -59,7 +57,7 @@ return {
             ---@type blink-cmp-conventional-commits.Options
             opts = {}, -- none so far
           },
-          lsp = { score_offset = 4 },
+          lsp = { score_offset = 1 },
           git = {
             name = "Git",
             module = "blink-cmp-git",
@@ -95,5 +93,11 @@ return {
       fuzzy = { implementation = "prefer_rust_with_warning" },
     },
     opts_extend = { "sources.default" },
+    config = function(_, opts)
+      require("blink.cmp").setup(opts)
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
+    end,
   },
 }

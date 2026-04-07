@@ -2,7 +2,7 @@ local conf_path = vim.fn.stdpath "config" --[[@as string]]
 
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
-
+  "b0o/schemastore.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",
   {
     "kiyoon/treesitter-indent-object.nvim",

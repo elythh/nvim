@@ -14,9 +14,12 @@ return {
   },
   settings = {
     yaml = {
-      -- Example: Enable Kubernetes schema if needed
       schemas = {
         kubernetes = "/*.y(a)ml",
+      },
+      schemaStore = {
+        enable = true,
+        url = "https://www.schemastore.org/api/json/catalog.json",
       },
       format = {
         enable = true,
