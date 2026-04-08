@@ -60,6 +60,7 @@
               github-copilot-cli
 
               glab
+              go
             ];
           };
 
