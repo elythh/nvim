@@ -14,24 +14,10 @@ return {
   },
   settings = {
     nixd = {
-      -- These settings likely rely on external variables like 'nixCats'
       nixpkgs = {
-        -- Example of a setting to correctly locate nixpkgs
-        expr = nixCats.extra("nixdExtras.nixpkgs") or [[import <nixpkgs> {}]],
-      },
-      options = {
-        nixos = {
-          expr = nixCats.extra("nixdExtras.nixos_options"),
-        },
-        ["home-manager"] = {
-          expr = nixCats.extra("nixdExtras.home_manager_options"),
-        },
-        ["darwin"] = {
-          expr = nixCats.extra("nixdExtras.darwin_options"),
-        },
+        expr = [[import <nixpkgs> {}]],
       },
       formatting = {
-        -- Defines the command to use for document formatting
         command = { "nixfmt" },
       },
       diagnostic = {

@@ -1,201 +1,64 @@
 {
-
   description = "ElythVim";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
   };
 
-  # see :help nixCats.flake.outputs
-  outputs =
-    {
-      # self,
-      nixpkgs,
-      nixCats,
-      ...
-    }@inputs:
+  outputs = { self, nixpkgs, ... }:
     let
-      inherit (nixCats) utils;
-      luaPath = "${./.}";
-      forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
-      extra_pkg_config = {
-        allowUnfree = true;
-      };
-      dependencyOverlays = # (import ./overlays inputs) ++
-        [
-          (utils.standardPluginOverlay inputs)
-        ];
-
-      categoryDefinitions =
-        {
-          pkgs,
-          ...
-        }:
-        {
-          lspsAndRuntimeDeps = {
-            general = with pkgs; [
-              nixd
-              stdenv.cc.cc
-              lua-language-server
-              ripgrep
-              gopls
-              yaml-language-server
-              terraform-ls
-
-              nix-doc
-
-              stylua
-              yamlfmt
-              yamllint
-              prettierd
-              shfmt
-              commitlint
-
-              kustomize
-              kubeconform
-              kubent
-
-              # claude-code
-              github-copilot-cli
-
-              glab
-              go
-            ];
-          };
-
-          startupPlugins = {
-            # gitPlugins = with pkgs.neovimPlugins; [ ];
-          };
-
-          # optionalPlugins = {
-          #   gitPlugins = with pkgs.neovimPlugins; [ ];
-          #   general = with pkgs.vimPlugins; [ ];
-          # };
-
-          sharedLibraries = {
-            general = with pkgs; [
-              lazygit
-              kubernetes-helm
-            ];
-          };
-
-          environmentVariables = {
-            test = {
-              CATTESTVAR = "It worked!";
-            };
-          };
-
-          extraWrapperArgs = {
-            test = [
-              ''--set CATTESTVAR2 "It worked again!"''
-            ];
-          };
-
-          extraPython3Packages = {
-            test = (_: [ ]);
-          };
-          extraLuaPackages = {
-            test = [ (_: [ ]) ];
-          };
-        };
-
-      packageDefinitions = {
-        nvim =
-          { ... }:
-          {
-            settings = {
-              wrapRc = true;
-              aliases = [
-                "vim"
-                "nv"
-              ];
-            };
-            categories = {
-              general = true;
-              gitPlugins = true;
-              customPlugins = true;
-              test = true;
-              example = {
-                youCan = "add more than just booleans";
-                toThisSet = [
-                  "and the contents of this categories set"
-                  "will be accessible to your lua with"
-                  "nixCats('path.to.value')"
-                  "see :help nixCats"
-                ];
-              };
-            };
-          };
-      };
-      defaultPackageName = "nvim";
+      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forEachSystem = f:
+        nixpkgs.lib.genAttrs systems (system: f (import nixpkgs { inherit system; }));
     in
-
-    forEachSystem (
-      system:
-      let
-        nixCatsBuilder = utils.baseBuilder luaPath {
-          inherit
-            nixpkgs
-            system
-            dependencyOverlays
-            extra_pkg_config
-            ;
-        } categoryDefinitions packageDefinitions;
-        defaultPackage = nixCatsBuilder defaultPackageName;
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        packages = utils.mkAllWithDefault defaultPackage;
-
-        devShells = {
-          default = pkgs.mkShell {
-            name = defaultPackageName;
-            packages = [ defaultPackage ];
-            inputsFrom = [ ];
-            shellHook = '''';
+    {
+      packages = forEachSystem (pkgs:
+        let
+          nvimWithConfig = pkgs.writeShellApplication {
+            name = "nvim";
+            runtimeInputs = [ pkgs.neovim ];
+            text = ''
+              unset VIMINIT
+              export NVIM_APPNAME="elythvim"
+              config_dir="''${XDG_CONFIG_HOME:-$HOME/.config}/$NVIM_APPNAME"
+              mkdir -p "$config_dir"
+              cp -rf ${self}/* "$config_dir"/
+              chmod -R u+w "$config_dir"
+              exec nvim "$@"
+            '';
           };
-        };
+        in
+        {
+          default = nvimWithConfig;
+          nvim = nvimWithConfig;
+        });
 
-      }
-    )
-    // (
-      let
-        nixosModule = utils.mkNixosModules {
-          moduleNamespace = [ defaultPackageName ];
-          inherit
-            defaultPackageName
-            dependencyOverlays
-            luaPath
-            categoryDefinitions
-            packageDefinitions
-            extra_pkg_config
-            nixpkgs
-            ;
+      apps = forEachSystem (pkgs: {
+        default = {
+          type = "app";
+          program = "${self.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/nvim";
         };
-        homeModule = utils.mkHomeModules {
-          moduleNamespace = [ defaultPackageName ];
-          inherit
-            defaultPackageName
-            dependencyOverlays
-            luaPath
-            categoryDefinitions
-            packageDefinitions
-            extra_pkg_config
-            nixpkgs
-            ;
+      });
+
+      devShells = forEachSystem (pkgs: {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            neovim
+            git
+            ripgrep
+            lua-language-server
+            gopls
+            yaml-language-server
+            terraform-ls
+            nixd
+            stylua
+            shfmt
+            prettierd
+            yamllint
+            yamlfmt
+            go
+          ];
         };
-      in
-      {
-        overlays = utils.makeOverlays luaPath {
-          inherit nixpkgs dependencyOverlays extra_pkg_config;
-        } categoryDefinitions packageDefinitions defaultPackageName;
-
-        nixosModules.default = nixosModule;
-        homeModules.default = homeModule;
-
-        inherit utils nixosModule homeModule;
-        inherit (utils) templates;
-      }
-    );
+      });
+    };
 }

@@ -46,11 +46,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "VimEnter",
     branch = "master",
-    build = require("nixCatsUtils").lazyAdd ":TSUpdate",
+    build = ":TSUpdate",
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     config = function()
-      require("nvim-treesitter.configs").setup {
-        ensure_installed = require("nixCatsUtils").lazyAdd {
+      require("nvim-treesitter").setup {
+        ensure_installed = {
           "lua",
           "vim",
           "vimdoc",
@@ -63,7 +63,7 @@ return {
           "astro",
           "nix",
         },
-        auto_install = not require("nixCatsUtils").isNixCats,
+        auto_install = true,
         highlight = {
           enable = true,
           use_languagetree = true,

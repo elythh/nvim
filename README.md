@@ -1,33 +1,12 @@
-# ElythVim 
-> [!WARNING]
-> Forked from Lalit64
+# ElythVim
 
-### 💤 Lazy plugin management
-This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manage plugins.
+This config now uses Neovim's native `vim.pack` plugin manager.
 
-# 📦 Install
-- This is not meant to be used without nix, but I am pretty sure it works ok.
+## Install
 
-> [!WARNING]
-> Make sure you don't have neovim or vim installed
-
-> [!NOTE]
-> This installs an instance of neovim with all the plugins and config built
-
-1. In your `flake.nix`
-```nix
-{
-  inputs = {
-    neovim.url = "git+ssh://git@github.com/elythh/nvim.git";
-    neovim.inputs.nixpkgs.follows = "nixpkgs";
-  }
-}
+1. Clone this repo to your Neovim config directory:
+```bash
+git clone git@github.com:elythh/nvim.git ~/.config/nvim
 ```
 
-2. Use the home-manager module by including it in the imports like this:
-```nix
-imports = [
-  inputs.neovim.homeModules.default
-  { nvim.enable = true }
-];
-```
+2. Start Neovim (plugins are managed by `vim.pack` from `lua/pack.lua`).
