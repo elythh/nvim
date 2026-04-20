@@ -5,18 +5,50 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs, ... }:
+  outputs =
+    { self, nixpkgs, ... }:
     let
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSystem = f:
-        nixpkgs.lib.genAttrs systems (system: f (import nixpkgs { inherit system; }));
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      forEachSystem =
+        f:
+        nixpkgs.lib.genAttrs systems (system:
+          f (import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          }));
+      nvimDepsFor =
+        pkgs: with pkgs; [
+          neovim
+          git
+          github-copilot-cli
+          ripgrep
+          lua-language-server
+          gopls
+          yaml-language-server
+          terraform-ls
+          nixd
+          stylua
+          shfmt
+          prettierd
+          yamllint
+          yamlfmt
+          go
+        ];
     in
     {
-      packages = forEachSystem (pkgs:
+      packages = forEachSystem (
+        pkgs:
         let
+          nvimDeps = nvimDepsFor pkgs;
+
           nvimWithConfig = pkgs.writeShellApplication {
             name = "nvim";
-            runtimeInputs = [ pkgs.neovim ];
+            runtimeInputs = nvimDeps;
             text = ''
               unset VIMINIT
               export NVIM_APPNAME="elythvim"
@@ -31,7 +63,8 @@
         {
           default = nvimWithConfig;
           nvim = nvimWithConfig;
-        });
+        }
+      );
 
       apps = forEachSystem (pkgs: {
         default = {
@@ -42,22 +75,7 @@
 
       devShells = forEachSystem (pkgs: {
         default = pkgs.mkShell {
-          packages = with pkgs; [
-            neovim
-            git
-            ripgrep
-            lua-language-server
-            gopls
-            yaml-language-server
-            terraform-ls
-            nixd
-            stylua
-            shfmt
-            prettierd
-            yamllint
-            yamlfmt
-            go
-          ];
+          packages = nvimDepsFor pkgs;
         };
       });
     };
