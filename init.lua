@@ -4,4 +4,4 @@ end
 
 require("opts").initial()
 require("lsp")
-require("plugins").setup()
+require("pack").setup()

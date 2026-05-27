@@ -25,7 +25,6 @@
         pkgs: with pkgs; [
           neovim
           git
-          github-copilot-cli
           ripgrep
           lua-language-server
           gopls
