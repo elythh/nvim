@@ -23,7 +23,6 @@ local plugins = {
   "sindrets/diffview.nvim",
   "stevearc/dressing.nvim",
   "nvim-tree/nvim-web-devicons",
-  "saghen/blink.cmp",
   "disrupted/blink-cmp-conventional-commits",
   "mikavilpas/blink-ripgrep.nvim",
   "moyiz/blink-emoji.nvim",
@@ -48,6 +47,11 @@ local plugins = {
   "mfussenegger/nvim-lint",
   "folke/snacks.nvim",
 }
+
+vim.pack.add({ 'https://github.com/saghen/blink.lib', 'https://github.com/saghen/blink.cmp' })
+local cmp = require('blink.cmp')
+cmp.build():pwait()
+cmp.setup()
 
 local function to_src(repo)
   return ("https://github.com/%s.git"):format(repo)
