@@ -1,297 +1,144 @@
-local conf_path = vim.fn.stdpath "config" --[[@as string]]
+require("nvim-treesitter").setup({
+  ensure_installed = {
+    "lua",
+    "vim",
+    "vimdoc",
+    "html",
+    "css",
+    "typescript",
+    "javascript",
+    "svelte",
+    "rust",
+    "astro",
+    "nix",
+  },
+  auto_install = true,
+  highlight = {
+    enable = true,
+    use_languagetree = true,
+  },
+  indent = { enable = true },
+})
 
-return {
-  { "nvim-lua/plenary.nvim", lazy = true },
-  "b0o/schemastore.nvim",
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  {
-    "kiyoon/treesitter-indent-object.nvim",
-    keys = {
-      {
-        "ai",
-        function()
-          require("treesitter_indent_object.textobj").select_indent_outer()
-        end,
-        mode = { "x", "o" },
-        desc = "Select context-aware indent (outer)",
-      },
-      {
-        "aI",
-        function()
-          require("treesitter_indent_object.textobj").select_indent_outer(true, "V")
-          require("treesitter_indent_object.refiner").include_surrounding_empty_lines()
-        end,
-        mode = { "x", "o" },
-        desc = "Select context-aware indent (outer, line-wise)",
-      },
-      {
-        "ii",
-        function()
-          require("treesitter_indent_object.textobj").select_indent_inner()
-        end,
-        mode = { "x", "o" },
-        desc = "Select context-aware indent (inner, partial range)",
-      },
-      {
-        "iI",
-        function()
-          require("treesitter_indent_object.textobj").select_indent_inner(true, "V")
-        end,
-        mode = { "x", "o" },
-        desc = "Select context-aware indent (inner, entire range) in line-wise visual mode",
-      },
-    },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = "VimEnter",
-    branch = "master",
-    build = ":TSUpdate",
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    config = function()
-      require("nvim-treesitter").setup {
-        ensure_installed = {
-          "lua",
-          "vim",
-          "vimdoc",
-          "html",
-          "css",
-          "typescript",
-          "javascript",
-          "svelte",
-          "rust",
-          "astro",
-          "nix",
-        },
-        auto_install = true,
-        highlight = {
-          enable = true,
-          use_languagetree = true,
-        },
-        indent = { enable = true },
-      }
-    end,
-  },
+-- treesitter-indent-object text objects
+vim.keymap.set({ "x", "o" }, "ai", function()
+  require("treesitter_indent_object.textobj").select_indent_outer()
+end, { desc = "Select context-aware indent (outer)" })
 
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-  },
-  {
-    "allaman/kustomize.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    ft = "yaml",
-    opts = {
-      build = {
-        additional_args = { "--enable-helm", "--load-restrictor=LoadRestrictionsNone" },
-      },
-    },
-  },
+vim.keymap.set({ "x", "o" }, "aI", function()
+  require("treesitter_indent_object.textobj").select_indent_outer(true, "V")
+  require("treesitter_indent_object.refiner").include_surrounding_empty_lines()
+end, { desc = "Select context-aware indent (outer, line-wise)" })
 
-  {
-    "options",
-    event = "VeryLazy",
-    dir = conf_path,
-    config = function()
-      require("plugins.scrollEOF").setup {}
-      require("opts").final()
-      require("mappings").general()
-      require("mappings").lsp()
-      require("mappings").misc()
-      require("mappings").mini()
-    end,
+vim.keymap.set({ "x", "o" }, "ii", function()
+  require("treesitter_indent_object.textobj").select_indent_inner()
+end, { desc = "Select context-aware indent (inner, partial range)" })
+
+vim.keymap.set({ "x", "o" }, "iI", function()
+  require("treesitter_indent_object.textobj").select_indent_inner(true, "V")
+end, { desc = "Select context-aware indent (inner, entire range) in line-wise visual mode" })
+
+-- kustomize
+require("kustomize").setup({
+  build = {
+    additional_args = { "--enable-helm", "--load-restrictor=LoadRestrictionsNone" },
   },
-  {
-    "ruifm/gitlinker.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("gitlinker").setup {
-        callbacks = {
-          ["github.com"] = require("gitlinker.hosts").get_github_type_url,
-          ["gitlab.dnm.radiofrance.fr"] = require("gitlinker.hosts").get_github_type_url,
-        },
-      }
-    end,
+})
+
+-- gitlinker
+require("gitlinker").setup({
+  callbacks = {
+    ["github.com"] = require("gitlinker.hosts").get_github_type_url,
+    ["gitlab.dnm.radiofrance.fr"] = require("gitlinker.hosts").get_github_type_url,
   },
-  {
-    "f-person/git-blame.nvim",
-    event = "VeryLazy",
-    opts = function()
-      local hl_cursor_line = vim.api.nvim_get_hl(0, { name = "CursorLine" })
-      local hl_comment = vim.api.nvim_get_hl(0, { name = "Comment" })
-      local hl_combined = vim.tbl_extend("force", hl_comment, { bg = hl_cursor_line.bg })
-      vim.api.nvim_set_hl(0, "CursorLineBlame", hl_combined)
-      return {
-        message_template = " <author> • <date> • <summary>",
-        date_format = "%r",
-        virtual_text_column = 1,
-        enabled = true,
-        highlight_group = "CursorLineBlame",
-        -- etc.
-      }
-    end,
-  },
-  {
-    "A7Lavinraj/fyler.nvim",
-    dependencies = { "nvim-mini/mini.icons" },
-    branch = "stable",
-    opts = {
-      confirm_simple = true,
-      mappings = {
-        ["q"] = "CloseView",
-        ["l"] = "Select",
-        ["<C-t>"] = "SelectTab",
-        ["|"] = "SelectVSplit",
-        ["-"] = "SelectSplit",
-        ["h"] = "GotoParent",
-        ["="] = "GotoCwd",
-        ["."] = "GotoNode",
-        ["#"] = "CollapseAll",
-        ["<BS>"] = "CollapseNode",
-      },
+})
+
+-- git-blame
+do
+  local hl_cursor_line = vim.api.nvim_get_hl(0, { name = "CursorLine" })
+  local hl_comment = vim.api.nvim_get_hl(0, { name = "Comment" })
+  local hl_combined = vim.tbl_extend("force", hl_comment, { bg = hl_cursor_line.bg })
+  vim.api.nvim_set_hl(0, "CursorLineBlame", hl_combined)
+  vim.g.gitblame_message_template = " <author> • <date> • <summary>"
+  vim.g.gitblame_date_format = "%r"
+  vim.g.gitblame_virtual_text_column = 1
+  vim.g.gitblame_enabled = true
+  vim.g.gitblame_highlight_group = "CursorLineBlame"
+end
+
+-- sidekick
+require("sidekick").setup({
+  cli = {
+    mux = {
+      backend = "tmux",
+      enabled = true,
     },
   },
-  {
-    "folke/sidekick.nvim",
-    opts = {
-      -- add any options here
-      cli = {
-        mux = {
-          backend = "tmux",
-          enabled = true,
-        },
-      },
-    },
-    keys = {
-      {
-        "<tab>",
-        function()
-          -- if there is a next edit, jump to it, otherwise apply it if any
-          if not require("sidekick").nes_jump_or_apply() then
-            return "<Tab>" -- fallback to normal tab
-          end
-        end,
-        expr = true,
-        desc = "Goto/Apply Next Edit Suggestion",
-      },
-      {
-        "<leader>aa",
-        function()
-          require("sidekick.cli").toggle()
-        end,
-        desc = "Sidekick Toggle CLI",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ac",
-        function()
-          require("sidekick.cli").toggle { name = "claude", focus = true }
-        end,
-        desc = "Sidekick Claude Toggle",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ap",
-        function()
-          require("sidekick.cli").prompt()
-        end,
-        desc = "Sidekick Ask Prompt",
-        mode = { "n", "v" },
-      },
+})
+
+vim.keymap.set({ "n", "v" }, "<tab>", function()
+  if not require("sidekick").nes_jump_or_apply() then
+    return "<Tab>"
+  end
+end, { expr = true, desc = "Goto/Apply Next Edit Suggestion" })
+
+vim.keymap.set({ "n", "v" }, "<leader>aa", function()
+  require("sidekick.cli").toggle()
+end, { desc = "Sidekick Toggle CLI" })
+
+vim.keymap.set({ "n", "v" }, "<leader>ac", function()
+  require("sidekick.cli").toggle({ name = "claude", focus = true })
+end, { desc = "Sidekick Claude Toggle" })
+
+vim.keymap.set({ "n", "v" }, "<leader>ap", function()
+  require("sidekick.cli").prompt()
+end, { desc = "Sidekick Ask Prompt" })
+
+-- kubectl
+require("kubectl").setup()
+
+-- tf.nvim
+require("tf").setup({})
+
+-- wrapped.nvim
+require("wrapped").setup({})
+
+-- vim-tmux-navigator
+vim.keymap.set("n", "<c-h>", "<cmd>TmuxNavigateLeft<cr>")
+vim.keymap.set("n", "<c-j>", "<cmd>TmuxNavigateDown<cr>")
+vim.keymap.set("n", "<c-k>", "<cmd>TmuxNavigateUp<cr>")
+vim.keymap.set("n", "<c-l>", "<cmd>TmuxNavigateRight<cr>")
+vim.keymap.set("n", "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>")
+
+-- fzf-lua
+require("fzf-lua").setup({
+  keymap = {
+    fzf = {
+      ["ctrl-q"] = "select-all+accept",
     },
   },
-  {
-    "ramilito/kubectl.nvim",
-    -- use a release tag to download pre-built binaries
-    version = "2.*",
-    -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'make build',
-    -- OR if you use nix, build from source with:
-    -- build = 'nix run .#build-plugin',
-    dependencies = "saghen/blink.download",
-    config = function()
-      require("kubectl").setup()
-    end,
+  defaults = {
+    file_icons = "mini",
   },
-  {
-    "allaman/tf.nvim",
-    opts = {},
-    ft = "terraform",
-  },
-  {
-    "aikhe/wrapped.nvim",
-    dependencies = { "nvzone/volt" },
-    cmd = { "WrappedNvim" },
-    opts = {},
-  },
-  {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-      "TmuxNavigatorProcessList",
-    },
-    keys = {
-      { "<c-h>", "<cmd>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
+  winopts = {
+    border = "single",
+    preview = {
+      border = "single",
+      scrollbar = false,
     },
   },
-  {
-    "ibhagwan/fzf-lua",
-    -- optional for icon support
-    dependencies = { "nvim-mini/mini.icons", version = false, opts = {} },
-    lazy = true,
-    cmd = { "FzfLua" },
-    keys = {
-      { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Find files" },
-      { "<leader>fw", "<cmd>FzfLua live_grep<CR>", desc = "Grep live" },
-      { "<leader>fb", "<cmd>FzfLua buffers<CR>", desc = "Find buffers" },
-      { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Find oldfiles" },
-      { "<leader>bi", "<cmd>FzfLua<CR>", desc = "FzfLua" },
-      { "<leader>sr", "<cmd>FzfLua lsp_references<CR>", desc = "Find lsp references" },
-    },
-    opts = {
-      keymap = {
-        fzf = {
-          ["ctrl-q"] = "select-all+accept",
-        },
-      },
-      defaults = {
-        file_icons = "mini",
-      },
-      winopts = {
-        border = "single",
-        preview = {
-          border = "single",
-          scrollbar = false,
-        },
-      },
-      hls = {
-        backdrop = "FloatBorder",
-      },
-    },
+  hls = {
+    backdrop = "FloatBorder",
   },
-  {
-    "harrisoncramer/gitlab.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
-      "nvim-tree/nvim-web-devicons", -- Recommended but not required. Icons in discussion tree.
-    },
-    build = function()
-      require("gitlab.server").build(true)
-    end, -- Builds the Go binary
-    config = function()
-      require("gitlab").setup()
-    end,
-  },
-}
+})
+
+vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>", { desc = "Find files" })
+vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua live_grep<CR>", { desc = "Grep live" })
+vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", { desc = "Find buffers" })
+vim.keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<CR>", { desc = "Find oldfiles" })
+vim.keymap.set("n", "<leader>bi", "<cmd>FzfLua<CR>", { desc = "FzfLua" })
+vim.keymap.set("n", "<leader>sr", "<cmd>FzfLua lsp_references<CR>", { desc = "Find lsp references" })
+
+-- gitlab
+require("gitlab.server").build(true)
+require("gitlab").setup()

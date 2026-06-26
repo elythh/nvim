@@ -10,7 +10,6 @@ local plugins = {
   "allaman/kustomize.nvim",
   "ruifm/gitlinker.nvim",
   "f-person/git-blame.nvim",
-  "A7Lavinraj/fyler.nvim",
   "folke/sidekick.nvim",
   "ramilito/kubectl.nvim",
   "allaman/tf.nvim",
@@ -25,9 +24,9 @@ local plugins = {
   "nvim-tree/nvim-web-devicons",
   "disrupted/blink-cmp-conventional-commits",
   "mikavilpas/blink-ripgrep.nvim",
-  "moyiz/blink-emoji.nvim",
   "fang2hou/blink-copilot",
   "Kaiser-Yang/blink-cmp-git",
+  "nvim-mini/mini.files",
   "nvim-mini/mini.hipatterns",
   "nvim-mini/mini.icons",
   "nvim-mini/mini.sessions",
@@ -48,27 +47,40 @@ local plugins = {
   "folke/snacks.nvim",
 }
 
-vim.pack.add({ 'https://github.com/saghen/blink.lib', 'https://github.com/saghen/blink.cmp' })
-local cmp = require('blink.cmp')
-cmp.build():pwait()
-cmp.setup()
-
-local function to_src(repo)
-  return ("https://github.com/%s.git"):format(repo)
+local function wait_for_plugins(callback, attempts)
+  attempts = attempts or 0
+  if attempts > 600 then
+    vim.notify("plugin installation timed out", vim.log.levels.ERROR)
+    callback()
+    return
+  end
+  local ok, _ = pcall(require, "nvim-treesitter")
+  if ok then
+    callback()
+  else
+    vim.defer_fn(function()
+      wait_for_plugins(callback, attempts + 1)
+    end, 100)
+  end
 end
 
-function M.setup()
+function M.setup(callback)
   if type(vim.pack) ~= "table" or type(vim.pack.add) ~= "function" then
-    error "vim.pack is not available in this Neovim build"
+    error("vim.pack is not available in this Neovim build")
   end
+
+  vim.pack.add({
+    "https://github.com/saghen/blink.lib",
+    "https://github.com/saghen/blink.cmp",
+  }, { load = true })
 
   local repos = {}
   for _, repo in ipairs(plugins) do
-    repos[#repos + 1] = { src = to_src(repo) }
+    repos[#repos + 1] = { src = ("https://github.com/%s.git"):format(repo) }
   end
   vim.pack.add(repos, { load = true, confirm = false })
 
-  require("plugins.runtime").setup()
+  wait_for_plugins(callback)
 end
 
 return M

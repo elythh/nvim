@@ -1,7 +1,10 @@
 local function map(mode, keys, action, desc, isRemap)
-  desc = desc or " "
-  remap = remap or false
-  local opts = { noremap = true, silent = true, desc = desc, remap = isRemap }
+  local opts = { silent = true, desc = desc or " " }
+  if isRemap then
+    opts.remap = true
+  else
+    opts.noremap = true
+  end
   vim.keymap.set(mode, keys, action, opts)
 end
 
@@ -19,11 +22,6 @@ M.general = function()
   map("i", "<C-l>", "<Right>", "move right")
   map("i", "<C-j>", "<Down>", "move down")
   map("i", "<C-k>", "<Up>", "move up")
-
-  -- map("n", "<C-h>", "<C-w>h", "switch window left")
-  -- map("n", "<C-l>", "<C-w>l", "switch window right")
-  -- map("n", "<C-j>", "<C-w>j", "switch window down")
-  -- map("n", "<C-k>", "<C-w>k", "switch window up")
 
   map("n", "<Esc>", "<cmd>noh<CR>", "general clear highlights")
 
@@ -44,27 +42,23 @@ M.misc = function()
   map("n", "-", function()
     MiniFiles.open(vim.api.nvim_buf_get_name(0))
   end, "Open Files")
-  map("n", "-", "<cmd>Fyler<CR>", "Fyler")
 end
 
 M.lsp = function()
   map("n", "<leader>ct", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Code Trouble diagnostics")
   map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
-  map("n", "gd", vim.lsp.buf.declaration, "Goto declaration")
   map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
   map("n", "<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
 
   map("n", "<leader>fm", function()
-    require("conform").format { lsp_fallback = true }
+    require("conform").format({ lsp_fallback = true })
   end, "Format File")
 end
 
 local session_new = 'MiniSessions.write(vim.fn.input("Session name: "))'
 M.mini = function()
-  -- Diff
   map("n", "<leader>go", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", "Toggle Diff overlay")
 
-  -- Session
   map("n", "<leader>sd", '<Cmd>lua MiniSessions.select("delete")<CR>', "Delete Session")
   map("n", "<leader>sn", "<Cmd>lua " .. session_new .. "<CR>", "New Session")
   map("n", "<leader>sr", '<Cmd>lua MiniSessions.select("read")<CR>', "Read Session")
