@@ -139,6 +139,14 @@ vim.keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<CR>", { desc = "Find old
 vim.keymap.set("n", "<leader>bi", "<cmd>FzfLua<CR>", { desc = "FzfLua" })
 vim.keymap.set("n", "<leader>sr", "<cmd>FzfLua lsp_references<CR>", { desc = "Find lsp references" })
 
+-- fyler
+require("fyler").setup({
+  auto_confirm_simple_mutation = true,
+  integrations = {
+    icon = "mini_icons",
+  },
+})
+
 -- gitlab
 require("gitlab.server").build(true)
 require("gitlab").setup()

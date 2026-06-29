@@ -26,7 +26,7 @@ local plugins = {
   "mikavilpas/blink-ripgrep.nvim",
   "fang2hou/blink-copilot",
   "Kaiser-Yang/blink-cmp-git",
-  "nvim-mini/mini.files",
+  "A7Lavinraj/fyler.nvim",
   "nvim-mini/mini.hipatterns",
   "nvim-mini/mini.icons",
   "nvim-mini/mini.sessions",

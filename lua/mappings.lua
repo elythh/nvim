@@ -39,9 +39,7 @@ M.misc = function()
   map({ "n", "t" }, "<C-t>", function()
     Snacks.terminal.toggle()
   end, "Terminal")
-  map("n", "-", function()
-    MiniFiles.open(vim.api.nvim_buf_get_name(0))
-  end, "Open Files")
+  map("n", "-", "<cmd>Fyler<CR>", "Open Files")
 end
 
 M.lsp = function()

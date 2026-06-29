@@ -37,6 +37,7 @@
           yamllint
           yamlfmt
           go
+          cargo
         ];
     in
     {
