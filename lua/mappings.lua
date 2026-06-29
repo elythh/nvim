@@ -39,7 +39,9 @@ M.misc = function()
   map({ "n", "t" }, "<C-t>", function()
     Snacks.terminal.toggle()
   end, "Terminal")
-  map("n", "-", "<cmd>Fyler<CR>", "Open Files")
+  map("n", "-", function()
+    Fyler.toggle({ kind = "split_left_most" })
+  end, "Toggle Files")
 end
 
 M.lsp = function()
