@@ -1,6 +1,7 @@
 local M = {}
 
 local plugins = {
+  "emrearmagan/atlas.nvim",
   "nvim-lua/plenary.nvim",
   "b0o/schemastore.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",

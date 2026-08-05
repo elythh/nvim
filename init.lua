@@ -14,6 +14,7 @@ require("pack").setup(function()
   require("plugins.ui")
   require("plugins.lsp-tools")
   require("plugins.misc")
+  require("plugins.atlas")
 
   require("plugins.scrollEOF").setup({})
   require("opts").final()
