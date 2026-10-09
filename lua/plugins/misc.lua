@@ -148,5 +148,5 @@ require("fyler").setup({
 })
 
 -- gitlab
-require("gitlab.server").build(true)
+require("gitlab.server").build()
 require("gitlab").setup()
