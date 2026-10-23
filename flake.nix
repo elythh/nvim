@@ -52,6 +52,14 @@
             text = ''
               unset VIMINIT
               export NVIM_APPNAME="elythvim"
+              # macOS limits unix socket paths to 104 bytes; nested nix-shell TMPDIRs
+              # exceed it, so serverstart() fails (fzf-lua errors at startup)
+              if [ -z "''${XDG_RUNTIME_DIR:-}" ] && [ "$(printf %s "''${TMPDIR:-}" | wc -c)" -gt 40 ]; then
+                XDG_RUNTIME_DIR="/tmp/nvim-$(id -u)"
+                mkdir -p "$XDG_RUNTIME_DIR"
+                chmod 700 "$XDG_RUNTIME_DIR"
+                export XDG_RUNTIME_DIR
+              fi
               config_dir="''${XDG_CONFIG_HOME:-$HOME/.config}/$NVIM_APPNAME"
               mkdir -p "$config_dir"
               cp -rf ${self}/* "$config_dir"/
